@@ -1,35 +1,87 @@
-import {View} from "@tarojs/components";
-import {AtGrid, AtCard} from 'taro-ui'
+import React from 'react'
+import {Text, View} from "@tarojs/components";
+import {AtSearchBar, AtTimeline} from 'taro-ui'
+import Taro from "@tarojs/taro";
 import './index.scss'
+import findExpressCompanyByCode from "../../utils/express";
 
-function Index() {
-  const list = [{
-    image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
-    value: '防疫出行政策'
-  },
-    {
-      image: 'https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png',
-      value: '垃圾分类'
-    },
-    {
-      image: 'https://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
-      value: '油价查询'
-    },
-    {
-      image: 'https://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
-      value: '快递查询'
-    },
-  ]
+
+function Express() {
+  /**
+   * 定义快递state
+   * expressNum:快递单号
+   * expressLine:快递物流信息时间线
+   * expressName:快递公司名称
+   */
+  const [expressNum, setExpressNum] = React.useState('')
+  const [expressLine, setExpressLine] = React.useState([])
+  const [expressName, setExpressName] = React.useState('')
+
+  //
+  // const [ loading, setLoading ] = React.useState(false)
+
+
+  function handleSearchBarChange(searchValue) {
+    setExpressNum(searchValue)
+  }
+
+
+  async function onActionClick() {
+    if (expressNum === '') {
+      console.log('11111')
+      await Taro.showToast({
+        title: '请输入快递单号',
+        icon:'error',
+        duration: 1000
+      })
+      return
+    }
+    await Taro.showLoading({
+      title: 'Loading...',
+    });
+    let res = await Taro.request({
+      method: 'POST',
+      url: 'https://v2.alapi.cn/api/kd', //仅为示例，并非真实的接口地址
+      data: {
+        token: '',
+        number: expressNum
+      }
+    })
+    // console.log(res)
+    if (res.statusCode === 200) {
+      const {data} = res.data
+      // 根据 快递公司code 获取快递公司信息
+      let expressCompany = findExpressCompanyByCode(data.com);
+      setExpressName(expressCompany.name)
+      const {info} = data
+      let dataList = info.map((i) => {
+        return {
+          title: i.content,
+          content: [i.time]
+        }
+      })
+      // console.log(dataList)
+      setExpressLine(dataList)
+      await Taro.hideLoading()
+    }
+  }
 
 
   return (
     <View className='index'>
-      <AtCard>
-        <AtGrid data={list} className='test' />
-      </AtCard>
-
+      <AtSearchBar value={expressNum} onChange={handleSearchBarChange} actionName='查询' onActionClick={onActionClick}/>
+      <View className='search-result'>
+        <View className='express-info'>
+          <Text className='express-name'>{expressName}</Text>
+          {/*<Text className='express-num'>{expressNum}</Text>*/}
+        </View>
+        <AtTimeline
+          items={expressLine}
+        >
+        </AtTimeline>
+      </View>
     </View>
   );
 }
 
-export default Index;
+export default Express;

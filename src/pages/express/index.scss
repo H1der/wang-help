@@ -1,3 +1,27 @@
-.content-inner__text{
-  font-size: 28px !important;
+.at-search-bar{
+  background-color: #8DBF88;
+}
+.at-search-bar__action{
+  background-color: #C53F52;
+}
+.search-result {
+  margin: 20px 38px;
+
+
+  .express-info {
+    margin-bottom: 20px;
+
+    .express-name {
+      color: deepskyblue;
+      font-size: 28px;
+    }
+
+    .express-num {
+      color: grey;
+      margin-left: 10px;
+      font-size: 26px;
+    }
+  }
+
+
 }

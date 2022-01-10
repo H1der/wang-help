@@ -1,5 +1,6 @@
 import {View} from "@tarojs/components";
 import {AtGrid, AtCard} from 'taro-ui'
+import Taro from "@tarojs/taro";
 import './index.scss'
 
 function Index() {
@@ -17,15 +18,22 @@ function Index() {
     },
     {
       image: 'https://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
-      value: '快递查询'
+      value: '快递查询',
+      url:'/pages/express/index'
     },
   ]
 
 
+  function handleAtGridClick(item) {
+      Taro.navigateTo({
+        url: item.url
+      })
+  }
+
   return (
     <View className='index'>
       <AtCard>
-        <AtGrid data={list} className='test' />
+        <AtGrid data={list} className='test'  onClick={handleAtGridClick} />
       </AtCard>
 
     </View>
