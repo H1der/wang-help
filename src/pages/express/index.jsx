@@ -16,6 +16,7 @@ function Express() {
   const [expressNum, setExpressNum] = React.useState('')
   const [expressLine, setExpressLine] = React.useState([])
   const [expressName, setExpressName] = React.useState('')
+  const [expressState, setExpressState] = React.useState('')
 
   //
   // const [ loading, setLoading ] = React.useState(false)
@@ -31,7 +32,7 @@ function Express() {
       console.log('11111')
       await Taro.showToast({
         title: '请输入快递单号',
-        icon:'error',
+        icon: 'error',
         duration: 1000
       })
       return
@@ -40,40 +41,49 @@ function Express() {
       title: 'Loading...',
     });
     let res = await Taro.request({
-      method: 'POST',
-      url: 'https://v2.alapi.cn/api/kd', //仅为示例，并非真实的接口地址
-      data: {
-        token: '',
-        number: expressNum
-      }
+      method: 'GET',
+      url: `http://192.168.1.130:9213/express/search/` + expressNum, //仅为示例，并非真实的接口地址
+      // data: {
+      //   number: expressNum
+      // }
     })
     // console.log(res)
     if (res.statusCode === 200) {
-      const {data} = res.data
+      const {data} = res.data;
       // 根据 快递公司code 获取快递公司信息
       let expressCompany = findExpressCompanyByCode(data.com);
-      setExpressName(expressCompany.name)
-      const {info} = data
-      let dataList = info.map((i) => {
-        return {
-          title: i.content,
-          content: [i.time]
-        }
+      setExpressName(expressCompany.name);
+
+      // setExpressState(data.state);
+      const stateObj = ['', '正常', '派送中', '已签收', '退回', '其他问题']
+      setExpressState(stateObj[data.state])
+      const {info} = data;
+      setExpressLine(info);
+      await Taro.hideLoading();
+    } else {
+      await Taro.hideLoading();
+      await Taro.showToast({
+        title: '内部网络错误',
+        icon: 'error',
+        duration: 1000
       })
-      // console.log(dataList)
-      setExpressLine(dataList)
-      await Taro.hideLoading()
     }
   }
 
 
+  // function stateInitByCode() {
+  //   console.log(expressState)
+  //
+  //   return stateObj[expressState]
+  // }
+
   return (
-    <View className='index'>
-      <AtSearchBar value={expressNum} onChange={handleSearchBarChange} actionName='查询' onActionClick={onActionClick}/>
+    <View className='container'>
+      <AtSearchBar fixed value={expressNum} onChange={handleSearchBarChange} actionName='查询' onActionClick={onActionClick}/>
       <View className='search-result'>
         <View className='express-info'>
           <Text className='express-name'>{expressName}</Text>
-          {/*<Text className='express-num'>{expressNum}</Text>*/}
+          <Text className='express-state'>{expressState}</Text>
         </View>
         <AtTimeline
           items={expressLine}
