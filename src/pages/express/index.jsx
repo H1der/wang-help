@@ -1,9 +1,10 @@
 import React from 'react'
 import {Text, View} from "@tarojs/components";
-import {AtSearchBar, AtTimeline} from 'taro-ui'
+import {AtTimeline} from 'taro-ui'
 import Taro from "@tarojs/taro";
 import './index.scss'
 import findExpressCompanyByCode from "../../utils/express";
+import Search from "../../components/Search/Search";
 
 
 function Express() {
@@ -13,7 +14,7 @@ function Express() {
    * expressLine:快递物流信息时间线
    * expressName:快递公司名称
    */
-  const [expressNum, setExpressNum] = React.useState('')
+  // const [expressNum, setExpressNum] = React.useState('')
   const [expressLine, setExpressLine] = React.useState([])
   const [expressName, setExpressName] = React.useState('')
   const [expressState, setExpressState] = React.useState('')
@@ -22,13 +23,13 @@ function Express() {
   // const [ loading, setLoading ] = React.useState(false)
 
 
-  function handleSearchBarChange(searchValue) {
-    setExpressNum(searchValue)
-  }
+  // function handleSearchBarChange(searchValue) {
+  //   setExpressNum(searchValue)
+  // }
 
 
-  async function onActionClick() {
-    if (expressNum === '') {
+  async function onActionClick(keyword) {
+    if (keyword === '') {
       console.log('11111')
       await Taro.showToast({
         title: '请输入快递单号',
@@ -42,7 +43,7 @@ function Express() {
     });
     let res = await Taro.request({
       method: 'GET',
-      url: `http://192.168.1.130:9213/express/search/` + expressNum, //仅为示例，并非真实的接口地址
+      url: `http://192.168.1.130:9213/express/search/` + keyword,
       // data: {
       //   number: expressNum
       // }
@@ -61,7 +62,6 @@ function Express() {
       setExpressLine(info);
       await Taro.hideLoading();
     } else {
-      await Taro.hideLoading();
       await Taro.showToast({
         title: '内部网络错误',
         icon: 'error',
@@ -70,16 +70,9 @@ function Express() {
     }
   }
 
-
-  // function stateInitByCode() {
-  //   console.log(expressState)
-  //
-  //   return stateObj[expressState]
-  // }
-
   return (
     <View className='container'>
-      <AtSearchBar fixed value={expressNum} onChange={handleSearchBarChange} actionName='查询' onActionClick={onActionClick}/>
+      <Search getSearchKeyword={onActionClick} />
       <View className='search-result'>
         <View className='express-info'>
           <Text className='express-name'>{expressName}</Text>
