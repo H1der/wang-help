@@ -9690,6 +9690,11 @@
   "resolved" "https://mirrors.huaweicloud.com/repository/npm/relateurl/-/relateurl-0.2.7.tgz"
   "version" "0.2.7"
 
+"relationship.js@^1.0.0":
+  "integrity" "sha1-nykiI0r0GjfWRJeNv28iw29oxDU="
+  "resolved" "https://mirrors.huaweicloud.com/repository/npm/relationship.js/-/relationship.js-1.0.0.tgz"
+  "version" "1.0.0"
+
 "remark-parse@^5.0.0":
   "integrity" "sha512-b3iXszZLH1TLoyUzrATcTQUZrwNl1rE70rVdSruJFlDaJ9z5aMkhrG43Pp68OgfHndL/ADz6V69Zow8cTQu+JA=="
   "resolved" "https://mirrors.huaweicloud.com/repository/npm/remark-parse/-/remark-parse-5.0.0.tgz"

@@ -99,11 +99,11 @@ function Garbage() {
         <AtFloatLayout isOpened={isOpened} onClose={()=>setIsOpened(false)} title='                '>
           <View>
             <AtIcon value='help' size='18' color='#A6E0DE' />
-            <Text className='explain-title' style={{marginLeft:'10px'}} >{description.typeName}是什么?</Text>
+            <Text className='explain-title' style={{marginLeft:'10px'}} >{description.typeName}是什么？</Text>
             <Text className='explain-info'>{description.explain}</Text>
           </View>
           <View>
-            <View className='explain-title'>有什么常见的{description.typeName}?</View>
+            <View className='explain-title'>有什么常见的{description.typeName}？</View>
             <Text className='explain-info'>{description.contain}</Text>
           </View>
           <View>
