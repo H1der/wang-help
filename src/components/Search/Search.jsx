@@ -10,7 +10,6 @@ function Search(props) {
   const { getSearchKeyword } = props;
 
 
-
   return (
     <AtSearchBar fixed value={value} onChange={handleSearchBarChange} actionName='查询' onActionClick={()=>{getSearchKeyword(value)}} />
   );

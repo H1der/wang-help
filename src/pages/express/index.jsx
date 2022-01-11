@@ -5,7 +5,7 @@ import Taro from "@tarojs/taro";
 import './index.scss'
 import findExpressCompanyByCode from "../../utils/express";
 import Search from "../../components/Search/Search";
-
+import api from '../../utils/api'
 
 function Express() {
   /**
@@ -19,18 +19,10 @@ function Express() {
   const [expressName, setExpressName] = React.useState('')
   const [expressState, setExpressState] = React.useState('')
 
-  //
-  // const [ loading, setLoading ] = React.useState(false)
-
-
-  // function handleSearchBarChange(searchValue) {
-  //   setExpressNum(searchValue)
-  // }
 
 
   async function onActionClick(keyword) {
     if (keyword === '') {
-      console.log('11111')
       await Taro.showToast({
         title: '请输入快递单号',
         icon: 'error',
@@ -43,7 +35,7 @@ function Express() {
     });
     let res = await Taro.request({
       method: 'GET',
-      url: `http://192.168.1.130:9213/express/search/` + keyword,
+      url: api.getExpress() + keyword,
       // data: {
       //   number: expressNum
       // }
