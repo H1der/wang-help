@@ -46,22 +46,22 @@ function Garbage() {
     {
       type: '1',
       name: '可回收垃圾',
-      thumb: 'http://oss.2hider.com/rubbishtype1.png'
+      thumb: 'https://oss.2hider.com/rubbishtype1.png'
     },
     {
       type: '2',
       name: '有害垃圾',
-      thumb: 'http://oss.2hider.com/rubbishtype2.png'
+      thumb: 'https://oss.2hider.com/rubbishtype2.png'
     },
     {
       type: '3',
       name: '厨余垃圾(湿)',
-      thumb: 'http://oss.2hider.com/rubbishtype3.png'
+      thumb: 'https://oss.2hider.com/rubbishtype3.png'
     },
     {
       type: '4',
       name: '其他垃圾(干)',
-      thumb: 'http://oss.2hider.com/rubbishtype4.png'
+      thumb: 'https://oss.2hider.com/rubbishtype4.png'
     }
   ]
 
