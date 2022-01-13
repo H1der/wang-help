@@ -1,4 +1,4 @@
-const HOST_URI = 'http://192.168.1.130:9213/'
+const HOST_URI = 'https://wang-help.2hider.com/'
 
 const EXPRESS = 'express/search/'
 const GARBAGE = 'garbage/search/'
