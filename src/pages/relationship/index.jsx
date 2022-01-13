@@ -21,12 +21,13 @@ function Relationship() {
   function handleKeyboardClick(key) {
     if (key.call === 'CLR') {
       // 清空关系数组和将选择者性别更改为我的性别
-      setRelation([]);
+      setRelation([])
       setSelectSex([mySex])
     } else if (key.call === 'DEL') {
       // 删除关系数组和性别数组中的最后一位元素
       setRelation(relation.slice(0, -1))
-      setSelectSex(selectSex.slice(0, -1))
+      selectSex.length === 1 ? setSelectSex([mySex]):setSelectSex(selectSex.slice(0, -1))
+
     } else if (relation.length === 0) {
       // 如果关系数组为空 直接设定选中者的称呼和性别
       setRelation([key.call])
