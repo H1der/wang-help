@@ -6,6 +6,7 @@ import Cascade from "../../components/Cascade/Cascade";
 import './index.scss'
 import {TravelSearchResult} from "../../components/TravelSearchResult/TravelSearchResult";
 import api from "../../utils/api";
+import {myRequest} from "../../utils/request";
 
 
 function Travel() {
@@ -51,13 +52,9 @@ function Travel() {
     await Taro.showLoading({
       title: 'Loading...',
     });
-    let res = await Taro.request({
-      method: 'GET',
-      url: api.getTravel() + `${from.city_id}&${to.city_id}`,
-    })
-    console.log(res)
-    if (res.statusCode === 200) {
-      const {data: {from_info, to_info}} = res.data;
+    let res = await myRequest(api.getTravel(),{from:from.city_id,to:to.city_id})
+    if (res.code === 200) {
+      const {data: {from_info, to_info}} = res;
       setFromInfo(from_info)
       setToInfo(to_info)
       setShowResult(true)
@@ -70,6 +67,7 @@ function Travel() {
       })
       setShowResult(false)
     }
+
   }
 
 

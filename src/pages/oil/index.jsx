@@ -5,12 +5,13 @@ import {AtButton, AtList, AtListItem} from "taro-ui";
 import './index.scss'
 import {province} from "../../utils/province";
 import api from "../../utils/api";
+import {myRequest} from "../../utils/request";
 
 function Oil() {
 
 
   const [oilData, setOilData] = useState({})
-  const [provinceName,setProvinceName] = useState('海南')
+  const [provinceName, setProvinceName] = useState('海南')
   useEffect(() => {
     try {
       return getOilPrice()
@@ -22,14 +23,9 @@ function Oil() {
   }, [provinceName])
 
   async function getOilPrice() {
-    let res = await Taro.request({
-      method: 'GET',
-      url: api.getOil() + provinceName,
-    })
-    console.log(res)
-    if (res.statusCode === 200) {
-      const {data} = res.data;
-      setOilData(data)
+    let res = await myRequest(api.getOil(),{province:provinceName})
+    if (res.code === 200) {
+      setOilData(res.data)
       await Taro.hideLoading();
     } else {
       await Taro.showToast({
@@ -60,7 +56,7 @@ function Oil() {
         </Picker>
 
       </View>
-      <View className='info'>
+      {Object.keys(oilData).length === 0 ? '' : (<View className='info'>
         <AtList>
           <AtListItem title={'92# 汽油：' + oilData.oil92} />
           <AtListItem title={'95# 汽油：' + oilData.oil95} />
@@ -68,7 +64,8 @@ function Oil() {
           <AtListItem title={' 0# 柴油：' + oilData.oil0} />
           <AtListItem title={'更新时间：' + oilData.updatetime} />
         </AtList>
-      </View>
+      </View>)}
+
     </View>
   );
 }

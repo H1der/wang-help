@@ -5,7 +5,7 @@ import Taro from "@tarojs/taro";
 import Search from "../../components/Search/Search";
 import './index.scss'
 import api from "../../utils/api";
-
+import {myRequest} from "../../utils/request";
 
 
 function Garbage() {
@@ -22,14 +22,10 @@ function Garbage() {
     await Taro.showLoading({
       title: 'Loading...',
     });
-    let res = await Taro.request({
-      method: 'GET',
-      url: api.getGarbage() + keyword,
-    })
-    if (res.statusCode === 200) {
-      const {data} = res.data;
 
-      setTypeData(data);
+    let res = await myRequest(api.getGarbage(), {keyword})
+    if (res.code === 200) {
+      setTypeData(res.data);
       await Taro.hideLoading();
     } else {
       await Taro.showToast({
@@ -38,8 +34,8 @@ function Garbage() {
         duration: 1000
       })
     }
-    // console.log(keyword)
   }
+
 
   // 垃圾分类对象
   const rubbishType = [
@@ -63,7 +59,7 @@ function Garbage() {
       name: '其他垃圾(干)',
       thumb: 'https://oss.2hider.com/rubbishtype4.png'
     }
-  ]
+  ];
 
   function handleListItemClick(data) {
     setIsOpened(true)
@@ -96,10 +92,10 @@ function Garbage() {
           })}
 
         </AtList>
-        <AtFloatLayout isOpened={isOpened} onClose={()=>setIsOpened(false)} title='                '>
+        <AtFloatLayout isOpened={isOpened} onClose={() => setIsOpened(false)} title='                '>
           <View>
             <AtIcon value='help' size='18' color='#A6E0DE' />
-            <Text className='explain-title' style={{marginLeft:'10px'}} >{description.typeName}是什么？</Text>
+            <Text className='explain-title' style={{marginLeft: '10px'}}>{description.typeName}是什么？</Text>
             <Text className='explain-info'>{description.explain}</Text>
           </View>
           <View>
