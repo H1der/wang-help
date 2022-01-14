@@ -5,6 +5,7 @@ import {View} from "@tarojs/components"
 import Cascade from "../../components/Cascade/Cascade";
 import './index.scss'
 import {TravelSearchResult} from "../../components/TravelSearchResult/TravelSearchResult";
+import api from "../../utils/api";
 
 
 function Travel() {
@@ -52,7 +53,7 @@ function Travel() {
     });
     let res = await Taro.request({
       method: 'GET',
-      url: ``,
+      url: api.getTravel() + `${from.city_id}&${to.city_id}`,
     })
     console.log(res)
     if (res.statusCode === 200) {
