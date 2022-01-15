@@ -2,6 +2,7 @@ import {View} from "@tarojs/components";
 import {AtGrid, AtCard} from 'taro-ui'
 import Taro from "@tarojs/taro";
 import './index.scss'
+import MyCascade from "../../components/MyCascade/MyCascade";
 
 function Index() {
   const list = [{
@@ -42,6 +43,7 @@ function Index() {
     <View className='index'>
       <AtCard title='常用工具' className='common-tools' thumb='https://oss.2hider.com/tools.png'>
         <AtGrid data={list} className='test'  onClick={handleAtGridClick} />
+        {/*<MyCascade />*/}
       </AtCard>
 
     </View>

@@ -30,7 +30,6 @@ function Cascade(props) {
       const {province_id} = province[value];
       setCities(city.citiesArr(province_id))
       setDataSource([province, city.citiesArr(province_id)])
-
     }
 
   }
