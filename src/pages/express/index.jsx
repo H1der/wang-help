@@ -53,34 +53,6 @@ function Express() {
         duration: 1000
       })
     }
-    // return
-    // let res = await Taro.request({
-    //   method: 'GET',
-    //   url: api.getExpress() + keyword,
-    //   // data: {
-    //   //   number: expressNum
-    //   // }
-    // })
-    // console.log(res)
-    // if (res.statusCode === 200) {
-    //   const {data} = res.data;
-    //   // 根据 快递公司code 获取快递公司信息
-    //   let expressCompany = findExpressCompanyByCode(data.com);
-    //   setExpressName(expressCompany.name);
-    //
-    //   // setExpressState(data.state);
-    //   const stateObj = ['', '正常', '派送中', '已签收', '退回', '其他问题']
-    //   setExpressState(stateObj[data.state])
-    //   const {info} = data;
-    //   setExpressLine(info);
-    //   await Taro.hideLoading();
-    // } else {
-    //   await Taro.showToast({
-    //     title: '内部网络错误',
-    //     icon: 'error',
-    //     duration: 1000
-    //   })
-    // }
   }
 
   return (

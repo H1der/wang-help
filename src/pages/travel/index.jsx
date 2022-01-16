@@ -52,9 +52,10 @@ function Travel() {
     setShowMyCascade(false);
   }
 
-  // function getToCityId(toObj) {
-  //   setTo(toObj)
-  // }
+  function modalState(flag) {
+    setShowMyCascade(flag)
+
+  }
 
   async function searchTravel() {
     if (from.city_id === 0 || to.city_id === 0) {
@@ -123,7 +124,7 @@ function Travel() {
             /></AtButton>
           </View>
         </View>
-        <MyCascade show={showMyCascade} getCityId={getCityId} selectCity={from} />
+        <MyCascade show={showMyCascade} getCityId={getCityId} selectCity={from} modalState={modalState} />
       </View>
       {showResult ? (<View className='search-result'>
         <TravelSearchResult info={fromInfo} type={1} />
