@@ -1,32 +1,37 @@
 
-.at-search-bar{
+.at-search-bar {
   background-color: #8DBF88;
 
 }
-.at-search-bar__action{
+
+.at-search-bar__action {
   background-color: #C53F52;
 }
+
 .search-result {
-  margin: 100px 38px 20px 38px;
+  //margin: 100px 38px 20px 38px;
+  margin: 100px 0 20px 0;
 
+  .express {
+    margin: 0 38px;
+    .express-info {
+      margin-bottom: 20px;
 
-  .express-info {
-    margin-bottom: 20px;
+      .express-name {
+        color: deepskyblue;
+        font-size: 28px;
+      }
 
-    .express-name {
-      color: deepskyblue;
-      font-size: 28px;
-    }
-
-    .express-state {
-      color: grey;
-      margin-left: 10px;
-      font-size: 26px;
+      .express-state {
+        color: grey;
+        margin-left: 10px;
+        font-size: 26px;
+      }
     }
   }
 
-
 }
+
 ::-webkit-scrollbar {
   width: 0;
   height: 0;

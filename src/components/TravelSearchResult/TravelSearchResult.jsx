@@ -1,7 +1,7 @@
+import React from "react";
 import {Button, Image, Text, View} from "@tarojs/components";
 import {AtButton, AtIcon, AtModal, AtModalAction, AtModalHeader, AtTag} from "taro-ui";
 import './TravelSearchResult.scss'
-import React from "react";
 
 export function TravelSearchResult(props) {
   const [openModal, setOpenModal] = React.useState(false)

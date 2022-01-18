@@ -7,6 +7,8 @@ import findExpressCompanyByCode from "../../utils/express";
 import Search from "../../components/Search/Search";
 import api from '../../utils/api'
 import {myRequest} from "../../utils/request";
+import SearchHistory from "../../components/SearchHistory/SearchHistory";
+import {setHistoryStorage} from "../../utils/storage";
 
 function Express() {
   /**
@@ -45,6 +47,7 @@ function Express() {
       const {info} = data;
       setExpressLine(info);
       await Taro.hideLoading();
+      setHistoryStorage('express', keyword, 3)
     } else {
       // console.log(res)
       await Taro.showToast({
@@ -59,14 +62,17 @@ function Express() {
     <View className='container'>
       <Search getSearchKeyword={onActionClick} />
       <View className='search-result'>
-        <View className='express-info'>
-          <Text className='express-name'>{expressName}</Text>
-          <Text className='express-state'>{expressState}</Text>
-        </View>
-        <AtTimeline
-          items={expressLine}
-        >
-        </AtTimeline>
+        {expressLine.length > 0 ? (
+          <View className='express'>
+            <View className='express-info'>
+              <Text className='express-name'>{expressName}</Text>
+              <Text className='express-state'>{expressState}</Text>
+            </View>
+            <AtTimeline
+              items={expressLine}
+            >
+            </AtTimeline>
+          </View>) : (<SearchHistory keyName='express' getSearchKeyword={onActionClick} />)}
       </View>
     </View>
   );

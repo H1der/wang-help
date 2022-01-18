@@ -6,6 +6,8 @@ import Search from "../../components/Search/Search";
 import './index.scss'
 import api from "../../utils/api";
 import {myRequest} from "../../utils/request";
+import { setHistoryStorage} from "../../utils/storage";
+import SearchHistory from "../../components/SearchHistory/SearchHistory";
 
 
 function Garbage() {
@@ -27,7 +29,9 @@ function Garbage() {
     if (res.code === 200) {
       setTypeData(res.data);
       await Taro.hideLoading();
+      setHistoryStorage('garbage',keyword,5)
     } else {
+
       await Taro.showToast({
         title: '内部网络错误',
         icon: 'error',
@@ -71,13 +75,13 @@ function Garbage() {
     <View className='container'>
       <View className='search-result'>
         <Search getSearchKeyword={onActionClick} />
-        <AtList>
+
+        {typeData.length>0?(<AtList>
           {typeData.map((data, index) => {
             rubbishType.find(type => {
                 if (type.type === data.type) return data = {typeName: type.name, thumb: type.thumb, ...data}
               }
             )
-
 
             return (
               <AtListItem
@@ -91,7 +95,9 @@ function Garbage() {
             )
           })}
 
-        </AtList>
+        </AtList>):(<SearchHistory keyName='garbage' getSearchKeyword={onActionClick} />)}
+
+
         <AtFloatLayout isOpened={isOpened} onClose={() => setIsOpened(false)} title='                '>
           <View>
             <AtIcon value='help' size='18' color='#A6E0DE' />

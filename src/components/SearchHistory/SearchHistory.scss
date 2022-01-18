@@ -1,0 +1,40 @@
+.history-label {
+  margin: 0 20px;
+
+  .history-label-text {
+    font-size: 28px;
+    color: grey;
+  }
+
+  .history-label-clear {
+    position: absolute;
+    right: 20px;
+  }
+}
+
+.history-info {
+  margin: 10px 20px;
+
+  .history-tag {
+    margin: 5px 10px 0 0;
+  }
+
+  .history-tag:last-child {
+    margin-right: 0;
+  }
+;
+}
+
+.at-modal__container {
+  //height: 180px;
+
+  .modal-text {
+    margin: auto 0;
+    height: 100px;
+    line-height:100px;
+    text-align:center;
+  }
+}
+
+
+

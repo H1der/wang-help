@@ -40,7 +40,6 @@ function Travel() {
 
 
   function getCityId(obj) {
-    console.log(obj)
     if (current === 1) {
       setFrom(obj);
       setSelectorFromChecked(obj.name);
