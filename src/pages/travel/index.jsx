@@ -7,21 +7,22 @@ import {TravelSearchResult} from "../../components/TravelSearchResult/TravelSear
 import api from "../../utils/api";
 import {myRequest} from "../../utils/request";
 import MyCascade from "../../components/MyCascade/MyCascade";
+import {getValueByKey, setKeyAndValue} from "../../utils/storage";
 
 
 function Travel() {
 
 
   // 初始状态
-  const [from, setFrom] = React.useState({
+  const [from, setFrom] = React.useState(getValueByKey('travel_from') !== '' ? getValueByKey('travel_from') : {
     province_id: 12,
     city_id: 10128,
     name: "三亚"
   })
-  const [to, setTo] = React.useState({
+  const [to, setTo] = React.useState(getValueByKey('travel_to') !== '' ? getValueByKey('travel_to') : {
     province_id: 0,
     city_id: 0,
-    name: ""
+    name: "请选择"
   })
 
   // 数据返回出发城市
@@ -31,22 +32,24 @@ function Travel() {
   // 是否展示结果
   const [showResult, setShowResult] = React.useState(false)
   //
-  const [selectorFromChecked, setSelectorFromChecked] = useState('三亚');
-  const [selectorToChecked, setSelectorToChecked] = useState('请选择');
+  const [selectorFromChecked, setSelectorFromChecked] = useState(from.name);
+  const [selectorToChecked, setSelectorToChecked] = useState(to.name);
   // 是否展示选择省市组件
   const [showMyCascade, setShowMyCascade] = React.useState(false)
   // 当前选中的是哪个 类型的选择省市,0是to,1是from
   const [current, setCurrent] = useState(0)
 
 
-  function getCityId(obj) {
+  async function getCityId(obj) {
     if (current === 1) {
       setFrom(obj);
       setSelectorFromChecked(obj.name);
+      await setKeyAndValue('travel_from', obj)
 
     } else {
       setTo(obj)
       setSelectorToChecked(obj.name)
+      await setKeyAndValue('travel_to', obj)
     }
     setShowMyCascade(false);
   }

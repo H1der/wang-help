@@ -49,5 +49,14 @@ export function setHistoryStorage(key, data, length) {
     // return storage
 
 
+
+
+}
+// 地址
+export function getValueByKey(key) {
+  return Taro.getStorageSync(key)
 }
 
+export async function setKeyAndValue(key,value) {
+  return Taro.setStorageSync(key, value);
+}

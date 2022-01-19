@@ -12,7 +12,8 @@ function Search(props) {
 
   return (
     <AtSearchBar fixed value={value} onChange={handleSearchBarChange} actionName='查询'
-      onActionClick={()=>{getSearchKeyword(value)}} onConfirm={()=>{getSearchKeyword(value)}} />
+      onActionClick={()=>{getSearchKeyword(value)}} onConfirm={()=>{getSearchKeyword(value)}}
+    />
   );
 }
 

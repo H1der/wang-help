@@ -6,24 +6,30 @@ import './index.scss'
 import {province} from "../../utils/province";
 import api from "../../utils/api";
 import {myRequest} from "../../utils/request";
+import {getValueByKey, setKeyAndValue} from "../../utils/storage";
 
 function Oil() {
 
 
   const [oilData, setOilData] = useState({})
-  const [provinceName, setProvinceName] = useState('海南')
+  const [provinceName, setProvinceName] = useState(getValueByKey('oli') !== '' ? getValueByKey('oli') : '海南')
+
+
+
   useEffect(() => {
     try {
       return getOilPrice()
     } catch (error) {
-      Taro.showToast({
+      return Taro.showToast({
         title: '载入远程数据错误'
       })
     }
   }, [provinceName])
 
   async function getOilPrice() {
-    let res = await myRequest(api.getOil(),{province:provinceName})
+
+
+    let res = await myRequest(api.getOil(), {province: provinceName})
     if (res.code === 200) {
       setOilData(res.data)
       await Taro.hideLoading();
@@ -37,10 +43,12 @@ function Oil() {
   }
 
 
-  function onChange(event) {
+  // 省份切换事件
+  async function onChange(event) {
     const {detail: {value}} = event
 
     setProvinceName(province[value])
+    await setKeyAndValue('oli',province[value])
 
   }
 
