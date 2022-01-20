@@ -2,12 +2,12 @@ import React from "react";
 import {AtFloatLayout, AtIcon, AtList, AtListItem} from "taro-ui";
 import {Text, View} from "@tarojs/components";
 import Taro from "@tarojs/taro";
-import Search from "../../components/Search/Search";
+import Search from "../../components/Search";
 import './index.scss'
 import api from "../../utils/api";
 import {myRequest} from "../../utils/request";
 import { setHistoryStorage} from "../../utils/storage";
-import SearchHistory from "../../components/SearchHistory/SearchHistory";
+import SearchHistory from "../../components/SearchHistory";
 
 
 function Garbage() {

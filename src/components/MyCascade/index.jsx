@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {View} from "@tarojs/components";
 import {AtList, AtListItem, AtModal, AtModalContent, AtTabs, AtTabsPane} from "taro-ui";
 import city from "../../utils/city";
-import './MyCascade.scss'
+import './index.scss'
 
 function MyCascade(props) {
   const {getCityId, show,modalState} = props;

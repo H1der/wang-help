@@ -3,10 +3,10 @@ import React, {useState} from "react";
 import {AtButton, AtDivider, AtIcon} from "taro-ui";
 import {View} from "@tarojs/components"
 import './index.scss'
-import {TravelSearchResult} from "../../components/TravelSearchResult/TravelSearchResult";
+import {TravelSearchResult} from "../../components/TravelSearchResult";
 import api from "../../utils/api";
 import {myRequest} from "../../utils/request";
-import MyCascade from "../../components/MyCascade/MyCascade";
+import MyCascade from "../../components/MyCascade";
 import {getValueByKey, setKeyAndValue} from "../../utils/storage";
 
 
@@ -109,7 +109,7 @@ function Travel() {
             <AtButton chevron-down type='secondary' onClick={handleFromBtnClick}>{selectorFromChecked}<View
               className='at-icon at-icon-chevron-down'
             /></AtButton>
-            {/*<Cascade getCityId={getFromCityId} selectCity={from} />*/}
+            {/*<Index getCityId={getFromCityId} selectCity={from} />*/}
           </View>
           <View className='at-col at-col-2'>
             <AtIcon value='arrow-right' size='52' color='#F7F7F7' />
@@ -118,7 +118,7 @@ function Travel() {
             <AtButton chevron-down type='secondary' onClick={handleToBtnClick}>{selectorToChecked}<View
               className='at-icon at-icon-chevron-down'
             /></AtButton>
-            {/*<Cascade getCityId={getToCityId} selectCity={to} />*/}
+            {/*<Index getCityId={getToCityId} selectCity={to} />*/}
           </View>
           <View className='search at-col at-col-2'>
             <AtButton circle type='secondary' size='small' onClick={searchTravel}><View

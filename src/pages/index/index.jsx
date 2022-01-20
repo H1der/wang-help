@@ -29,6 +29,10 @@ function Index() {
         image: 'https://oss.2hider.com/relationship.png',
         value: '亲戚计算器',
         url: '/pages/relationship/index'
+      },{
+        image: 'https://oss.2hider.com/wang-help/lpl2022.png',
+        value: '2022 LPL赛程',
+        url: '/pages/lpl/index'
       },
     ]
   } else {
@@ -56,6 +60,10 @@ function Index() {
         image: 'https://oss.2hider.com/relationship.png',
         value: '亲戚计算器',
         url: '/pages/relationship/index'
+      },{
+        image: 'https://oss.2hider.com/wang-help/lpl2022.png',
+        value: '2022 LPL赛程',
+        url: '/pages/lpl/index'
       },
     ]
   }
@@ -72,7 +80,7 @@ function Index() {
     <View className='index'>
       <AtCard title='常用工具' className='common-tools' thumb='https://oss.2hider.com/tools.png'>
         <AtGrid data={list} className='test' onClick={handleAtGridClick} />
-        {/*<MyCascade />*/}
+        {/*<Index />*/}
       </AtCard>
 
     </View>

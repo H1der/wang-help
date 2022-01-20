@@ -1,0 +1,231 @@
+.match-item {
+  margin-top: 10px;
+  width: 100%;
+  height: 120px;
+  background: #fff;
+  box-shadow: 0 3px 14px -4px rgb(38 79 127 / 5%);
+  border-radius: 6px;
+  border: 1px solid #f5f6f7;
+  position: relative;
+
+  &:before {
+    display: none;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 100%;
+    background: linear-gradient(
+        135deg, #0d7eff, #0f97ff);
+    border-radius: 8px 0 0 8px;
+  }
+
+  .bo {
+    width: 54px;
+    height: 38px;
+    border-radius: 6px 0 8px 0;
+    text-align: center;
+    line-height: 36px;
+    font-size: 24px;
+    color: #a8abb3;
+    font-family: 'Industry-Demi', sans-serif;
+    background: #f5f6f7;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .left-wrap {
+    width: 200px;
+    height: 100%;
+    text-align: center;
+    padding: 20px 10px 0;
+    overflow: hidden;
+    float: left;
+
+    .time {
+      color: #a8abb3;
+      font-size: 40px;
+      height: 48px;
+      line-height: 48px;
+      font-family: 'Industry-Bold', sans-serif;
+
+    }
+
+    .date {
+      font-size: 24px;
+      height: 32px;
+      line-height: 32px;
+      margin-top: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      color: #a8abb3;
+      text-align: center;
+    }
+
+  }
+
+  .mid-wrap {
+    float: left;
+    width: 530px;
+    height: 100%;
+    position: relative;
+    padding-top: 20px;
+
+    .team {
+      .team-logo {
+        display: inline-block;
+        vertical-align: middle;
+        width: 92px;
+        height: 92px;
+        margin: 0;
+      }
+
+      .team-name {
+        height: 48px;
+        font-size: 34px;
+        font-family: 'Industry-Bold', sans-serif;
+        color: #2d2f33;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+      }
+    }
+
+
+    .left-team {
+      width: 33%;
+      float: left;
+      text-align: right;
+
+    }
+
+    .right-team {
+      float: left;
+      width: 33%;
+      text-align: left;
+    }
+
+    .score-wrap {
+      width: 120px;
+      margin: 0;
+      padding: 6px 28px;
+      float: left;
+      zoom: 1;
+
+      .score-l {
+        float: left;
+        width: 52px;
+        height: 68px;
+        overflow: hidden;
+        border-radius: 3px;
+        position: relative;
+
+        .top-bg {
+          width: 100%;
+          height: 50%;
+          background: #424447;
+        }
+
+        .bottom-bg {
+          width: 100%;
+          height: 50%;
+          background: #2d2f33;
+        }
+
+        .score {
+          display: block;
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          line-height: 56px;
+          color: #fff;
+          font-family: 'Industry-Bold', sans-serif;
+          font-size: 40px;
+          border: 1px solid rgba(0, 0, 0, 0.15);
+        }
+
+        .t-win {
+          color: #f2dbb3;
+        }
+
+
+      }
+
+      .score-r {
+
+        float: right;
+        width: 52px;
+        height: 68px;
+        overflow: hidden;
+        border-radius: 3px;
+        position: relative;
+
+        .top-bg {
+          width: 100%;
+          height: 50%;
+          background: #424447;
+        }
+
+        .bottom-bg {
+          width: 100%;
+          height: 50%;
+          background: #2d2f33;
+        }
+
+        .score {
+          display: block;
+          position: absolute;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          line-height: 56px;
+          color: #fff;
+          font-family: 'Industry-Bold', sans-serif;
+          font-size: 40px;
+          border: 1px solid rgba(0, 0, 0, 0.15);
+
+        }
+
+        .t-win {
+          color: #f2dbb3;
+        }
+      }
+    }
+
+
+  }
+
+}
+
+.playing {
+  background-color: #fafbfd;
+  background-image: linear-gradient(
+      -45deg, #fff 25%, transparent 25%, transparent 50%, #fff 50%, #fff 75%, transparent 75%, transparent);
+  background-size: 50px 50px;
+  animation: reverse progress-bar-stripes 0.8s linear infinite, animate-positive 2s;
+
+  .bo {
+    background: #0d8dfc;
+    color: #fff;
+  }
+
+  .left-wrap .time {
+    color: #0d8dfc;
+  }
+
+  &:before {
+    display: block;
+  }
+}
+
+.end{
+  .left-wrap .time {
+    color: #a8abb3;
+  }
+}

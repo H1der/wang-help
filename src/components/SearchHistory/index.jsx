@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {Button, Text, View} from "@tarojs/components";
 import {AtIcon, AtModal, AtModalAction, AtTag} from "taro-ui";
 import {getHistoryStorage, removeHistoryStorage} from "../../utils/storage";
-import './SearchHistory.scss'
+import './index.scss'
 
 function SearchHistory(props) {
   const {keyName, getSearchKeyword} = props

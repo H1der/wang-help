@@ -2,13 +2,13 @@ import React from 'react'
 import {Text, View} from "@tarojs/components";
 import {AtTimeline} from 'taro-ui'
 import Taro from "@tarojs/taro";
-import './index.scss'
 import findExpressCompanyByCode from "../../utils/express";
-import Search from "../../components/Search/Search";
 import api from '../../utils/api'
 import {myRequest} from "../../utils/request";
-import SearchHistory from "../../components/SearchHistory/SearchHistory";
+import SearchHistory from "../../components/SearchHistory";
 import {setHistoryStorage} from "../../utils/storage";
+import Search from "../../components/Search";
+import './index.scss'
 
 function Express() {
   /**
