@@ -1,0 +1,24 @@
+.container{
+  .tabs{
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    .at-tabs__header {
+      background-color: #eb4035;
+    }
+    .at-tabs__item{
+      color: white;
+    }
+    .at-tabs__item--active{
+      color:gold;
+    }
+    .at-tabs__item-underline {
+      background-color: gold;
+    }
+      .list{
+      box-sizing: border-box;
+      height: 93vh;
+    }
+  }
+}

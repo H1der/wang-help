@@ -37,19 +37,21 @@
   }
 
   .left-wrap {
-    width: 200px;
-    height: 100%;
-    text-align: center;
-    padding: 20px 10px 0;
+    width: 165px;
+    //height: 100%;
+    text-align: right;
+    padding: 20px 20px 0 0;
     overflow: hidden;
     float: left;
 
+
     .time {
-      color: #a8abb3;
+      //color: #a8abb3;
       font-size: 40px;
       height: 48px;
       line-height: 48px;
       font-family: 'Industry-Bold', sans-serif;
+
 
     }
 
@@ -68,8 +70,8 @@
 
   .mid-wrap {
     float: left;
-    width: 530px;
-    height: 100%;
+    width: 550px;
+    //height: 100%;
     position: relative;
     padding-top: 20px;
 
@@ -83,7 +85,7 @@
       }
 
       .team-name {
-        height: 48px;
+        //height: 48px;
         font-size: 34px;
         font-family: 'Industry-Bold', sans-serif;
         color: #2d2f33;
@@ -91,27 +93,40 @@
         overflow: hidden;
         text-overflow: ellipsis;
         width: 100%;
+        text-align: center;
       }
     }
 
 
     .left-team {
-      width: 33%;
+      width: 200px;
       float: left;
-      text-align: right;
+      //text-align: right;
 
+      .team-name{
+        line-height: 78px;
+        display: block;
+        width: 100px;
+        float: right;
+      }
     }
 
     .right-team {
       float: left;
-      width: 33%;
-      text-align: left;
+      width: 200px;
+      .team-name{
+        line-height: 78px;
+        display: block;
+        width: 100px;
+        float: left;
+      }
+      //text-align: left;
     }
 
     .score-wrap {
       width: 120px;
       margin: 0;
-      padding: 6px 28px;
+      padding: 6px 10px;
       float: left;
       zoom: 1;
 
@@ -120,7 +135,7 @@
         width: 52px;
         height: 68px;
         overflow: hidden;
-        border-radius: 3px;
+        border-radius: 6px;
         position: relative;
 
         .top-bg {
@@ -162,7 +177,7 @@
         width: 52px;
         height: 68px;
         overflow: hidden;
-        border-radius: 3px;
+        border-radius: 6px;
         position: relative;
 
         .top-bg {
@@ -208,7 +223,6 @@
   background-image: linear-gradient(
       -45deg, #fff 25%, transparent 25%, transparent 50%, #fff 50%, #fff 75%, transparent 75%, transparent);
   background-size: 50px 50px;
-  animation: reverse progress-bar-stripes 0.8s linear infinite, animate-positive 2s;
 
   .bo {
     background: #0d8dfc;
