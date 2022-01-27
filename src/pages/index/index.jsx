@@ -33,6 +33,10 @@ function Index() {
         image: 'https://oss.2hider.com/wang-help/lpl2022.png',
         value: '2022 LPL赛程',
         url: '/pages/lpl/index'
+      },{
+        image: 'https://oss.2hider.com/wang-help/photo.png',
+        value: '证件照换底色',
+        url: '/pages/photo/index'
       },
     ]
   } else {
@@ -64,6 +68,10 @@ function Index() {
         image: 'https://oss.2hider.com/wang-help/lpl2022.png',
         value: '2022 LPL赛程',
         url: '/pages/lpl/index'
+      },{
+        image: 'https://oss.2hider.com/wang-help/photo.png',
+        value: '证件照换底色',
+        url: '/pages/photo/index'
       },
     ]
   }

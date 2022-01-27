@@ -6,6 +6,7 @@ const TRAVEL = 'travel/policy'
 const Oil = 'oil/price'
 const LPLWEEK = 'lpl/week'
 const LPLROUND = 'lpl/round'
+const BODYSEG = 'baidu_ai/body_seg'
 
 function getExpress() {
   return HOST_URI + EXPRESS
@@ -30,7 +31,11 @@ function getLplRound() {
   return HOST_URI + LPLROUND;
 }
 
+function getBodySeg() {
+  return HOST_URI + BODYSEG
+}
+
 
 export default {
-  getExpress, getGarbage,getTravel,getOil,getLplWeek,getLplRound
+  getExpress, getGarbage,getTravel,getOil,getLplWeek,getLplRound,getBodySeg
 }

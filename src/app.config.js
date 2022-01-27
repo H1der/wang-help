@@ -6,6 +6,7 @@ if (process.env.TARO_ENV === 'alipay') {
     'pages/relationship/index', // 亲戚计算器
     'pages/oil/index', // 油价查询
     'pages/lpl/index', // lpl赛程
+    'pages/photo/index', // 证件照换底色
   ]
 }else{
   pages = [
@@ -16,6 +17,7 @@ if (process.env.TARO_ENV === 'alipay') {
     'pages/relationship/index', // 亲戚计算器
     'pages/oil/index', // 油价查询
     'pages/lpl/index', // lpl赛程
+    'pages/photo/index', // 证件照换底色
   ]
 }
 
