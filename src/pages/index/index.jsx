@@ -1,80 +1,12 @@
 import {View} from "@tarojs/components";
-import {AtGrid, AtCard} from 'taro-ui'
+import {AtButton, AtCard, AtGrid} from 'taro-ui'
 import Taro from "@tarojs/taro";
 import './index.scss'
+import Banner from "../../components/Banner";
+import {aboutList, commonList, lifeList} from "../../utils/pageList"
 
 function Index() {
 
-
-  // 支付宝快递查询功能需要相关许可证
-
-  let list = []
-  if (process.env.TARO_ENV === 'alipay') {
-    list = [{
-      image: 'https://oss.2hider.com/travel.png',
-      value: '防疫出行政策',
-      url: '/pages/travel/index'
-    },
-      {
-        image: 'https://oss.2hider.com/garbage.png',
-        value: '垃圾分类',
-        url: '/pages/garbage/index'
-      },
-      {
-        image: 'https://oss.2hider.com/oil.png',
-        value: '油价查询',
-        url: '/pages/oil/index',
-      },
-      {
-        image: 'https://oss.2hider.com/relationship.png',
-        value: '亲戚计算器',
-        url: '/pages/relationship/index'
-      },{
-        image: 'https://oss.2hider.com/wang-help/lpl2022.png',
-        value: '2022 LPL赛程',
-        url: '/pages/lpl/index'
-      },{
-        image: 'https://oss.2hider.com/wang-help/photo.png',
-        value: '证件照换底色',
-        url: '/pages/photo/index'
-      },
-    ]
-  } else {
-    list = [{
-      image: 'https://oss.2hider.com/travel.png',
-      value: '防疫出行政策',
-      url: '/pages/travel/index'
-    },
-      {
-        image: 'https://oss.2hider.com/garbage.png',
-        value: '垃圾分类',
-        url: '/pages/garbage/index'
-      },
-      {
-        image: 'https://oss.2hider.com/oil.png',
-        value: '油价查询',
-        url: '/pages/oil/index',
-      },
-      {
-        image: 'https://oss.2hider.com/express.png',
-        value: '快递查询',
-        url: '/pages/express/index'
-      },
-      {
-        image: 'https://oss.2hider.com/relationship.png',
-        value: '亲戚计算器',
-        url: '/pages/relationship/index'
-      },{
-        image: 'https://oss.2hider.com/wang-help/lpl2022.png',
-        value: '2022 LPL赛程',
-        url: '/pages/lpl/index'
-      },{
-        image: 'https://oss.2hider.com/wang-help/photo.png',
-        value: '证件照换底色',
-        url: '/pages/photo/index'
-      },
-    ]
-  }
 
 
   function handleAtGridClick(item) {
@@ -86,9 +18,15 @@ function Index() {
 
   return (
     <View className='index'>
-      <AtCard title='常用工具' className='common-tools' thumb='https://oss.2hider.com/tools.png'>
-        <AtGrid data={list} className='test' onClick={handleAtGridClick} />
-        {/*<Index />*/}
+      <Banner />
+      <AtCard title='新春快乐' className='common-tools' thumb='https://oss.2hider.com/wang-help/newyear/cai.png'>
+        <AtGrid data={commonList} onClick={handleAtGridClick} />
+      </AtCard>
+      <AtCard title='生活服务' className='common-tools' thumb='https://oss.2hider.com/wang-help/newyear/shen.png'>
+        <AtGrid data={lifeList} onClick={handleAtGridClick} />
+      </AtCard>
+      <AtCard title='项目说明' className='common-tools' thumb='https://oss.2hider.com/wang-help/newyear/dao.png'>
+        <AtGrid data={aboutList} onClick={handleAtGridClick} />
       </AtCard>
 
     </View>

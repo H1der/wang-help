@@ -17,7 +17,8 @@ export function TravelSearchResult(props) {
   return (<>
       <View className='info-city at-row'>
         <View className='at-col'>
-          <AtIcon value={type?'arrow-up':'arrow-down'} size='30' color='#AAD0D9' />
+          <AtIcon value={type?'arrow-up':'arrow-down'} size='30' color='#eb4035' />
+          {/*<AtIcon value={type?'arrow-up':'arrow-down'} size='30' color='#AAD0D9' />*/}
           <Text className='city-text'>{type?'离开':'进入'}{info.city_name}</Text>
         </View>
         <AtTag className='city-level at-col' type='primary' circle>{level[info.risk_level]}</AtTag>

@@ -1,0 +1,28 @@
+.container {
+  .avatar {
+    padding-top: 20px;
+    background-color: #eb4035;
+    .at-avatar{
+      margin: 0 auto;
+      border: 5px solid white;
+    }
+
+    .avatar-text {
+      padding: 10px 0;
+      display: block;
+      text-align: center;
+      color: white;
+    }
+
+  }
+  .btn-list{
+    margin-top: 80px;
+    .at-button{
+      border-radius: 0;
+      border: 0;
+      border-bottom: 1PX solid #C5D9E8;
+      justify-content: left;
+      //color: #eb4035;
+    }
+  }
+}

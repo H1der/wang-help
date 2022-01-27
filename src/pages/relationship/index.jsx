@@ -59,19 +59,20 @@ function Relationship() {
         <RadioGroup className='condition-group'>
           <Label className='radio-list__label'>
             我的性别：
-            <Radio className='radio-list__radio' color='#FADC9C' value='1' onClick={() => setSelectSex(1)} checked={mySex === 1}>男姓</Radio>
+            <Radio className='radio-list__radio' color='#eb4035' value='1' onClick={() => setSelectSex(1)} checked={mySex === 1}>男姓</Radio>
+            {/*<Radio className='radio-list__radio' color='#FADC9C' value='1' onClick={() => setSelectSex(1)} checked={mySex === 1}>男姓</Radio>*/}
           </Label>
           <Label className='radio-list__label'>
-            <Radio className='radio-list__radio' color='#FADC9C' value='0' onClick={() => setSelectSex(0)} checked={mySex === 0}>女姓</Radio>
+            <Radio className='radio-list__radio' color='#eb4035' value='0' onClick={() => setSelectSex(0)} checked={mySex === 0}>女姓</Radio>
           </Label>
         </RadioGroup>
         <RadioGroup className='condition-group'>
           <Label className='radio-list__label'>
             称呼方式：
-            <Radio className='radio-list__radio' color='#FADC9C' value='true' onClick={() => setMode(false)} checked={mode === false}>我称呼对方</Radio>
+            <Radio className='radio-list__radio' color='#eb4035' value='true' onClick={() => setMode(false)} checked={mode === false}>我称呼对方</Radio>
           </Label>
           <Label className='radio-list__label'>
-            <Radio className='radio-list__radio' color='#FADC9C' value='false' onClick={() => setMode(true)} checked={mode === true}>对方称呼我</Radio>
+            <Radio className='radio-list__radio' color='#eb4035' value='false' onClick={() => setMode(true)} checked={mode === true}>对方称呼我</Radio>
           </Label>
         </RadioGroup>
       </View>

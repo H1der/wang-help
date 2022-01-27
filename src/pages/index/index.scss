@@ -1,9 +1,15 @@
 
-.index{
-  .common-tools{
+.index {
+  .common-tools, .life-tools {
     margin: 20px;
   }
-  .content-inner__text{
+
+  .at-card__header-title {
+    color: #F44336;
+  }
+
+  .content-inner__text {
+    color: #F44336;
     font-size: 28px !important;
   }
 }
