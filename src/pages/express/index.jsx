@@ -1,6 +1,6 @@
 import React from 'react'
 import {Text, View} from "@tarojs/components";
-import {AtTimeline} from 'taro-ui'
+import {AtMessage, AtTimeline} from 'taro-ui'
 import Taro from "@tarojs/taro";
 import findExpressCompanyByCode from "../../utils/express";
 import api from '../../utils/api'
@@ -25,23 +25,32 @@ function Express() {
 
   async function onActionClick(keyword) {
     if (keyword === '') {
-      await Taro.showToast({
+      return await Taro.showToast({
         title: '请输入快递单号',
         icon: 'error',
         duration: 1000
       })
-      return
+
+    }
+
+    if (keyword.search('SF') !== -1) {
+     return  Taro.atMessage({
+        'message': '顺丰快递请在订单号后加「:手机号后4位」',
+        'type': 'error',
+      })
+      // return  setIsOpened(true)
     }
     await Taro.showLoading({
       title: 'Loading...',
     });
 
     let res = await myRequest(api.getExpress(), {number: keyword})
+    console.log(res)
     // console.log(res.code)
     if (res.code === 200) {
       const {data} = res
       let expressCompany = findExpressCompanyByCode(data.com);
-      setExpressName(expressCompany.name);
+      setExpressName(expressCompany.name!==''?expressCompany.name:'');
       const stateObj = ['', '正常', '派送中', '已签收', '退回', '其他问题']
       setExpressState(stateObj[data.state])
       const {info} = data;
@@ -60,6 +69,7 @@ function Express() {
 
   return (
     <View className='container'>
+      <AtMessage />
       <Search getSearchKeyword={onActionClick} />
       <View className='search-result'>
         {expressLine.length > 0 ? (

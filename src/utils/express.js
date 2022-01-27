@@ -60,6 +60,10 @@ const expressList = [
     "code": "pingyou"
   },
   {
+    "name": "邮政",
+    "code": "postb"
+  },
+  {
     "name": "顺丰",
     "code": "shunfeng"
   }

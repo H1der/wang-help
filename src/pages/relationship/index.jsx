@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Label, Radio, RadioGroup, View} from "@tarojs/components";
 import {AtButton} from "taro-ui";
 import relationship from 'relationship.js'
 
 import './index.scss'
+import Taro from "@tarojs/taro";
 
 
 function Relationship() {
@@ -11,12 +12,15 @@ function Relationship() {
   // 关系列表
   const [relation, setRelation] = React.useState([])
   // 我的性别
-  const [mySex] = React.useState(1)
+  const [mySex,setMySex] = React.useState(1)
   // 当选选中者的性别
-  const [selectSex, setSelectSex] = React.useState([mySex])
+  const [selectSex, setSelectSex] = React.useState([])
   // 模式 我称呼对方还是对方称呼我
   const [mode, setMode] = React.useState(false)
 
+  useEffect(() => {
+    setSelectSex([mySex])
+  }, [mySex])
 
   function handleKeyboardClick(key) {
     if (key.call === 'CLR') {
@@ -59,11 +63,11 @@ function Relationship() {
         <RadioGroup className='condition-group'>
           <Label className='radio-list__label'>
             我的性别：
-            <Radio className='radio-list__radio' color='#eb4035' value='1' onClick={() => setSelectSex(1)} checked={mySex === 1}>男姓</Radio>
+            <Radio className='radio-list__radio' color='#eb4035' value='1' onClick={() => setMySex(1)} checked={mySex === 1}>男姓</Radio>
             {/*<Radio className='radio-list__radio' color='#FADC9C' value='1' onClick={() => setSelectSex(1)} checked={mySex === 1}>男姓</Radio>*/}
           </Label>
           <Label className='radio-list__label'>
-            <Radio className='radio-list__radio' color='#eb4035' value='0' onClick={() => setSelectSex(0)} checked={mySex === 0}>女姓</Radio>
+            <Radio className='radio-list__radio' color='#eb4035' value='0' onClick={() => setMySex(0)} checked={mySex === 0}>女姓</Radio>
           </Label>
         </RadioGroup>
         <RadioGroup className='condition-group'>
