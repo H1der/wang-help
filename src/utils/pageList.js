@@ -18,11 +18,11 @@ export const commonList = [
   ]
 
 export const lifeList = [
-  {
-    image: 'https://oss.2hider.com/travel.png',
-    value: '防疫出行政策',
-    url: '/pages/travel/index'
-  },
+  // {
+  //   image: 'https://oss.2hider.com/travel.png',
+  //   value: '防疫出行政策',
+  //   url: '/pages/travel/index'
+  // },
   {
     image: 'https://oss.2hider.com/garbage.png',
     value: '垃圾分类',

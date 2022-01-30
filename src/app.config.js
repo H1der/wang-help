@@ -12,7 +12,7 @@ if (process.env.TARO_ENV === 'alipay') {
 }else{
   pages = [
     'pages/index/index',
-    'pages/travel/index', // 出行防疫政策
+    // 'pages/travel/index', // 出行防疫政策
     'pages/express/index',// 快递查询
     'pages/garbage/index', // 垃圾分类
     'pages/relationship/index', // 亲戚计算器
