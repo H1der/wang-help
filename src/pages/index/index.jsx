@@ -1,8 +1,7 @@
 import {View} from "@tarojs/components";
-import {AtButton, AtCard, AtGrid} from 'taro-ui'
+import {AtCard, AtGrid} from 'taro-ui'
 import Taro from "@tarojs/taro";
 import './index.scss'
-import Banner from "../../components/Banner";
 import {aboutList, commonList, lifeList} from "../../utils/pageList"
 
 function Index() {
@@ -18,8 +17,7 @@ function Index() {
 
   return (
     <View className='index'>
-      <Banner />
-      <AtCard title='新春快乐' className='common-tools' thumb='https://oss.2hider.com/wang-help/newyear/cai.png'>
+      <AtCard title='常用工具' className='common-tools' thumb='https://oss.2hider.com/tools.png'>
         <AtGrid data={commonList} onClick={handleAtGridClick} />
       </AtCard>
       <AtCard title='生活服务' className='common-tools' thumb='https://oss.2hider.com/wang-help/newyear/shen.png'>

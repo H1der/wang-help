@@ -1,17 +1,14 @@
 export const commonList = [
     {
-      // image: 'https://oss.2hider.com/oil.png',
-      image: 'https://oss.2hider.com/wang-help/newyear/qin.png',
+      image: 'https://oss.2hider.com/oil.png',
       value: '油价查询',
       url: '/pages/oil/index',
     }, {
-      // image: 'https://oss.2hider.com/wang-help/lpl2022.png',
-      image: 'https://oss.2hider.com/wang-help/newyear/xin.png',
+      image: 'https://oss.2hider.com/wang-help/lpl2022.png',
       value: '2022 LPL赛程',
       url: '/pages/lpl/index'
     }, {
-      // image: 'https://oss.2hider.com/wang-help/photo.png',
-      image: 'https://oss.2hider.com/wang-help/newyear/chun.png',
+      image: 'https://oss.2hider.com/wang-help/photo.png',
       value: '证件照换底色',
       url: '/pages/photo/index'
     },
