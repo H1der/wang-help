@@ -52,6 +52,8 @@ function Index() {
       <AtModal isOpened={isOpened} onClose={()=>setIsOpened(false)}>
         <AtModalHeader>小王帮帮更新记录</AtModalHeader>
         <AtModalContent>
+          <View>2022/3/9：修复证件照换底色照片长宽比失调</View>
+          <View>2022/1/30：下架出行查询功能</View>
           <View>2022/1/27：新增了证件照换底色的功能</View>
           <View>2022/1/23：新增了LPL联赛赛程信息功能</View>
           <View>2022/1/14：新增了油价查询</View>

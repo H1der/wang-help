@@ -20,10 +20,10 @@ function Index() {
       <AtCard title='常用工具' className='common-tools' thumb='https://oss.2hider.com/tools.png'>
         <AtGrid data={commonList} onClick={handleAtGridClick} />
       </AtCard>
-      <AtCard title='生活服务' className='common-tools' thumb='https://oss.2hider.com/wang-help/newyear/shen.png'>
+      <AtCard title='生活服务' className='common-tools' thumb='https://oss.2hider.com/wang-help/life.png'>
         <AtGrid data={lifeList} onClick={handleAtGridClick} />
       </AtCard>
-      <AtCard title='项目说明' className='common-tools' thumb='https://oss.2hider.com/wang-help/newyear/dao.png'>
+      <AtCard title='项目说明' className='common-tools' thumb='https://oss.2hider.com/wang-help/help.png'>
         <AtGrid data={aboutList} onClick={handleAtGridClick} />
       </AtCard>
 

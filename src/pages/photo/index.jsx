@@ -12,6 +12,12 @@ function Index() {
   const [rate, setRate] = useState('')
   const [foreground, setForeground] = useState('')
   const [color, setColor] = useState('#fe0000')
+  // 原始图片格式
+  const [imgType, setImgType] = useState('png')
+  // 目标图片宽度
+  const [targetW, setTargetW] = useState(464)
+  // 目标图片高度
+  const [targetH, setTargetH] = useState(580)
   useEffect(() => {
     const d = Taro.getSystemInfoSync()
     const rateNum = (d.windowWidth / 750).toFixed(2)
@@ -22,12 +28,13 @@ function Index() {
 
   useEffect(() => {
     if (files !== '') {
-      drawContent(files,color)
+      drawContent(files, color)
     }
   }, [files])
 
   // 照片选择
   function photoChose() {
+    setForeground('')
     return Taro.chooseImage({
       count: 1, // 默认9
       success: function (res) {
@@ -40,19 +47,38 @@ function Index() {
   }
 
 
+
   // 画布画图
-  function drawContent(file,colorValue) {
+  function drawContent(file, colorValue) {
     // console.log(files[0].width,files[0].height)
     const ctx = Taro.createCanvasContext('myCanvas')
+    Taro.getImageInfo({
+      src: file,
+      success: (info) => {
+        // console.log('getImageInfo=>res', info)
+        setImgType(info.type)
+        //目标尺寸
+        if (info.width > 464 || info.height > 580) {
+          if (info.width / info.height > 464 / 580) {
+            // 要求宽度*(原生图片比例)=新图片尺寸
+            setTargetH(Math.round(464 * (info.width / info.height)))
+            setTargetW(464)
+          } else {
+            setTargetH(580)
+            setTargetW(Math.round(580 * (info.width / info.height)))
+          }
+        }
+        // 背景颜色
+        ctx.fillStyle = colorValue
+        ctx.fillRect(0, 0, (targetW - 1) * rate, targetH * rate)
+        ctx.save()
 
-    // 背景颜色
-    ctx.fillStyle = colorValue
-    ctx.fillRect(0, 0, 413 * rate, 575 * rate)
-    ctx.save()
+        // 图片
+        ctx.drawImage(file, 0, 0, targetW * rate, targetH * rate)
+        return ctx.draw()
+      }
+    })
 
-    // 图片
-    ctx.drawImage(file, 0, 0, 413 * rate, 579 * rate)
-    return ctx.draw()
   }
 
   //将base64图片转网络图片
@@ -62,7 +88,7 @@ function Index() {
     const fs = Taro.getFileSystemManager();
     //随机定义路径名称
     let times = new Date().getTime();
-    let filePath = wx.env.USER_DATA_PATH + '/' + times + '.png';
+    let filePath = wx.env.USER_DATA_PATH + '/' + times + '.' + imgType;
 
     //将base64图片写入
     fs.writeFile({
@@ -71,7 +97,7 @@ function Index() {
       encoding: 'base64',
       success: () => {
         //写入成功了的话，新的图片路径就能用了
-        drawContent(filePath,color)
+        drawContent(filePath, color)
         setForeground(filePath)
       }
     });
@@ -79,7 +105,7 @@ function Index() {
 
   async function changeColor() {
     if (files === '') {
-      return  Taro.showToast({
+      return Taro.showToast({
         title: '请先选择照片!',
         icon: 'error',
         duration: 1000
@@ -87,8 +113,8 @@ function Index() {
     }
     if (foreground === '') {
       await handlePhoto()
-    }else {
-      drawContent(foreground,color)
+    } else {
+      drawContent(foreground, color)
     }
   }
 
@@ -116,7 +142,7 @@ function Index() {
   }
 
   function savePhotoSystem() {
-   return  Taro.canvasToTempFilePath({
+    return Taro.canvasToTempFilePath({
       canvasId: 'myCanvas',
       success: function (res) {
         Taro.saveImageToPhotosAlbum({
@@ -140,7 +166,7 @@ function Index() {
   }
 
   // 保存到相册
-  async function onClickSaveImage () {
+  async function onClickSaveImage() {
     await Taro.getSetting({
       success(res) {
         // 如果没有授权过，则要获取授权
@@ -173,21 +199,31 @@ function Index() {
           <AtIcon value='upload' size='150' color='#999999' className='upload-icon' />
           <Text className='text'>点击上传图片</Text>
         </view>) : (<View class='border1'>
-          <Canvas canvasId='myCanvas' className='photo-canvas' />
+          <Canvas canvasId='myCanvas' className='photo-canvas'
+            style={{width: `${targetW * rate}px`, height: `${targetH * rate}px`}}
+          />
           <Text class='text'>点击图片重新上传</Text>
         </View>)}
 
       </View>
       <RadioGroup className='color-group'>
-        <Radio className='radio-red' color='#fe0000' value='red' onClick={() => setColor('#fe0000')} checked={color === '#fe0000'}>红色</Radio>
-        <Radio className='radio-blue' color='#428eda' value='blue' onClick={() => setColor('#428eda')} checked={color === '#428eda'}>蓝色</Radio>
-        <Radio className='radio-white' value='white' onClick={() => setColor('#fff')} checked={color === '#fff'}>白色</Radio>
-        <Radio className='radio-gray' color='#9e9e9e' value='gray' onClick={() => setColor('#9e9e9e')} checked={color === '#9e9e9e'}>灰色</Radio>
+        <Radio className='radio-red' color='#fe0000' value='red' onClick={() => setColor('#fe0000')}
+          checked={color === '#fe0000'}
+        >红色</Radio>
+        <Radio className='radio-blue' color='#428eda' value='blue' onClick={() => setColor('#428eda')}
+          checked={color === '#428eda'}
+        >蓝色</Radio>
+        <Radio className='radio-white' value='white' onClick={() => setColor('#fff')}
+          checked={color === '#fff'}
+        >白色</Radio>
+        <Radio className='radio-gray' color='#9e9e9e' value='gray' onClick={() => setColor('#9e9e9e')}
+          checked={color === '#9e9e9e'}
+        >灰色</Radio>
       </RadioGroup>
 
       <View className='btn-group at-row'>
-        <AtButton  className='change-color at-col' onClick={changeColor}>转换底色</AtButton>
-        <AtButton  className='down-photo at-col' onClick={onClickSaveImage}>下载照片</AtButton>
+        <AtButton className='change-color at-col' onClick={changeColor}>转换底色</AtButton>
+        <AtButton className='down-photo at-col' onClick={onClickSaveImage}>下载照片</AtButton>
       </View>
 
     </View>
