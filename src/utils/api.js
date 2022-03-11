@@ -7,6 +7,7 @@ const Oil = 'oil/price'
 const LPLWEEK = 'lpl/week'
 const LPLROUND = 'lpl/round'
 const BODYSEG = 'baidu_ai/body_seg'
+const LOTTERY = 'lottery/lottery'
 
 function getExpress() {
   return HOST_URI + EXPRESS
@@ -35,7 +36,11 @@ function getBodySeg() {
   return HOST_URI + BODYSEG
 }
 
+function getLottery() {
+  return HOST_URI + LOTTERY;
+}
+
 
 export default {
-  getExpress, getGarbage,getTravel,getOil,getLplWeek,getLplRound,getBodySeg
+  getExpress, getGarbage,getTravel,getOil,getLplWeek,getLplRound,getBodySeg,getLottery
 }

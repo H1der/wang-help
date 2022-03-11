@@ -50,7 +50,6 @@ function Index() {
 
   // 画布画图
   function drawContent(file, colorValue) {
-    // console.log(files[0].width,files[0].height)
     const ctx = Taro.createCanvasContext('myCanvas')
     Taro.getImageInfo({
       src: file,
@@ -59,14 +58,10 @@ function Index() {
         setImgType(info.type)
         //目标尺寸
         if (info.width > 464 || info.height > 580) {
-          if (info.width / info.height > 464 / 580) {
-            // 要求宽度*(原生图片比例)=新图片尺寸
-            setTargetH(Math.round(464 * (info.width / info.height)))
-            setTargetW(464)
-          } else {
+          console.log('11111111')
             setTargetH(580)
             setTargetW(Math.round(580 * (info.width / info.height)))
-          }
+
         }
         // 背景颜色
         ctx.fillStyle = colorValue

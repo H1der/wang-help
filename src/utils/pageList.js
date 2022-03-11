@@ -34,6 +34,11 @@ export const lifeList = [
     value: '亲戚计算器',
     url: '/pages/relationship/index'
   },
+  {
+    image: 'https://oss.2hider.com/wang-help/lottery.png',
+    value: '彩票开奖查询',
+    url: '/pages/lottery/index'
+  },
 ]
 export const aboutList = [
   {
