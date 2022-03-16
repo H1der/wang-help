@@ -1,0 +1,47 @@
+.container {
+
+  .at-card {
+    margin-top: 20px;
+  }
+
+  .at-card__content-note {
+    clear: both
+  }
+
+  .ball {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 50%;
+    float: left;
+    font-size: 32px;
+    background: #f63f3f;
+    color: #fff;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0 10px 10px 0;
+  }
+
+  .detail{
+    float: right;
+    margin-top: 10px;
+  }
+  .qxc {
+    .ball:last-child {
+      background: #508cee;
+    }
+  }
+
+  .pls, .plw, .dlt {
+    .ball {
+      background: #ed8431;;
+    }
+  }
+
+  .dlt {
+    .ball:last-child, .ball:nth-last-child(2) {
+      background: #696bc9;
+    }
+  }
+}

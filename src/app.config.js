@@ -8,7 +8,8 @@ if (process.env.TARO_ENV === 'alipay') {
     'pages/lpl/index', // lpl赛程
     'pages/photo/index', // 证件照换底色
     'pages/about/index', // 证件照换底色
-    'pages/lottery/index', // 证件照换底色
+    'pages/lottery/index', // 彩票
+    'pages/lottery/history/index', // 彩票开奖历史
   ]
 }else{
   pages = [
@@ -22,6 +23,7 @@ if (process.env.TARO_ENV === 'alipay') {
     'pages/photo/index', // 证件照换底色
     'pages/about/index', // 关于
     'pages/lottery/index', // 彩票
+    'pages/lottery/history/index', // 彩票开奖历史
   ]
 }
 
