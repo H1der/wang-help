@@ -58,7 +58,6 @@ function Index() {
         setImgType(info.type)
         //目标尺寸
         if (info.width > 464 || info.height > 580) {
-          console.log('11111111')
             setTargetH(580)
             setTargetW(Math.round(580 * (info.width / info.height)))
 

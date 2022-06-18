@@ -38,11 +38,11 @@ function Index() {
     }
   }
 
-  function handleAtGridClick(num,lotteryGameCode) {
-    return Taro.navigateTo({
-      url: `/pages/lottery/history/index?num=${num}&lotteryGameCode=${lotteryGameCode}`
-    })
-  }
+  // function handleAtGridClick(num,lotteryGameCode) {
+  //   return Taro.navigateTo({
+  //     url: `/pages/lottery/history/index?num=${num}&lotteryGameCode=${lotteryGameCode}`
+  //   })
+  // }
   return (
 
     <View  className='container'>
@@ -50,7 +50,7 @@ function Index() {
       {lotteryList.map(lottery=> {
         return (
           <AtCard
-            onClick={()=>handleAtGridClick(lottery.lotteryGameNum,lottery.lotteryGameCode)}
+            // onClick={()=>handleAtGridClick(lottery.lotteryGameNum,lottery.lotteryGameCode)}
             className={lottery.lotteryGameCode}
             note={lottery.lotteryDrawDate + '   ' + lottery.lotteryDrawDay}
             extra={lottery.lotteryDrawNum + '期'}
