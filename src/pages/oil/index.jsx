@@ -15,10 +15,11 @@ function Oil() {
   const [provinceName, setProvinceName] = useState(getValueByKey('oli') !== '' ? getValueByKey('oli') : '海南')
 
 
-
   useEffect(() => {
     try {
-      return getOilPrice()
+      getOilPrice()
+
+
     } catch (error) {
       return Taro.showToast({
         title: '载入远程数据错误'
@@ -48,7 +49,7 @@ function Oil() {
     const {detail: {value}} = event
 
     setProvinceName(province[value])
-    await setKeyAndValue('oli',province[value])
+    await setKeyAndValue('oli', province[value])
 
   }
 

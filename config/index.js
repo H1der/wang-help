@@ -20,6 +20,8 @@ const config = {
   },
   framework: 'react',
   mini: {
+    debugReact: true,
+
     postcss: {
       pxtransform: {
         enable: true,

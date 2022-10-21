@@ -14,7 +14,7 @@ function Index() {
   const [viewId, setViewId] = useState('')
   useEffect(() => {
     try {
-      return getWeek()
+      getWeek()
     } catch (error) {
       return Taro.showToast({
         title: '载入远程数据错误'
@@ -112,9 +112,9 @@ function Index() {
               enableBackToTop
               scrollWithAnimation
             >
-            {roundList.map((round) => {
-              return (<Match round={round} />)
-            })}
+              {roundList.map((round, subIndex) => {
+                return (<Match round={round} index={subIndex} key={subIndex} />)
+              })}
             </ScrollView>
           </AtTabsPane>)
         })}
