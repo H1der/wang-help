@@ -1,11 +1,11 @@
 import {View} from "@tarojs/components";
-import {AtCard, AtGrid} from 'taro-ui'
+import {Divider, Grid, GridItem,Icon} from '@nutui/nutui-react-taro';
 import Taro from "@tarojs/taro";
 import './index.scss'
+
 import {aboutList, commonList, lifeList} from "../../utils/pageList"
 
 function Index() {
-
 
 
   function handleAtGridClick(item) {
@@ -17,15 +17,38 @@ function Index() {
 
   return (
     <View className='index'>
-      <AtCard title='常用工具' className='common-tools' thumb='https://oss.2hider.com/tools.png'>
-        <AtGrid data={commonList} onClick={handleAtGridClick} />
-      </AtCard>
-      <AtCard title='生活服务' className='common-tools' thumb='https://oss.2hider.com/wang-help/life.png'>
-        <AtGrid data={lifeList} onClick={handleAtGridClick} />
-      </AtCard>
-      <AtCard title='项目说明' className='common-tools' thumb='https://oss.2hider.com/wang-help/help.png'>
-        <AtGrid data={aboutList} onClick={handleAtGridClick} />
-      </AtCard>
+      <Divider contentPosition='left'>常用工具</Divider>
+      <Grid columnNum={3}>
+        {commonList.map((item,key) => {
+          return (<GridItem key={key} icon={
+            <Icon size='40' name={item.image} />
+          } text={item.value}
+            onClick={()=>handleAtGridClick(item)}
+          />)
+        })}
+      </Grid>
+      <Divider contentPosition='left'>生活服务</Divider>
+      <Grid columnNum={3}>
+        {lifeList.map((item,key) => {
+          return (<GridItem key={key} icon={
+            <Icon size='40' name={item.image} />
+          } text={item.value}
+            onClick={()=>handleAtGridClick(item)}
+
+          />)
+        })}
+      </Grid>
+      <Divider contentPosition='left'>项目说明</Divider>
+      <Grid columnNum={3}>
+        {aboutList.map((item,key) => {
+          return (<GridItem key={key} icon={
+            <Icon size='40' name={item.image} />
+          } text={item.value}
+            onClick={()=>handleAtGridClick(item)}
+
+          />)
+        })}
+      </Grid>
 
     </View>
   );
