@@ -5,14 +5,14 @@ export const commonList = [
     url: '/pages/oil/index',
   }, {
     image: 'https://oss.2hider.com/wang-help/lpl2022.png',
-    value: '2022 LPL赛程',
+    value: '2023 LPL赛程',
     url: '/pages/lpl/index'
   },
-  {
-    image: 'https://oss.2hider.com/wang-help/photo.png',
-    value: '证件照换底色',
-    url: '/pages/photo/index'
-  },
+  // {
+  //   image: 'https://oss.2hider.com/wang-help/photo.png',
+  //   value: '证件照换底色',
+  //   url: '/pages/photo/index'
+  // },
   // {
   //   image: 'https://oss.2hider.com/wang-help/lottery.png',
   //   value: '彩票开奖查询',
