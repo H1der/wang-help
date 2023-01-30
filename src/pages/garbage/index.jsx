@@ -1,5 +1,5 @@
 import React from "react";
-import {AtFloatLayout, AtIcon, AtList, AtListItem} from "taro-ui";
+import {Cell, CellGroup, Icon, Popup} from "@nutui/nutui-react-taro";
 import {Text, View} from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import Search from "../../components/Search";
@@ -76,7 +76,7 @@ function Garbage() {
       <Search getSearchKeyword={onActionClick} />
       <View className='search-result'>
 
-        {typeData.length > 0 ? (<AtList>
+        {typeData.length > 0 ? (<CellGroup >
           {typeData.map((data, index) => {
             rubbishType.find(type => {
                 if (type.type === data.type) return data = {typeName: type.name, thumb: type.thumb, ...data}
@@ -84,23 +84,31 @@ function Garbage() {
             )
 
             return (
-              <AtListItem
-                onClick={() => handleListItemClick(data)}
-                key={index}
-                title={data.name}
-                note={data.typeName}
-                arrow='right'
-                thumb={data.thumb}
-              />
+                <Cell
+                  size='large'
+                  key={index}
+                  title={data.name}
+                  desc={data.typeName}
+                  onClick={() => handleListItemClick(data)}
+                  isLink
+                  iconSlot={
+                    <img
+                      className='nut-icon'
+                      alt=''
+                      src={data.thumb}
+                    />
+                  }
+                />
+
             )
           })}
 
-        </AtList>) : (<SearchHistory keyName='garbage' getSearchKeyword={onActionClick} />)}
+        </CellGroup>) : (<SearchHistory keyName='garbage' getSearchKeyword={onActionClick} />)}
 
-
-        <AtFloatLayout isOpened={isOpened} onClose={() => setIsOpened(false)} title='                '>
+        <Popup visible={isOpened} closeable  style={{ height: '40%' }} position='bottom' onClose={() => { setIsOpened(false)}} >
           <View>
-            <AtIcon value='help' size='18' color='#A6E0DE' />
+            {/*<AtIcon value='help' size='18' color='#A6E0DE' />*/}
+            <Icon size='18' name='ask' color='#A6E0DE' />
             <Text className='explain-title' style={{marginLeft: '10px'}}>{description.typeName}是什么？</Text>
             <Text className='explain-info'>{description.explain}</Text>
           </View>
@@ -112,8 +120,7 @@ function Garbage() {
             <Text className='explain-title'>小提示</Text>
             <Text className='explain-info'>{description.tip}</Text>
           </View>
-
-        </AtFloatLayout>
+        </Popup>
       </View>
     </View>
 

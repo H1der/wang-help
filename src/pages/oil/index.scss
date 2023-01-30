@@ -12,13 +12,16 @@
       color: white;
       border: 0.1px solid white;
       margin:0 10px 5px 0;
+      .select-btn-icon{
+        vertical-align: middle;
+      }
     }
 
 
   }
   .info{
     margin: 20px;
-    .item-content__info-title{
+    .nut-cell,.nut-cell__value{
       color: #eb4035;
     }
   }

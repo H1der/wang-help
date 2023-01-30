@@ -1,5 +1,5 @@
 import React from 'react';
-import {AtSearchBar} from "taro-ui";
+import {SearchBar} from "@nutui/nutui-react-taro";
 
 function Search(props) {
   const [value, setValue] = React.useState('')
@@ -11,9 +11,10 @@ function Search(props) {
 
 
   return (
-    <AtSearchBar fixed value={value} onChange={handleSearchBarChange} actionName='查询'
-      onActionClick={()=>{getSearchKeyword(value)}} onConfirm={()=>{getSearchKeyword(value)}}
-    />
+    <SearchBar  actionText='查询' shape='round' onSearch={()=>{getSearchKeyword(value)}} background='#eb4035' onChange={handleSearchBarChange} />
+    // <AtSearchBar fixed value={value} onChange={handleSearchBarChange} actionName='查询'
+    //   onActionClick={()=>{getSearchKeyword(value)}} onConfirm={()=>{getSearchKeyword(value)}}
+    // />
   );
 }
 

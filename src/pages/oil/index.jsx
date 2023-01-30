@@ -1,7 +1,7 @@
 import Taro from "@tarojs/taro";
 import {useEffect, useState} from "react";
 import {Picker, Text, View} from "@tarojs/components";
-import {AtButton, AtList, AtListItem} from "taro-ui";
+import {Button, Cell, Icon} from "@nutui/nutui-react-taro";
 import './index.scss'
 import {province} from "../../utils/province";
 import api from "../../utils/api";
@@ -59,20 +59,19 @@ function Oil() {
         <Text className='at-col' />
         <Text className='at-col select-province'>选择省份：</Text>
         <Picker mode='selector' range={province} onChange={onChange}>
-          <AtButton type='secondary' className='at-col select-btn' size='small'>{provinceName}<View
-            className='at-icon at-icon-chevron-down'
-          /></AtButton>
+          <Button plain  type='primary'  className='at-col select-btn' size='small'>{provinceName}
+            <Icon  className='select-btn-icon'  name='rect-down' />
+          </Button>
         </Picker>
 
       </View>
-      {Object.keys(oilData).length === 0 ? '' : (<View className='info'>
-        <AtList>
-          <AtListItem title={'92# 汽油：' + oilData.oil92} />
-          <AtListItem title={'95# 汽油：' + oilData.oil95} />
-          <AtListItem title={'98# 汽油：' + oilData.oil98} />
-          <AtListItem title={' 0# 柴油：' + oilData.oil0} />
-          <AtListItem title={'更新时间：' + oilData.updatetime} />
-        </AtList>
+      {Object.keys(oilData).length === 0 ? '' : (
+        <View className='info'>
+          <Cell size='large' title='92# 汽油：' desc={oilData.oil92} />
+          <Cell size='large' title='95# 汽油：' desc={oilData.oil95} />
+          <Cell size='large' title='98# 汽油：' desc={oilData.oil98} />
+          <Cell size='large' title=' 0# 柴油：' desc={oilData.oil0} />
+          <Cell size='large' title='更新时间：' desc={oilData.updatetime} />
       </View>)}
 
     </View>

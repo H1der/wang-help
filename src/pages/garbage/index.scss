@@ -1,23 +1,18 @@
 .at-search-bar {
-  background-color: #eb4035;
+  //background-color: #eb4035;
   //background-color: #F49FB6;
 
 }
 
-.at-search-bar__action {
+.nut-searchbar__action-text {
   //background-color: gold;
-  background-color: #C53F52;
+  color: #fff;
 }
 
 .search-result {
-  margin: 100px 0 20px 0;
+  //margin: 100px 0 20px 0;
 
-  .at-float-layout .layout-header {
-    background-color: #fff;
-  }
-  .at-float-layout .layout-header__btn-close{
-    top: 75%;
-  }
+
 
   .explain-title {
     font-size: 30px;

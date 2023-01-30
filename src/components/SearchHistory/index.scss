@@ -1,5 +1,5 @@
 .history-label {
-  margin: 0 20px;
+  margin: 20px 20px;
 
   .history-label-text {
     font-size: 28px;
@@ -17,6 +17,12 @@
 
   .history-tag {
     margin: 5px 10px 0 0;
+    float: left;
+    width: auto;
+
+    .text {
+      font-size: 28px;
+    }
   }
 
   .history-tag:last-child {
@@ -25,16 +31,14 @@
 ;
 }
 
-.at-modal__container {
-  //height: 180px;
-
-  .modal-text {
-    margin: auto 0;
-    height: 100px;
-    line-height:100px;
-    text-align:center;
-  }
+.modal-text {
+  font-size: 32px;
+  margin: auto 0;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
 }
+
 
 
 
