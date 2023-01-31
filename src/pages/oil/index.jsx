@@ -1,7 +1,7 @@
 import Taro from "@tarojs/taro";
 import {useEffect, useState} from "react";
 import {Picker, Text, View} from "@tarojs/components";
-import {Button, Cell, Icon} from "@nutui/nutui-react-taro";
+import {Button, Cell, Col, Icon, Row} from "@nutui/nutui-react-taro";
 import './index.scss'
 import {province} from "../../utils/province";
 import api from "../../utils/api";
@@ -55,15 +55,17 @@ function Oil() {
 
   return (
     <View className='container'>
-      <View className='province at-row'>
-        <Text className='at-col' />
-        <Text className='at-col select-province'>选择省份：</Text>
-        <Picker mode='selector' range={province} onChange={onChange}>
-          <Button plain  type='primary'  className='at-col select-btn' size='small'>{provinceName}
-            <Icon  className='select-btn-icon'  name='rect-down' />
-          </Button>
-        </Picker>
-
+      <View className='province'>
+        <Row gutter='10'>
+          <Col span='8'><Text /></Col>
+          <Col span='8'> <Text className=' select-province'>选择省份：</Text></Col>
+          <Col span='8'> <Picker mode='selector' range={province} onChange={onChange}>
+            <Button plain type='primary' className=' select-btn' size='small'>{provinceName}
+              <Icon className='select-btn-icon' name='rect-down' />
+            </Button>
+          </Picker>
+          </Col>
+        </Row>
       </View>
       {Object.keys(oilData).length === 0 ? '' : (
         <View className='info'>
@@ -72,7 +74,7 @@ function Oil() {
           <Cell size='large' title='98# 汽油：' desc={oilData.oil98} />
           <Cell size='large' title=' 0# 柴油：' desc={oilData.oil0} />
           <Cell size='large' title='更新时间：' desc={oilData.updatetime} />
-      </View>)}
+        </View>)}
 
     </View>
   );

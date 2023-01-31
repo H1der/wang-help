@@ -1,7 +1,7 @@
 import React from 'react'
 import {Text, View} from "@tarojs/components";
-import {AtMessage, AtTimeline} from 'taro-ui'
 import Taro from "@tarojs/taro";
+import {Step, Steps} from "@nutui/nutui-react-taro";
 import findExpressCompanyByCode from "../../utils/express";
 import api from '../../utils/api'
 import {myRequest} from "../../utils/request";
@@ -34,7 +34,7 @@ function Express() {
     }
 
     if (keyword.search('SF') !== -1) {
-     return  Taro.atMessage({
+      return Taro.atMessage({
         'message': '顺丰快递请在订单号后加「:手机号后4位」',
         'type': 'error',
       })
@@ -50,7 +50,7 @@ function Express() {
     if (res.code === 200) {
       const {data} = res
       let expressCompany = findExpressCompanyByCode(data.com);
-      setExpressName(expressCompany.name!==''?expressCompany.name:'');
+      setExpressName(expressCompany.name !== '' ? expressCompany.name : '');
       const stateObj = ['', '正常', '派送中', '已签收', '退回', '其他问题']
       setExpressState(stateObj[data.state])
       const {info} = data;
@@ -69,7 +69,6 @@ function Express() {
 
   return (
     <View className='container'>
-      <AtMessage />
       <Search getSearchKeyword={onActionClick} />
       <View className='search-result'>
         {expressLine.length > 0 ? (
@@ -78,10 +77,13 @@ function Express() {
               <Text className='express-name'>{expressName}</Text>
               <Text className='express-state'>{expressState}</Text>
             </View>
-            <AtTimeline
-              items={expressLine}
-            >
-            </AtTimeline>
+            <Steps   direction='vertical' progressDot>
+              {expressLine.map((data, index) => {
+                return (<Step key={index} activeIndex={2} title={data.content} content={data.title}>
+                  2
+                </Step>)
+              })}
+            </Steps>
           </View>) : (<SearchHistory keyName='express' getSearchKeyword={onActionClick} />)}
       </View>
     </View>

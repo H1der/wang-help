@@ -10,21 +10,21 @@ const config = {
   sourceRoot: 'src',
   outputRoot: 'dist',
   plugins: ['@tarojs/plugin-html'],
-  sass:{
+  sass: {
     data: `@import "@nutui/nutui-react-taro/dist/styles/variables.scss";`
   },
-  defineConstants: {
-  },
+  defineConstants: {},
   copy: {
-    patterns: [
-    ],
-    options: {
-    }
+    patterns: [],
+    options: {}
   },
   framework: 'react',
   mini: {
     debugReact: true,
-
+    miniCssExtractPluginOption: {
+//忽略css文件引入顺序
+      ignoreOrder: true
+    },
     postcss: {
       pxtransform: {
         enable: true,
@@ -53,8 +53,7 @@ const config = {
     postcss: {
       autoprefixer: {
         enable: true,
-        config: {
-        }
+        config: {}
       },
       cssModules: {
         enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true

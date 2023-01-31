@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
-import {AtTabs, AtTabsPane} from "taro-ui";
-import {ScrollView, View} from "@tarojs/components";
+import {View} from "@tarojs/components";
 import Taro from "@tarojs/taro";
+import {TabPane, Tabs} from "@nutui/nutui-react-taro";
 import './index.scss'
 import Match from "../../components/Match";
 import {myRequest} from "../../utils/request";
@@ -94,31 +94,53 @@ function Index() {
 
   return (
     <View className='container'>
-      <AtTabs
-        className='tabs'
-        current={current}
-        scroll
-        tabList={weekList}
-        onClick={handleClick}
-        animated
+      <Tabs className='tabs' autoHeight titleGutter='10' color='#FFD700' background='#eb4035' value={current} titleScroll onChange={({ paneKey }) => {
+        handleClick(paneKey)
+      }}
       >
+          {weekList.map((week, index) => {
+            return (
+              <TabPane title={week.title} key={index} pane-key='current'>
+                      <View
+                        // scrollY
+                        className='list'
+                        // scrollIntoView={viewId}
+                        // enableBackToTop
+                        // scrollWithAnimation
+                      >
+                        {roundList.map((round, subIndex) => {
+                          return (<Match round={round} index={subIndex} key={subIndex} />)
+                        })}
+                </View>
+              </TabPane>
+            )
+          })}
+      </Tabs>
+      {/*<AtTabs*/}
+      {/*  className='tabs'*/}
+      {/*  current={current}*/}
+      {/*  scroll*/}
+      {/*  tabList={weekList}*/}
+      {/*  onClick={handleClick}*/}
+      {/*  animated*/}
+      {/*>*/}
 
-        {weekList.map((week, index) => {
-          return (<AtTabsPane current={current} index={index} key={index}>
-            <ScrollView
-              scrollY
-              className='list'
-              scrollIntoView={viewId}
-              enableBackToTop
-              scrollWithAnimation
-            >
-              {roundList.map((round, subIndex) => {
-                return (<Match round={round} index={subIndex} key={subIndex} />)
-              })}
-            </ScrollView>
-          </AtTabsPane>)
-        })}
-      </AtTabs>
+      {/*  {weekList.map((week, index) => {*/}
+      {/*    return (<AtTabsPane current={current} index={index} key={index}>*/}
+      {/*      <ScrollView*/}
+      {/*        scrollY*/}
+      {/*        className='list'*/}
+      {/*        scrollIntoView={viewId}*/}
+      {/*        enableBackToTop*/}
+      {/*        scrollWithAnimation*/}
+      {/*      >*/}
+      {/*        {roundList.map((round, subIndex) => {*/}
+      {/*          return (<Match round={round} index={subIndex} key={subIndex} />)*/}
+      {/*        })}*/}
+      {/*      </ScrollView>*/}
+      {/*    </AtTabsPane>)*/}
+      {/*  })}*/}
+      {/*</AtTabs>*/}
     </View>
   );
 }

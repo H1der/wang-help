@@ -17,7 +17,7 @@ function Index() {
 
   return (
     <View className='index'>
-      <Divider contentPosition='left'>常用工具</Divider>
+      <Divider contentPosition='left'><Icon size='16'  name='https://oss.2hider.com/tools.png' />常用工具</Divider>
       <Grid columnNum={3}>
         {commonList.map((item,key) => {
           return (<GridItem key={key} icon={
@@ -27,7 +27,7 @@ function Index() {
           />)
         })}
       </Grid>
-      <Divider contentPosition='left'>生活服务</Divider>
+      <Divider contentPosition='left'><Icon size='16'  name='https://oss.2hider.com/wang-help/life.png' />生活服务</Divider>
       <Grid columnNum={3}>
         {lifeList.map((item,key) => {
           return (<GridItem key={key} icon={
@@ -38,7 +38,7 @@ function Index() {
           />)
         })}
       </Grid>
-      <Divider contentPosition='left'>项目说明</Divider>
+      <Divider contentPosition='left'><Icon size='16'  name='https://oss.2hider.com/wang-help/help.png' />项目说明</Divider>
       <Grid columnNum={3}>
         {aboutList.map((item,key) => {
           return (<GridItem key={key} icon={

@@ -26,14 +26,17 @@
 
 
   .keyboard{
+    .nut-col{
+      margin-bottom: 0 !important;
+    }
     //height: 330px;
     position:fixed;
     bottom:0;
     .keyboard-key{
       //height: 10vh;
       .keyboard-btn{
-        height: 13vh;
-        line-height: 13vh;
+        height: 15vh;
+        line-height: 15vh;
         border: 0.1px solid gainsboro;
         border-radius: 0;
       }

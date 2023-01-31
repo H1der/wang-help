@@ -6,7 +6,7 @@ if (process.env.TARO_ENV === 'alipay') {
     'pages/relationship/index', // 亲戚计算器
     'pages/oil/index', // 油价查询
     'pages/lpl/index', // lpl赛程
-    'pages/photo/index', // 证件照换底色
+    // 'pages/photo/index', // 证件照换底色
     'pages/about/index', // 证件照换底色
     // 'pages/lottery/index', // 彩票
     // 'pages/lottery/history/index', // 彩票开奖历史
@@ -20,7 +20,7 @@ if (process.env.TARO_ENV === 'alipay') {
     'pages/relationship/index', // 亲戚计算器
     'pages/oil/index', // 油价查询
     'pages/lpl/index', // lpl赛程
-    'pages/photo/index', // 证件照换底色
+    // 'pages/photo/index', // 证件照换底色
     'pages/about/index', // 关于
     // 'pages/lottery/index', // 彩票
     // 'pages/lottery/history/index', // 彩票开奖历史

@@ -2,9 +2,10 @@
   .avatar {
     padding-top: 20px;
     background-color: #eb4035;
-    .at-avatar{
+    .nut-avatar{
+      display: block;
       margin: 0 auto;
-      border: 5px solid white;
+      border: 2px solid white;
     }
 
     .avatar-text {
@@ -16,8 +17,8 @@
 
   }
   .btn-list{
-    margin-top: 80px;
-    .at-button{
+    //margin-top: 80px;
+    .nut-button{
       border-radius: 0;
       border: 0;
       border-bottom: 1PX solid #C5D9E8;

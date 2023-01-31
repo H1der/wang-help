@@ -1,18 +1,14 @@
 
-.at-search-bar {
-  //background-color: #8DBF88;
-  background-color: #eb4035;
 
-}
 
-.at-search-bar__action {
+.nut-searchbar__action-text {
   //background-color: gold;
-  background-color: #C53F52;
+  color: #fff;
 }
 
 .search-result {
   //margin: 100px 38px 20px 38px;
-  margin: 100px 0 20px 0;
+  //margin: 80px 0 20px 0;
 
   .express {
     margin: 0 38px;
@@ -31,8 +27,15 @@
       }
     }
   }
+  .nut-step-content{
+    padding-bottom: 10px;
+  }
+  .nut-step-title {
+    //margin-top: 10px;
+    margin-bottom: 2px !important;
+  }
 
-}
+  }
 
 ::-webkit-scrollbar {
   width: 0;
