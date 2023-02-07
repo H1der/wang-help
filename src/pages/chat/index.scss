@@ -1,0 +1,15 @@
+.container{
+  //display: flex;
+  //flex-direction: column;
+  .message-box{
+  }
+  .send-box{
+    overflow:hidden;
+    margin-bottom:0;
+    width:100%;
+    position:fixed;
+    bottom:0px;
+    display:flex;
+    justify-content:center;
+  }
+}

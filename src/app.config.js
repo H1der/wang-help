@@ -22,6 +22,7 @@ if (process.env.TARO_ENV === 'alipay') {
     'pages/lpl/index', // lpl赛程
     // 'pages/photo/index', // 证件照换底色
     'pages/about/index', // 关于
+    'pages/chat/index', // AI助手
     // 'pages/lottery/index', // 彩票
     // 'pages/lottery/history/index', // 彩票开奖历史
   ]
