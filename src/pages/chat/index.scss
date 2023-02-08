@@ -1,15 +1,53 @@
-.container{
+.container {
   //display: flex;
   //flex-direction: column;
-  .message-box{
+  .message-box {
+    .nut-cell{
+      box-shadow:none !important;
+      padding-bottom: 0 !important;
+    }
+    .my{
+      display: flex;
+      .avatar{
+        margin-left: 0
+      }
+      .message-text{
+        margin-left: auto;
+      }
+    }
+
+    .message-text{
+      height: auto;
+      font-size: 32px;
+      line-height: 64px;
+      display: block;
+      padding: 10px;
+      margin: 0 10px;
+      background-color: #F5F5F5;
+    }
   }
-  .send-box{
-    overflow:hidden;
-    margin-bottom:0;
-    width:100%;
-    position:fixed;
-    bottom:0px;
-    display:flex;
-    justify-content:center;
+
+  .send-box {
+    background: #F5F5F5;
+    overflow: hidden;
+    margin-bottom: 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+
+    .send-input {
+      font-size: 42px;
+      line-height: 42px;
+      background: #fff;
+      width: 100%;
+      min-height: 60px;
+
+      //padding: 0 30px;
+    }
+    .send-btn{
+      margin-left: 20px;
+    }
   }
 }

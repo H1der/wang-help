@@ -1,5 +1,5 @@
 export default {
-  navigationBarTitleText: '2022LPL春季赛',
+  navigationBarTitleText: '2023LPL春季赛',
   navigationBarTextStyle: 'white',
   navigationBarBackgroundColor: '#eb4035',
 }
