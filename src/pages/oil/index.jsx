@@ -1,7 +1,7 @@
 import Taro from "@tarojs/taro";
-import {useEffect, useState} from "react";
+import {useEffect, useLayoutEffect, useState} from "react";
 import {Picker, Text, View} from "@tarojs/components";
-import {Button, Cell, Col, Icon, Row} from "@nutui/nutui-react-taro";
+import {Button, Cell, Col, Icon, NoticeBar, Row} from "@nutui/nutui-react-taro";
 import './index.scss'
 import {province} from "../../utils/province";
 import api from "../../utils/api";
@@ -12,6 +12,7 @@ function Oil() {
 
 
   const [oilData, setOilData] = useState({})
+  const [changNotice, setChangeNotice] = useState("")
   const [provinceName, setProvinceName] = useState(getValueByKey('oli') !== '' ? getValueByKey('oli') : '海南')
 
 
@@ -19,13 +20,17 @@ function Oil() {
     try {
       getOilPrice()
 
-
     } catch (error) {
       return Taro.showToast({
         title: '载入远程数据错误'
       })
     }
   }, [provinceName])
+  //useLayoutEffect则是在DOM结构更新后、渲染前执行，相当于有一个防抖效果
+  useLayoutEffect(() => {
+    getOilChange()
+
+  }, [])
 
   async function getOilPrice() {
 
@@ -40,6 +45,17 @@ function Oil() {
         icon: 'error',
         duration: 1000
       })
+    }
+  }
+
+  // 价格变动公告
+  async function getOilChange() {
+
+    let res = await myRequest(api.getOilChange())
+    if (res.code === 200) {
+      setChangeNotice(res.data.content)
+    } else {
+      setChangeNotice('')
     }
   }
 
@@ -69,6 +85,8 @@ function Oil() {
       </View>
       {Object.keys(oilData).length === 0 ? '' : (
         <View className='info'>
+          {changNotice !== '' ? <NoticeBar text={changNotice} wrapable /> : ''}
+
           <Cell size='large' title='92# 汽油：' desc={oilData.oil92} />
           <Cell size='large' title='95# 汽油：' desc={oilData.oil95} />
           <Cell size='large' title='98# 汽油：' desc={oilData.oil98} />

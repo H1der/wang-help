@@ -18,11 +18,11 @@ export const commonList = [
   //   value: '彩票开奖查询',
   //   url: '/pages/lottery/index'
   // },
-  {
-    image: 'https://oss.2hider.com/wang-help/lottery.png',
-    value: 'AI助手',
-    url: '/pages/chat/index'
-  },
+  // {
+  //   image: 'https://oss.2hider.com/wang-help/lottery.png',
+  //   value: 'AI助手',
+  //   url: '/pages/chat/index'
+  // },
 ]
 
 export const lifeList = [
@@ -36,11 +36,12 @@ export const lifeList = [
     image: 'https://oss.2hider.com/garbage.png',
     value: '垃圾分类',
     url: '/pages/garbage/index'
-  }, {
-    image: 'https://oss.2hider.com/express.png',
-    value: '快递查询',
-    url: '/pages/express/index'
   },
+  // {
+  //   image: 'https://oss.2hider.com/express.png',
+  //   value: '快递查询',
+  //   url: '/pages/express/index'
+  // },
   {
     image: 'https://oss.2hider.com/relationship.png',
     value: '亲戚计算器',

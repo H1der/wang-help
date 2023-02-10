@@ -4,6 +4,7 @@ const EXPRESS = 'express/search'
 const GARBAGE = 'garbage/search'
 const TRAVEL = 'travel/policy'
 const Oil = 'oil/price'
+const OilCHANGE = 'oil/changInfo'
 const LPLWEEK = 'lpl/week'
 const LPLROUND = 'lpl/round'
 const BODYSEG = 'baidu_ai/body_seg'
@@ -17,12 +18,17 @@ function getExpress() {
 function getGarbage() {
   return HOST_URI + GARBAGE
 }
+
 function getTravel() {
   return HOST_URI + TRAVEL
 }
 
 function getOil() {
   return HOST_URI + Oil
+}
+
+function getOilChange() {
+  return HOST_URI + OilCHANGE;
 }
 
 function getLplWeek() {
@@ -47,5 +53,14 @@ function getLotteryHistory() {
 
 
 export default {
-  getExpress, getGarbage,getTravel,getOil,getLplWeek,getLplRound,getBodySeg,getLottery,getLotteryHistory
+  getExpress,
+  getGarbage,
+  getTravel,
+  getOil,
+  getOilChange,
+  getLplWeek,
+  getLplRound,
+  getBodySeg,
+  getLottery,
+  getLotteryHistory
 }
