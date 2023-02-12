@@ -2,6 +2,7 @@ let pages = [
   'pages/index/index',
   // 'pages/travel/index', // 出行防疫政策
   // 'pages/express/index',// 快递查询
+  'pages/abbr/index',// 缩写查询
   'pages/garbage/index', // 垃圾分类
   'pages/relationship/index', // 亲戚计算器
   'pages/oil/index', // 油价查询

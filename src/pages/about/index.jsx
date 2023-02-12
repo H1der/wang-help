@@ -57,6 +57,7 @@ function Index() {
         onCancel={() => setIsOpened(false)}
         cancelText='关闭'
       >
+        <View>2023/2/12：新增缩写查询功能</View>
         <View>2023/1/31：更换UI库为NutUi-React</View>
         <View>2022/6/18：修复了LPL赛程时间样式的错误</View>
         <View>2022/3/11：新增彩票开奖查询</View>

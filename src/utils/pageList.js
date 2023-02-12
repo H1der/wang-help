@@ -37,11 +37,11 @@ export const lifeList = [
     value: '垃圾分类',
     url: '/pages/garbage/index'
   },
-  // {
-  //   image: 'https://oss.2hider.com/express.png',
-  //   value: '快递查询',
-  //   url: '/pages/express/index'
-  // },
+  {
+    image: 'https://oss.2hider.com/wang-help/speak.png',
+    value: '缩写查询',
+    url: '/pages/abbr/index'
+  },
   {
     image: 'https://oss.2hider.com/relationship.png',
     value: '亲戚计算器',

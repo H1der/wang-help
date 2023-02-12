@@ -1,11 +1,11 @@
 import {useEffect, useState} from 'react';
-import {View} from "@tarojs/components";
+import {ScrollView, View} from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import {TabPane, Tabs} from "@nutui/nutui-react-taro";
 import './index.scss'
 import Match from "../../components/Match";
 import {myRequest} from "../../utils/request";
-import api from "../../utils/api";
+import api, {getLplRoundApi, getLplWeekApi} from "../../utils/api";
 
 function Index() {
   const [current, setCurrent] = useState(0)
@@ -34,7 +34,7 @@ function Index() {
       title: 'Loading...',
     });
 
-    let res = await myRequest(api.getLplWeek())
+    let res = await myRequest(getLplWeekApi())
     if (res.code === 200) {
       const {data} = res
       // 返回 isNowWeek 为1的数组下标
@@ -62,7 +62,7 @@ function Index() {
     });
 
 
-    let res = await myRequest(api.getLplRound(), {week: week.id})
+    let res = await myRequest(getLplRoundApi(), {week: week.id})
     if (res.code === 200) {
       const {data} = res
       setRoundList(res.data)
@@ -74,13 +74,13 @@ function Index() {
       })
       data.indexOf(scrollId) !== 0 ? setViewId(`match-${scrollId.matchID}`) : setViewId(`match-${data[0].matchID}`)
       // console.log(data.indexOf(scrollId) === 0)
+
+      // console.log(scrollId);
       //
-      // // console.log(scrollId);
-      //
-      // await Taro.pageScrollTo({
-      //   selector: data.indexOf(scrollId) !== 0 ? `#match-${scrollId.matchID}` : '',
-      //   duration: 300,
-      // })
+      await Taro.pageScrollTo({
+        selector: data.indexOf(scrollId) !== 0 ? `#match-${scrollId.matchID}` : '',
+        duration: 300,
+      })
 
     } else {
       await Taro.showToast({
@@ -101,17 +101,17 @@ function Index() {
           {weekList.map((week, index) => {
             return (
               <TabPane title={week.title} key={index} pane-key='current'>
-                      <View
-                        // scrollY
+                      <ScrollView
+                        scrollY
                         className='list'
-                        // scrollIntoView={viewId}
-                        // enableBackToTop
-                        // scrollWithAnimation
+                        scrollIntoView={viewId}
+                        enableBackToTop
+                        scrollWithAnimation
                       >
                         {roundList.map((round, subIndex) => {
                           return (<Match round={round} index={subIndex} key={subIndex} />)
                         })}
-                </View>
+                </ScrollView>
               </TabPane>
             )
           })}

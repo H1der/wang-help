@@ -1,4 +1,5 @@
 const HOST_URI = 'https://wang-help.2hider.com/'
+// const HOST_URI = 'http://localhost:8091/'
 
 const EXPRESS = 'express/search'
 const GARBAGE = 'garbage/search'
@@ -10,57 +11,51 @@ const LPLROUND = 'lpl/round'
 const BODYSEG = 'baidu_ai/body_seg'
 const LOTTERY = 'lottery/lottery'
 const LOTTERYHISTORY = 'lottery/history'
+const ABBR = 'abbr/search'
 
-function getExpress() {
+export function getExpress() {
   return HOST_URI + EXPRESS
 }
 
-function getGarbage() {
+export function getGarbageApi() {
   return HOST_URI + GARBAGE
 }
 
-function getTravel() {
+export function getTravel() {
   return HOST_URI + TRAVEL
 }
 
-function getOil() {
+export function getOilApi() {
   return HOST_URI + Oil
 }
 
-function getOilChange() {
+export function getOilChangeApi() {
   return HOST_URI + OilCHANGE;
 }
 
-function getLplWeek() {
+export function getLplWeekApi() {
   return HOST_URI + LPLWEEK;
 }
 
-function getLplRound() {
+export function getLplRoundApi() {
   return HOST_URI + LPLROUND;
 }
 
-function getBodySeg() {
+export function getBodySeg() {
   return HOST_URI + BODYSEG
 }
 
-function getLottery() {
+export function getLottery() {
   return HOST_URI + LOTTERY;
 }
 
-function getLotteryHistory() {
+export function getLotteryHistory() {
   return HOST_URI + LOTTERYHISTORY;
 }
 
-
-export default {
-  getExpress,
-  getGarbage,
-  getTravel,
-  getOil,
-  getOilChange,
-  getLplWeek,
-  getLplRound,
-  getBodySeg,
-  getLottery,
-  getLotteryHistory
+export function getAbbrApi() {
+  return HOST_URI + ABBR
 }
+
+
+

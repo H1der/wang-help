@@ -3,7 +3,7 @@ import {Cell, CellGroup, Icon, Popup} from "@nutui/nutui-react-taro";
 import {Text, View} from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import Search from "../../components/Search";
-import api from "../../utils/api";
+import {getGarbageApi} from "../../utils/api";
 import {myRequest} from "../../utils/request";
 import {setHistoryStorage} from "../../utils/storage";
 import SearchHistory from "../../components/SearchHistory";
@@ -25,7 +25,7 @@ function Garbage() {
       title: 'Loading...',
     });
 
-    let res = await myRequest(api.getGarbage(), {keyword})
+    let res = await myRequest(getGarbageApi(), {keyword})
     if (res.code === 200) {
       setTypeData(res.data);
       await Taro.hideLoading();

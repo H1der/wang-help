@@ -4,9 +4,9 @@ import {Picker, Text, View} from "@tarojs/components";
 import {Button, Cell, Col, Icon, NoticeBar, Row} from "@nutui/nutui-react-taro";
 import './index.scss'
 import {province} from "../../utils/province";
-import api from "../../utils/api";
 import {myRequest} from "../../utils/request";
 import {getValueByKey, setKeyAndValue} from "../../utils/storage";
+import {getOilApi, getOilChangeApi} from "../../utils/api";
 
 function Oil() {
 
@@ -35,7 +35,7 @@ function Oil() {
   async function getOilPrice() {
 
 
-    let res = await myRequest(api.getOil(), {province: provinceName})
+    let res = await myRequest(getOilApi(), {province: provinceName})
     if (res.code === 200) {
       setOilData(res.data)
       await Taro.hideLoading();
@@ -51,7 +51,7 @@ function Oil() {
   // 价格变动公告
   async function getOilChange() {
 
-    let res = await myRequest(api.getOilChange())
+    let res = await myRequest(getOilChangeApi())
     if (res.code === 200) {
       setChangeNotice(res.data.content)
     } else {
