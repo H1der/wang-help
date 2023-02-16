@@ -18,11 +18,11 @@ export const commonList = [
   //   value: '彩票开奖查询',
   //   url: '/pages/lottery/index'
   // },
-  // {
-  //   image: 'https://oss.2hider.com/wang-help/lottery.png',
-  //   value: 'AI助手',
-  //   url: '/pages/chat/index'
-  // },
+  {
+    image: 'https://oss.2hider.com/wang-help/lottery.png',
+    value: 'AI助手',
+    url: '/pages/chat/index'
+  },
 ]
 
 export const lifeList = [
