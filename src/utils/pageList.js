@@ -19,7 +19,7 @@ export const commonList = [
   //   url: '/pages/lottery/index'
   // },
   {
-    image: 'https://oss.2hider.com/wang-help/lottery.png',
+    image: 'https://oss.2hider.com/wang-help/index-ai.png',
     value: 'AI助手',
     url: '/pages/chat/index'
   },

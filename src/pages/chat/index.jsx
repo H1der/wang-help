@@ -1,9 +1,8 @@
 import React from "react";
-import {Avatar, Button, Cell, Step} from "@nutui/nutui-react-taro";
-import {Text, Textarea, View} from "@tarojs/components";
+import {Avatar, Button, Cell} from "@nutui/nutui-react-taro";
+import {ScrollView, Text, Textarea, View} from "@tarojs/components";
 import './index.scss'
 import {myRequest} from "../../utils/request";
-import {getOilChangeApi} from "../../utils/api";
 
 
 function Chat() {
@@ -12,47 +11,58 @@ function Chat() {
     "content": ""
   }]);
   const [message, setMessageAge] = React.useState('');
+  const [loading, setLoading] = React.useState(false)
 
-  async function sendBtnClick(message) {
+  async function sendBtnClick(messageData) {
     // let obj = {"author": "human", "content": message}
     // setMessageList((messageListPre)=>[...messageListPre,obj]);
+    setMessageList([...messageList, {"author": "human", "content": messageData}]);
 
 
-    let res = await myRequest(`http://127.0.0.1:8000/chat/${message}`, {})
-    // if (res.code === 200) {
-    // let messageL = [{"author": "human", "content": message}, ]
-    console.log(res)
-    setMessageList([...messageList, {"author": "human", "content": message},{"author": "ai", "content": res.message}]);
     setMessageAge('')
-    // } else {
-    // }
+    setLoading(true);
+    let res = await myRequest(`https://wang-chat.2hider.com/chat/${messageData}`, {})
+    if (res.code === 200) {
+      setMessageList((data) => [...data, {"author": "ai", "content": res.message}]);
+      setLoading(false)
+    }
 
   }
 
   return (
     <View className='container'>
       <View className='message-box'>
-        {messageList.map((data, index) => {
-          return data.author === "human" ? (data.content !== '' ? <Cell className='my'>
+        <ScrollView
+          scrollY
+          className='list'
+          // scrollIntoView={viewId}
+          enableBackToTop
+          scrollWithAnimation
+        >
+          {messageList.map((data) => {
+            return data.author === "human" ? (data.content !== '' ? <Cell className='my'>
+                <Text className='message-text' selectable>{data.content}</Text>
+                <Avatar className='avatar' size='normal' icon='https://oss.2hider.com/wang-help/ava-human.png' />
+              </Cell>
+              : <></>) : (data.content !== '' ? <Cell>
+              <Avatar size='normal' icon='https://oss.2hider.com/wang-help/ava-ai.png' />
               <Text className='message-text' selectable>{data.content}</Text>
-              <Avatar className='avatar' size='normal' icon='people'/>
-            </Cell>
-            : <></>) : (data.content !== '' ? <Cell>
-            <Avatar size='normal' icon='people'/>
-            <Text className='message-text' selectable>{data.content}</Text>
-          </Cell> : <></>)
-        })}
-
+            </Cell> : <></>)
+          })}
+        </ScrollView>
       </View>
+
       <Cell className='send-box' roundRadius={0}>
 
         {/*<div>自定义内容</div>*/}
         <Textarea className='send-input' showConfirmBar={false} controlled autoHeight value={message}
-                  onInput={(event) => {
+          onInput={(event) => {
                     setMessageAge(event.detail.value)
                   }}
         />
-        <Button className='send-btn' size='small' type='primary' onClick={() => sendBtnClick(message)}>发送</Button>
+        <Button className='send-btn' loading={loading} size='small' type='primary'
+          onClick={() => sendBtnClick(message)}
+        >发送</Button>
       </Cell>
     </View>
 

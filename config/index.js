@@ -25,6 +25,9 @@ const config = {
 //忽略css文件引入顺序
       ignoreOrder: true
     },
+    optimizeMainPackage: {
+      enable: true,
+    },
     postcss: {
       pxtransform: {
         enable: true,

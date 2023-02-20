@@ -2,21 +2,30 @@
   //display: flex;
   //flex-direction: column;
   .message-box {
-    .nut-cell{
-      box-shadow:none !important;
+    .list {
+
+      height: 88vh;
+    }
+
+    //padding-bottom: 10px;
+
+    .nut-cell {
+      box-shadow: none !important;
       padding-bottom: 0 !important;
     }
-    .my{
-      display: flex;
-      .avatar{
+
+    .my {
+      //display: flex;
+      .avatar {
         margin-left: 0
       }
-      .message-text{
+
+      .message-text {
         margin-left: auto;
       }
     }
 
-    .message-text{
+    .message-text {
       height: auto;
       font-size: 32px;
       line-height: 64px;
@@ -38,7 +47,7 @@
     justify-content: center;
 
     .send-input {
-      font-size: 36px;
+      font-size: 32px;
       line-height: 56px;
       background: #fff;
       width: 100%;
@@ -46,7 +55,8 @@
 
       //padding: 0 30px;
     }
-    .send-btn{
+
+    .send-btn {
       margin-left: 20px;
     }
   }
