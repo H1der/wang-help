@@ -1,10 +1,10 @@
 import Taro from "@tarojs/taro";
 import {useEffect, useState} from 'react';
 import {Canvas, Radio, RadioGroup, Text, View} from "@tarojs/components";
-import {AtButton, AtIcon, AtNoticebar} from "taro-ui";
+import {Button, Col, Icon, NoticeBar, Row} from "@nutui/nutui-react-taro";
 import './index.scss'
 import {myRequest} from "../../utils/request";
-import api from "../../utils/api";
+import {getBodySeg} from "../../utils/api";
 
 function Index() {
 
@@ -47,7 +47,6 @@ function Index() {
   }
 
 
-
   // 画布画图
   function drawContent(file, colorValue) {
     const ctx = Taro.createCanvasContext('myCanvas')
@@ -58,8 +57,8 @@ function Index() {
         setImgType(info.type)
         //目标尺寸
         if (info.width > 464 || info.height > 580) {
-            setTargetH(580)
-            setTargetW(Math.round(580 * (info.width / info.height)))
+          setTargetH(580)
+          setTargetW(Math.round(580 * (info.width / info.height)))
 
         }
         // 背景颜色
@@ -119,7 +118,7 @@ function Index() {
       title: 'Loading...',
     })
 
-    let res = await myRequest(api.getBodySeg(), {image: Taro.getFileSystemManager().readFileSync(files, "base64")}, 'POST');
+    let res = await myRequest(getBodySeg(), {image: Taro.getFileSystemManager().readFileSync(files, "base64")}, 'POST');
     // console.log(res)
     if (res.code === 200) {
       base64ToFile(res.data.foreground)
@@ -187,10 +186,10 @@ function Index() {
 
   return (
     <View className='container'>
-      <AtNoticebar icon='alert-circle'>本程序不会记录您的照片隐私.</AtNoticebar>
+      <NoticeBar>本程序不会记录您的照片隐私.首次上传照片比列失调不会影响后续效果</NoticeBar>
       <View className='photo-border' onClick={photoChose}>
         {files.length === 0 ? (<view className='photo-upload'>
-          <AtIcon value='upload' size='150' color='#999999' className='upload-icon' />
+          <Icon value='uploader' size='150' color='#999999' className='upload-icon' />
           <Text className='text'>点击上传图片</Text>
         </view>) : (<View class='border1'>
           <Canvas canvasId='myCanvas' className='photo-canvas'
@@ -215,9 +214,20 @@ function Index() {
         >灰色</Radio>
       </RadioGroup>
 
-      <View className='btn-group at-row'>
-        <AtButton className='change-color at-col' onClick={changeColor}>转换底色</AtButton>
-        <AtButton className='down-photo at-col' onClick={onClickSaveImage}>下载照片</AtButton>
+      <View className='btn-group'>
+        <Row type='flex' wrap='nowrap'>
+          <Col span='6'>
+          </Col>
+
+          <Col span='6'>
+            <Button type='primary' className='change-color' onClick={changeColor}>转换底色</Button>
+          </Col>
+          <Col span='6'>
+            <Button type='primary' className='down-photo' onClick={onClickSaveImage}>下载照片</Button>
+          </Col>
+          <Col span='6'>
+          </Col>
+        </Row>
       </View>
 
     </View>
