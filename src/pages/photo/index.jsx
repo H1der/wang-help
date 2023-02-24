@@ -216,16 +216,16 @@ function Index() {
 
       <View className='btn-group'>
         <Row type='flex' wrap='nowrap'>
-          <Col span='6'>
+          <Col span='5'>
           </Col>
 
-          <Col span='6'>
+          <Col span='7'>
             <Button type='primary' className='change-color' onClick={changeColor}>转换底色</Button>
           </Col>
-          <Col span='6'>
+          <Col span='7'>
             <Button type='primary' className='down-photo' onClick={onClickSaveImage}>下载照片</Button>
           </Col>
-          <Col span='6'>
+          <Col span='5'>
           </Col>
         </Row>
       </View>
