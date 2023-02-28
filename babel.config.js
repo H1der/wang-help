@@ -16,6 +16,7 @@ module.exports = {
         "style": (name) => `${name}/style/less`,
       },
       "@antmjs/vantui"
+
     ]
   ],
 }

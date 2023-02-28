@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Label, Radio, RadioGroup, View} from "@tarojs/components";
 import relationship from 'relationship.js'
 
-import {Button, Col, Row} from "@nutui/nutui-react-taro";
+import {Button, Col, Row} from "@antmjs/vantui";
 import './index.scss'
 
 

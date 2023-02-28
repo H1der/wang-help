@@ -1,5 +1,5 @@
 import React from "react";
-import {Avatar, Button, Cell} from "@nutui/nutui-react-taro";
+import {Image, Button, Cell} from "@antmjs/vantui";
 import {ScrollView, Text, Textarea, View} from "@tarojs/components";
 import './index.scss'
 import {myRequest} from "../../utils/request";
@@ -42,10 +42,14 @@ function Chat() {
           {messageList.map((data) => {
             return data.author === "human" ? (data.content !== '' ? <Cell className='my'>
                 <Text className='message-text' selectable>{data.content}</Text>
-                <Avatar className='avatar' size='normal' icon='https://oss.2hider.com/wang-help/ava-human.png' />
+                <Image round className='avatar' width='38px'
+                  height='38px' src='https://oss.2hider.com/wang-help/ava-human.png'
+                />
               </Cell>
               : <></>) : (data.content !== '' ? <Cell>
-              <Avatar size='normal' icon='https://oss.2hider.com/wang-help/ava-ai.png' />
+              <Image round width='38px'
+                height='38px' src='https://oss.2hider.com/wang-help/ava-ai.png'
+              />
               <Text className='message-text' selectable>{data.content}</Text>
             </Cell> : <></>)
           })}

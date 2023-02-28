@@ -1,11 +1,11 @@
 import {useEffect, useState} from 'react';
 import {ScrollView, View} from "@tarojs/components";
 import Taro from "@tarojs/taro";
-import {TabPane, Tabs} from "@nutui/nutui-react-taro";
+import {Tab, Tabs, Toast} from "@antmjs/vantui";
 import './index.scss'
 import Match from "../../components/Match";
 import {myRequest} from "../../utils/request";
-import api, {getLplRoundApi, getLplWeekApi} from "../../utils/api";
+import {getLplRoundApi, getLplWeekApi} from "../../utils/api";
 
 function Index() {
   const [current, setCurrent] = useState(0)
@@ -24,9 +24,8 @@ function Index() {
 
   // 处理 tabs 点击事件
   function handleClick(value) {
-
-    setCurrent(value)
-    return getRound(weekList[value])
+    setCurrent(value.index)
+    return getRound(weekList[value.index])
   }
 
   async function getWeek() {
@@ -94,13 +93,12 @@ function Index() {
 
   return (
     <View className='container'>
-      <Tabs className='tabs' autoHeight titleGutter='10' color='#FFD700' background='#eb4035' value={current} titleScroll onChange={({ paneKey }) => {
-        handleClick(paneKey)
-      }}
+      <Tabs className='tabs' sticky autoHeight lineWidth='42' lineHeight='8' titleInactiveColor='#FFFFFF' titleActiveColor='#FFD700' color='#FFD700' active={current} animated onChange={({detail}) =>
+        handleClick(detail)}
       >
           {weekList.map((week, index) => {
             return (
-              <TabPane title={week.title} key={index} pane-key='current'>
+              <Tab title={week.title} key={index}>
                       <ScrollView
                         scrollY
                         className='list'
@@ -112,7 +110,7 @@ function Index() {
                           return (<Match round={round} index={subIndex} key={subIndex} />)
                         })}
                 </ScrollView>
-              </TabPane>
+              </Tab>
             )
           })}
       </Tabs>

@@ -1,22 +1,23 @@
-.container{
+.container {
   width: 100%;
   height: 100vh;
 
-  .condition{
+  .condition {
     margin: 20px 20px;
-    .condition-group{
+
+    .condition-group {
       margin-bottom: 10px;
     }
   }
 
-  .text-chain{
+  .text-chain {
     font-size: 48px;
     display: block;
     text-align: right;
     margin: 10px 10px;
   }
 
-  .text-relation{
+  .text-relation {
     margin: 10px 10px;
     display: block;
     font-size: 30px;
@@ -25,16 +26,19 @@
   }
 
 
-  .keyboard{
-    .nut-col{
+  .keyboard {
+    .van-col {
+      padding: 0 !important;
       margin-bottom: 0 !important;
     }
+
     //height: 330px;
-    position:fixed;
-    bottom:0;
-    .keyboard-key{
+    position: fixed;
+    bottom: 0;
+
+    .keyboard-key {
       //height: 10vh;
-      .keyboard-btn{
+      .keyboard-btn {
         height: 15vh;
         line-height: 15vh;
         border: 0.1px solid gainsboro;

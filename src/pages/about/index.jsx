@@ -1,7 +1,7 @@
 import {useState} from "react";
 import Taro from "@tarojs/taro";
 import {Text, View} from "@tarojs/components";
-import {Avatar, Button, Dialog} from "@nutui/nutui-react-taro";
+import {Button, Dialog, Image} from "@antmjs/vantui";
 import './index.scss'
 
 function Index() {
@@ -16,7 +16,10 @@ function Index() {
   return (
     <View className='container'>
       <View className='avatar'>
-        <Avatar size='large' icon='https://oss.2hider.com/wang-help/play_store_512.png' />
+        <Image round
+          width='58px'
+          height='58px' src='https://oss.2hider.com/wang-help/play_store_512.png'
+        />
         <View>
 
           <Text className='avatar-text'>基于 Taro 和 React 编写的工具类小程序</Text>
@@ -24,39 +27,39 @@ function Index() {
       </View>
       {/*<AtList>*/}
       <View className='btn-list'>
-        <Button block shape='square'><View
+        <Button block hairline shape='square'><View
           className='at-icon at-icon-tags'
         /> 前端技术栈：Javascript,React,Taro,NUTUI</Button>
-        <Button block shape='square'><View
+        <Button block hairline shape='square'><View
           className='at-icon at-icon-tags'
         /> 后端技术栈：Java,Spring Boot,Mysql</Button>
-        <Button block shape='square'><View
+        <Button block hairline shape='square'><View
           className='at-icon at-icon-message'
         /> 开发者：Hider</Button>
-        <Button block shape='square' onClick={handleSiteCopy}><View
+        <Button block hairline shape='square' onClick={handleSiteCopy}><View
           className='at-icon at-icon-home'
         /> 开源地址：点击复制</Button>
-        <Button block shape='square' onClick={() => setIsOpened(true)}><View
+        <Button block hairline shape='square' onClick={() => setIsOpened(true)}><View
           className='at-icon at-icon-list'
         /> 更新记录</Button>
-        <Button block shape='square' openType='share'><View
+        <Button block hairline shape='square' openType='share'><View
           className='at-icon at-icon-share'
         /> 分享小程序</Button>
-        <Button block shape='square' openType='contact'><View
+        <Button block hairline shape='square' openType='contact'><View
           className='at-icon at-icon-user'
         /> 联系客服</Button>
-        <Button block shape='square' openType='feedback'><View
+        <Button block hairline shape='square' openType='feedback'><View
           className='at-icon at-icon-mail'
         /> 建议反馈</Button>
       </View>
 
       <Dialog
-        noOkBtn
         title='小王帮帮更新记录'
-        visible={isOpened}
+        show={isOpened}
         onCancel={() => setIsOpened(false)}
         cancelText='关闭'
       >
+        <View>2023/2/12：下架ai机器人,更换ui库为vantui</View>
         <View>2023/2/12：新增缩写查询功能</View>
         <View>2023/1/31：更换UI库为NutUi-React</View>
         <View>2022/6/18：修复了LPL赛程时间样式的错误</View>

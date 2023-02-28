@@ -1,21 +1,21 @@
 .container {
-  .nut-tabs__titles {
-    position: fixed;
-    z-index: 100;
-    top: 0;
-    left: 0;
+  .van-sticky-wrap {
+    //position: fixed;
+    //z-index: 100;
+    //top: 0;
+    //left: 0;
 
-    //.nut-tabs__titles {
-    //  background-color: #eb4035;
-    //}
-    //
-    .nut-tabs__titles-item__text {
-      color: white;
+    .van-tabs__scroll {
+      background-color: #eb4035;
+    }
+
+    .van-ellipsis {
+      //color: white;
     }
     //
-    //.nut-tabs__titles-item__line {
-    //  color: gold;
-    //}
+    .van-tabs__line {
+      color: gold;
+    }
     //
     //.active {
     //  background-color: gold;

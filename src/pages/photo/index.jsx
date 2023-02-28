@@ -1,7 +1,7 @@
 import Taro from "@tarojs/taro";
 import {useEffect, useState} from 'react';
 import {Canvas, Radio, RadioGroup, Text, View} from "@tarojs/components";
-import {Button, Col, Icon, NoticeBar, Row} from "@nutui/nutui-react-taro";
+import {Button, Col, Icon, NoticeBar, Row} from "@antmjs/vantui";
 import './index.scss'
 import {myRequest} from "../../utils/request";
 import {getBodySeg} from "../../utils/api";
@@ -186,10 +186,10 @@ function Index() {
 
   return (
     <View className='container'>
-      <NoticeBar>本程序不会记录您的照片隐私.首次上传照片比列失调不会影响后续效果</NoticeBar>
+      <NoticeBar scrollable text='本程序不会记录您的照片隐私.首次上传照片比列失调不会影响后续效果' />
       <View className='photo-border' onClick={photoChose}>
         {files.length === 0 ? (<view className='photo-upload'>
-          <Icon value='uploader' size='150' color='#999999' className='upload-icon' />
+          <Icon name='plus' size='150' color='#999999' className='upload-icon' />
           <Text className='text'>点击上传图片</Text>
         </view>) : (<View class='border1'>
           <Canvas canvasId='myCanvas' className='photo-canvas'
@@ -215,17 +215,19 @@ function Index() {
       </RadioGroup>
 
       <View className='btn-group'>
-        <Row type='flex' wrap='nowrap'>
+        <Row>
           <Col span='5'>
+          <>&nbsp;</>
           </Col>
 
           <Col span='7'>
-            <Button type='primary' className='change-color' onClick={changeColor}>转换底色</Button>
+            <Button type='danger' className='change-color' onClick={changeColor}>转换底色</Button>
           </Col>
           <Col span='7'>
-            <Button type='primary' className='down-photo' onClick={onClickSaveImage}>下载照片</Button>
+            <Button type='danger' className='down-photo' onClick={onClickSaveImage}>下载照片</Button>
           </Col>
           <Col span='5'>
+            <>&nbsp;</>
           </Col>
         </Row>
       </View>
