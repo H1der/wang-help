@@ -1,7 +1,7 @@
 import Taro from "@tarojs/taro";
 import {useEffect, useLayoutEffect, useState} from "react";
 import {Picker, Text, View} from "@tarojs/components";
-import {Button, Cell, Col, Icon, NoticeBar, Row} from "@nutui/nutui-react-taro";
+import {Button, Cell, Col, Icon, NoticeBar, Row} from "@antmjs/vantui";
 import './index.scss'
 import {province} from "../../utils/province";
 import {myRequest} from "../../utils/request";
@@ -73,11 +73,11 @@ function Oil() {
     <View className='container'>
       <View className='province'>
         <Row gutter='10'>
-          <Col span='8'><Text /></Col>
+          <Col span='8'>&nbsp;</Col>
           <Col span='8'> <Text className=' select-province'>选择省份：</Text></Col>
           <Col span='8'> <Picker mode='selector' range={province} onChange={onChange}>
             <Button plain type='primary' className=' select-btn' size='small'>{provinceName}
-              <Icon className='select-btn-icon' name='rect-down' />
+              <Icon className='select-btn-icon' name='arrow-down' />
             </Button>
           </Picker>
           </Col>
@@ -85,13 +85,13 @@ function Oil() {
       </View>
       {Object.keys(oilData).length === 0 ? '' : (
         <View className='info'>
-          {changNotice !== '' ? <NoticeBar text={changNotice} wrapable /> : ''}
+          {changNotice !== '' ? <NoticeBar leftIcon='volume-o' text={changNotice} wrapable scrollable={false} /> : ''}
 
-          <Cell size='large' title='92# 汽油：' desc={oilData.oil92} />
-          <Cell size='large' title='95# 汽油：' desc={oilData.oil95} />
-          <Cell size='large' title='98# 汽油：' desc={oilData.oil98} />
-          <Cell size='large' title=' 0# 柴油：' desc={oilData.oil0} />
-          <Cell size='large' title='更新时间：' desc={oilData.updatetime} />
+          <Cell size='large' title='92# 汽油：' value={oilData.oil92} />
+          <Cell size='large' title='95# 汽油：' value={oilData.oil95} />
+          <Cell size='large' title='98# 汽油：' value={oilData.oil98} />
+          <Cell size='large' title=' 0# 柴油：' value={oilData.oil0} />
+          <Cell size='large' title='更新时间：' value={oilData.updatetime} />
         </View>)}
 
     </View>

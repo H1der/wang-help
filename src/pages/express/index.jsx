@@ -7,7 +7,6 @@ import api from '../../utils/api'
 import {myRequest} from "../../utils/request";
 import SearchHistory from "../../components/SearchHistory";
 import {setHistoryStorage} from "../../utils/storage";
-import Search from "../../components/Search";
 import './index.scss'
 
 function Express() {

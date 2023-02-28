@@ -1,8 +1,8 @@
 import React from "react";
-import {Cell, CellGroup, Icon, Popup} from "@nutui/nutui-react-taro";
+import {Cell, CellGroup, Icon, Popup} from "@antmjs/vantui";
 import {Text, View} from "@tarojs/components";
 import Taro from "@tarojs/taro";
-import Search from "../../components/Search";
+import SearchBar from "../../components/Search";
 import {getGarbageApi} from "../../utils/api";
 import {myRequest} from "../../utils/request";
 import {setHistoryStorage} from "../../utils/storage";
@@ -73,10 +73,10 @@ function Garbage() {
 
   return (
     <View className='container'>
-      <Search getSearchKeyword={onActionClick} />
+      <SearchBar getSearchKeyword={onActionClick} />
       <View className='search-result'>
 
-        {typeData.length > 0 ? (<CellGroup >
+        {typeData.length > 0 ? (<CellGroup>
           {typeData.map((data, index) => {
             rubbishType.find(type => {
                 if (type.type === data.type) return data = {typeName: type.name, thumb: type.thumb, ...data}
@@ -84,28 +84,31 @@ function Garbage() {
             )
 
             return (
-                <Cell
-                  size='large'
-                  key={index}
-                  title={data.name}
-                  desc={data.typeName}
-                  onClick={() => handleListItemClick(data)}
-                  isLink
-                  iconSlot={
-                    <img
-                      className='nut-icon'
-                      alt=''
-                      src={data.thumb}
-                    />
-                  }
-                />
+              <Cell
+                size='large'
+                key={index}
+                title={data.name}
+                value={data.typeName}
+                onClick={() => handleListItemClick(data)}
+                isLink
+                renderIcon={
+                  <Icon
+                    className='nut-icon'
+                    size={38}
+                    name={data.thumb}
+                  />
+                }
+              />
 
             )
           })}
 
         </CellGroup>) : (<SearchHistory keyName='garbage' getSearchKeyword={onActionClick} />)}
 
-        <Popup visible={isOpened} closeable  style={{ height: '40%' }} position='bottom' onClose={() => { setIsOpened(false)}} >
+        <Popup round show={isOpened} closeable style={{height: '40%'}} position='bottom' onClose={() => {
+          setIsOpened(false)
+        }}
+        >
           <View>
             {/*<AtIcon value='help' size='18' color='#A6E0DE' />*/}
             <Icon size='18' name='ask' color='#A6E0DE' />

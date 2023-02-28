@@ -1,9 +1,8 @@
 import {View} from "@tarojs/components";
-import {Divider, Grid, GridItem,Icon} from '@nutui/nutui-react-taro';
 import Taro from "@tarojs/taro";
+import {Cell, CellGroup, Grid, GridItem} from "@antmjs/vantui";
 import './index.scss'
-
-import {aboutList, commonList, lifeList} from "../../utils/pageList"
+import {aboutList, commonList, lifeList} from "../../utils/pageList";
 
 function Index() {
 
@@ -17,39 +16,39 @@ function Index() {
 
   return (
     <View className='index'>
-      <Divider contentPosition='left'><Icon size='16'  name='https://oss.2hider.com/tools.png' />常用工具</Divider>
-      <Grid columnNum={3}>
-        {commonList.map((item,key) => {
-          return (<GridItem key={key} icon={
-            <Icon size='40' name={item.image} />
-          } text={item.value}
-            onClick={()=>handleAtGridClick(item)}
-          />)
-        })}
-      </Grid>
-      <Divider contentPosition='left'><Icon size='16'  name='https://oss.2hider.com/wang-help/life.png' />生活服务</Divider>
-      <Grid columnNum={3}>
-        {lifeList.map((item,key) => {
-          return (<GridItem key={key} icon={
-            <Icon size='40' name={item.image} />
-          } text={item.value}
-            onClick={()=>handleAtGridClick(item)}
-
-          />)
-        })}
-      </Grid>
-      <Divider contentPosition='left'><Icon size='16'  name='https://oss.2hider.com/wang-help/help.png' />项目说明</Divider>
-      <Grid columnNum={3}>
-        {aboutList.map((item,key) => {
-          return (<GridItem key={key} icon={
-            <Icon size='40' name={item.image} />
-          } text={item.value}
-            onClick={()=>handleAtGridClick(item)}
-
-          />)
-        })}
-      </Grid>
-
+      <CellGroup title='常用工具'>
+        <Cell>
+          <Grid columnNum='3'>
+            {commonList.map((item,key) => {
+              return (<GridItem key={key} icon={item.image} text={item.value}
+                onClick={()=>handleAtGridClick(item)}
+              />)
+            })}
+          </Grid>
+        </Cell>
+      </CellGroup>
+      <CellGroup title='生活服务'>
+        <Cell>
+          <Grid columnNum='3'>
+            {lifeList.map((item,key) => {
+              return (<GridItem key={key} icon={item.image} text={item.value}
+                onClick={()=>handleAtGridClick(item)}
+              />)
+            })}
+          </Grid>
+        </Cell>
+      </CellGroup>
+      <CellGroup title='项目说明'>
+        <Cell>
+          <Grid columnNum='3'>
+            {aboutList.map((item,key) => {
+              return (<GridItem key={key} icon={item.image} text={item.value}
+                onClick={()=>handleAtGridClick(item)}
+              />)
+            })}
+          </Grid>
+        </Cell>
+      </CellGroup>
     </View>
   );
 }

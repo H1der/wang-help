@@ -1,19 +1,23 @@
 import React from 'react';
-import {SearchBar} from "@nutui/nutui-react-taro";
+import {Search} from "@antmjs/vantui";
+import {Text} from "@tarojs/components";
 
-function Search(props) {
+function SearchBar(props) {
   const {placeholderData} = props
   const [value, setValue] = React.useState(placeholderData)
 
   function handleSearchBarChange(searchValue) {
-    setValue(searchValue)
+    setValue(searchValue.detail)
   }
 
   const {getSearchKeyword} = props;
 
 
   return (
-    <SearchBar actionText='查询' placeholder={placeholderData} shape='round' onSearch={() => {
+    <Search renderAction={<Text className='searchbar__action-text' onClick={() => {
+      getSearchKeyword(value)
+    }}
+    >查询</Text>} placeholder={placeholderData} shape='round' onSearch={() => {
       getSearchKeyword(value)
     }} background='#eb4035' onChange={handleSearchBarChange}
     />
@@ -23,4 +27,4 @@ function Search(props) {
   );
 }
 
-export default Search;
+export default SearchBar;

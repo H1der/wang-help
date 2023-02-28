@@ -1,8 +1,8 @@
 import React from "react";
-import {Cell, CellGroup} from "@nutui/nutui-react-taro";
+import {Cell, CellGroup} from "@antmjs/vantui";
 import {View} from "@tarojs/components";
 import Taro from "@tarojs/taro";
-import Search from "../../components/Search";
+import SearchBar from "../../components/Search";
 import {getAbbrApi} from "../../utils/api";
 import {myRequest} from "../../utils/request";
 import {setHistoryStorage} from "../../utils/storage";
@@ -41,7 +41,7 @@ function Garbage() {
 
   return (
     <View className='container'>
-      <Search placeholderData='yyds' getSearchKeyword={onActionClick} />
+      <SearchBar placeholderData='yyds' getSearchKeyword={onActionClick} />
       <View className='search-result'>
 
         {typeData.length > 0 ? (<CellGroup>

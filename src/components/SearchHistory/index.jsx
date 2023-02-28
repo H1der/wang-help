@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
-import { Text, View} from "@tarojs/components";
-import {Dialog, Icon, Tag} from "@nutui/nutui-react-taro";
+import {Text, View} from "@tarojs/components";
+import {Dialog, Icon, Tag} from "@antmjs/vantui";
 import {getHistoryStorage, removeHistoryStorage} from "../../utils/storage";
 import './index.scss'
 
@@ -24,8 +24,7 @@ function SearchHistory(props) {
     <View>
       <View className='history-label'>
         <Text className='history-label-text'>历史搜索</Text>
-        <Icon name='del2' size='15' className='history-label-clear' onClick={() => setIsOpened(true)}></Icon>
-        {/*<AtIcon value='trash' size='15' className='history-label-clear' onClick={() => setIsOpened(true)} />*/}
+        <Icon name='delete-o' size='32' className='history-label-clear' onClick={() => setIsOpened(true)}></Icon>
       </View>
       <View className='history-info'>
         {
@@ -43,9 +42,10 @@ function SearchHistory(props) {
       </View>
       <Dialog
         title=''
-        visible={isOpened}
-        onOk={handleConfirm}
-        onCancel={() => setIsOpened(false)}
+        show={isOpened}
+        onClick={handleConfirm}
+        showCancelButton
+        onClose={() => setIsOpened(false)}
       >
         <View className='modal-text'>确认删除搜索历史吗?</View>
       </Dialog>
