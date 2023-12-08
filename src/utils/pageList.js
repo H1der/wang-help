@@ -13,6 +13,11 @@ export const commonList = [
     value: '证件照换底色',
     url: '/pages/photo/index'
   },
+  {
+    image: 'https://oss.2hider.com/wang-help/photo.png',
+    value: '记账',
+    url: '/pages/bill/index'
+  },
   // {
   //   image: 'https://oss.2hider.com/wang-help/lottery.png',
   //   value: '彩票开奖查询',

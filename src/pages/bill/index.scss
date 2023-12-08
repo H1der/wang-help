@@ -1,0 +1,49 @@
+.container {
+   .title-index, {
+    // 边框线
+    border-collapse: collapse;
+    // 边框线
+    border: 1px solid #9ADDFB;
+
+    .title, .info {
+      border-left: 1px solid #9ADDFB;
+      background-color: #A4D6EB;
+      // 文字居中
+      text-align: center;
+      //  高度 30
+      height: 60px;
+      line-height: 60px;
+      // 字体大小
+      font-size: 28px;
+      // 字体颜色
+      color: #333;
+      .van-field{
+        padding: 0;
+        // 高度
+        height: 60px;
+        .van-field__control{
+          text-align: center;
+        }
+      }
+    }
+
+    .info {
+      background-color: #fff;
+    }
+
+
+  }
+}
+
+
+.nut-searchbar__action-text {
+  //background-color: gold;
+  color: #fff;
+}
+
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
