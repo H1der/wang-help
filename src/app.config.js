@@ -7,6 +7,7 @@ let pages = [
   'pages/lpl/index', // lpl赛程
   'pages/photo/index', // 证件照换底色
   'pages/bill/index', // 记账
+  'pages/bill/edit/index', // 记账
   'pages/about/index', // 关于
   // 'pages/chat/index', // AI助手
   // 'pages/lottery/index', // 彩票

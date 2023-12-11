@@ -1,9 +1,20 @@
 .container {
+  .filter{
+    .btn-group{
+      margin-top: 20px;
+    }
+    .van-divider{
+      margin: 5px;
+    }
+
+
+  }
    .title-index, {
     // 边框线
     border-collapse: collapse;
-    // 边框线
+    // 边框线,不要上面
     border: 1px solid #9ADDFB;
+    border-top: none;
 
     .title, .info {
       border-left: 1px solid #9ADDFB;
@@ -33,17 +44,20 @@
 
 
   }
+  .btn-group{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    .van-button{
+      margin-right: 10px;
+    }
+    .total-text{
+      float: right;
+      margin-right: 20px;
+      color: red;
+      font-weight: bold;
+      font-size: 33px;
+      margin-top: 10px;
+    }
+  }
 }
 
-
-.nut-searchbar__action-text {
-  //background-color: gold;
-  color: #fff;
-}
-
-
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  color: transparent;
-}

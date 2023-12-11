@@ -1,6 +1,7 @@
 import React from 'react'
-import {View} from "@tarojs/components";
-import {Button, Col, DatetimePicker, Dialog, Divider, Field, Popup, Row} from "@antmjs/vantui";
+import {Text, View} from "@tarojs/components";
+import Taro from "@tarojs/taro";
+import {Button, Col, DatetimePicker, Dialog, Divider, Field, Popup, Row, Toast} from "@antmjs/vantui";
 import './index.scss'
 
 function Bill() {
@@ -22,7 +23,33 @@ function Bill() {
   }, [])
   const [customer, setCustomer] = React.useState('请选择客户') // 日期
   const [customerShow, setCustomerShow] = React.useState(false) // 日期选择框是否展示
-  const [value, setValue] = React.useState(0)
+  const [clearShow, setClearShow] = React.useState(false)
+  // 定义一个对象数组，用于存储商品信息
+  const [goodsList, setGoodsList] = React.useState([
+    {
+      name: '',
+      num: 0,
+      price: 0,
+      total: 0,
+    },
+  ])
+
+  const Toast_ = Toast.createOnlyToast()
+
+
+
+  // 更新商品item的值
+  const handleItemChange = (index, property, value) => {
+    setGoodsList(prevGoodsList => {
+      const updatedGoodsList = [...prevGoodsList];
+      updatedGoodsList[index][property] = value;
+      // 如果修改的是数量或者单价，需要更新总价
+      if (property === 'num' || property === 'price') {
+        updatedGoodsList[index].total = Math.round(updatedGoodsList[index].num * updatedGoodsList[index].price)
+      }
+      return updatedGoodsList;
+    });
+  };
 
   return (
     <View className='container'>
@@ -37,12 +64,12 @@ function Bill() {
             }}
             >{formatDate(date)}</Button>
           </Col>
-          <Col span='8' className='dark'>
-            <Button type='primary' size='small' onClick={() => {
+          <Col span='8' className='btn-group'>
+            <Button type='primary' size='mini' onClick={() => {
               setDate(formatDate(Date.now()))
             }}
             >今天</Button>
-            <Button type='primary' size='small' onClick={() => {
+            <Button type='primary' size='mini' onClick={() => {
               setDate(new Date(new Date().getTime() - (24 * 60 * 60 * 1000)))
             }
             }
@@ -63,11 +90,10 @@ function Bill() {
         </Row>
       </View>
 
-
       <View className='table'>
         <Row className='title-index'>
           <Col span='7' className='title'>
-            商品（1）
+            {`商品名称(${goodsList.length})`}
           </Col>
           <Col span='4' className='title'>
             数量
@@ -82,27 +108,125 @@ function Bill() {
             移除
           </Col>
         </Row>
-        <Row className='title-index'>
-          <Col span='7' className='info'>
+        {/* 商品列表 */
+          goodsList.map((item, index) => {
+            return (<Row className='title-index' key={index}>
+              <Col span='7' className='info'>
+                <Field
+                  value={item.name}
+                  type='text'
+                  onChange={(e) => handleItemChange(index, 'name', e.detail)}
+                />
+              </Col>
+              <Col span='4' className='info'>
+                <Field
+                  value={item.num}
+                  type='number'
+                  onFocus={(e) => {
+                    if (e.detail == 0) {
+                      handleItemChange(index, 'num', '')
+                    }
+                  }}
+                  onBlur={(e) => {
+                    if (e.detail == '') handleItemChange(index, 'num', 0);
+                  }}
 
-          </Col>
-          <Col span='4' className='info'>
-            <Field
-              value={value}
-              type='number'
-              onChange={(e) => setValue(e.detail)}
-            />
-          </Col>
-          <Col span='4' className='info'>
-0
-          </Col>
-          <Col span='5' className='info'>
+                  onChange={(e) => handleItemChange(index, 'num', e.detail)}
+                />
+              </Col>
+              <Col span='4' className='info'>
+                <Field
+                  value={item.price}
+                  type='number'
+                  onFocus={(e) => {
+                    if (e.detail == 0) handleItemChange(index, 'price', '');
+                  }}
+                  onBlur={(e) => {
+                    if (e.detail == '') handleItemChange(index, 'price', 0);
+                  }}
+                  onChange={(e) => handleItemChange(index, 'price', e.detail)}
 
-          </Col>
-          <Col span='4' className='info'>
-            <Button icon='cross' type='default' size='small' />
-          </Col>
-        </Row>
+                />
+              </Col>
+              <Col span='5' className='info'>
+                <Text>{item.total}</Text>
+              </Col>
+              <Col span='4' className='info'>
+                <Button icon='cross' type='default' size='small' onClick={
+                  () => {
+                    setGoodsList(prevGoodsList => {
+                      const updatedGoodsList = [...prevGoodsList];
+                      // 如果只有一条数据，不做任何操作
+                      if (updatedGoodsList.length === 1) {
+                        return updatedGoodsList;
+                      }
+                      updatedGoodsList.splice(index, 1);
+                      return updatedGoodsList;
+                    });
+                  }
+                }
+                />
+              </Col>
+            </Row>)
+          })}
+
+        <View className='btn-group'>
+          <Button type='primary' size='small' icon='add-o' onClick={
+            () => {
+              setGoodsList(prevGoodsList => {
+                const updatedGoodsList = [...prevGoodsList];
+                updatedGoodsList.push({
+                  name: '',
+                  num: 0,
+                  price: 0,
+                  total: 0,
+                });
+                return updatedGoodsList;
+              });
+            }
+          }
+          >添加</Button>
+          <Button type='primary' size='small'>商品库</Button>
+          <Button type='warning' icon='delete-o' size='small' onClick={
+            () => {
+              setClearShow(true)
+            }
+          }
+          >清空</Button>
+          <Text className='total-text'>￥{
+            goodsList.reduce((total, item) => {
+              return total + item.total
+            }, 0)
+          }</Text>
+        </View>
+
+        <Button type='primary' size='small' square block onClick={()=>{
+          // 如果商品名称为空，不传递数据
+          let goodsFilter = goodsList.filter(item => item.name !== '');
+          // console.log(goodsFilter.length)
+          if (goodsFilter.length === 0) {
+             return  Toast_.show('商品表格空白！');
+          }
+          Taro.navigateTo({
+          url: '/pages/bill/edit/index',
+          success: function (res) {
+              // 通过eventChannel向被打开页面传送数据
+              res.eventChannel.emit('acceptDataFromOpenerPage',
+                { data: goodsList,
+                  date: formatDate(date),
+                  total: goodsList.reduce((total, item) => {
+                      return total + item.total
+                    }
+                    , 0)
+                });
+            }
+
+
+
+        })}}
+        >确定</Button>
+
+
       </View>
       <Popup show={dateShow} position='bottom' onClose={() => setDateShow(false)}>
         <DatetimePicker
@@ -127,6 +251,29 @@ function Bill() {
         onClose={() => setCustomerShow(false)}
       >
       </Dialog>
+
+      <Dialog
+        id='customerDialog'
+        title='提示'
+        message='确定要清空商品列表吗？'
+        showCancelButton
+        show={clearShow}
+        onClose={() => setClearShow(false)}
+        onConfirm={() => {
+          setClearShow(false)
+          setGoodsList([
+            {
+              name: '',
+              num: 0,
+              price: 0,
+              total: 0,
+            },
+          ])
+        }}
+      >
+      </Dialog>
+
+      <Toast_ />
     </View>
   );
 }
