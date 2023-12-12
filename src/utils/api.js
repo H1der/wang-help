@@ -1,5 +1,5 @@
-const HOST_URI = 'https://wang-help.2hider.com/'
-// const HOST_URI = 'http://localhost:8091/'
+// const HOST_URI = 'https://wang-help.2hider.com/'
+const HOST_URI = 'http://192.168.31.7:8091/'
 
 const EXPRESS = 'express/search'
 const GARBAGE = 'garbage/search'
@@ -12,6 +12,8 @@ const BODYSEG = 'baidu_ai/body_seg'
 const LOTTERY = 'lottery/lottery'
 const LOTTERYHISTORY = 'lottery/history'
 const ABBR = 'abbr/search'
+const WEATHEROPENID = 'wechat/getOpenid'
+const USERREGISTER = 'wechat/register'
 
 export function getExpress() {
   return HOST_URI + EXPRESS
@@ -56,6 +58,11 @@ export function getLotteryHistory() {
 export function getAbbrApi() {
   return HOST_URI + ABBR
 }
+export function getWeatherOpenid() {
+  return HOST_URI + WEATHEROPENID
+}
 
-
+export function UserRegister() {
+  return HOST_URI + USERREGISTER
+}
 

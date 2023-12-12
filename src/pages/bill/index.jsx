@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Text, View} from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import {Button, Col, DatetimePicker, Dialog, Divider, Field, Popup, Row, Toast} from "@antmjs/vantui";
 import './index.scss'
+import {myRequest} from "../../utils/request";
+import {getWeatherOpenid, UserRegister} from "../../utils/api";
 
 function Bill() {
   const [dateShow, setDateShow] = React.useState(false) // 日期选择框是否展示
@@ -37,6 +39,46 @@ function Bill() {
   const Toast_ = Toast.createOnlyToast()
 
 
+  useEffect(() => {
+    // openid 是否存在
+    if (Taro.getStorageSync('openid')) {
+      return
+    }
+
+    Taro.login({
+      success: function (res) {
+        if (res.code) {
+          console.log(res.code)
+          //发起网络请求
+          myRequest(getWeatherOpenid(), {
+            code: res.code
+          },'POST').then(openid => {
+            // 获取用户信息
+            Taro.getUserInfo({
+              success: function (info) {
+                // console.log(info)
+                // 发送注册请求
+                myRequest(UserRegister(), {
+                  openid: openid,
+                  ...info.userInfo
+                },'POST').then(registerRes => {
+                  // console.log(registerRes)
+                  if (registerRes.code === 200) {
+                    // 把 openid 存储到本地
+                    Taro.setStorageSync('openid', openid)
+                  }
+                })
+
+              }
+            })
+
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    })
+  }, [])
 
   // 更新商品item的值
   const handleItemChange = (index, property, value) => {
