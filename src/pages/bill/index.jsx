@@ -125,7 +125,11 @@ function Bill() {
           </Col>
           <Col span='16' className='light'>
             <Button onClick={() => {
-              setCustomerShow(true)
+              // setCustomerShow(true)
+              Taro.navigateTo({
+                url: '/pages/bill/customer/index',
+
+              })
             }}
             >{customer}</Button>
           </Col>

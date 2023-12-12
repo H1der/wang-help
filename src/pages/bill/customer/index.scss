@@ -1,0 +1,7 @@
+.container {
+  padding: 0 20px;
+  .van-field__control--textarea {
+    height:  var(--field-text-area-min-height, 548rpx);
+  }
+}
+

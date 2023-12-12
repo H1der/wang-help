@@ -14,6 +14,8 @@ const LOTTERYHISTORY = 'lottery/history'
 const ABBR = 'abbr/search'
 const WEATHEROPENID = 'wechat/getOpenid'
 const USERREGISTER = 'wechat/register'
+const CustomerCREATE = 'customer/create'
+const CustomerLIST = 'customer/list'
 
 export function getExpress() {
   return HOST_URI + EXPRESS
@@ -65,4 +67,10 @@ export function getWeatherOpenid() {
 export function UserRegister() {
   return HOST_URI + USERREGISTER
 }
+export function CustomerCreate() {
+  return HOST_URI + CustomerCREATE
+}
 
+export function CustomerList() {
+  return HOST_URI + CustomerLIST
+}
