@@ -13,11 +13,7 @@ export const commonList = [
     value: '证件照换底色',
     url: '/pages/photo/index'
   },
-  {
-    image: 'https://oss.2hider.com/wang-help/photo.png',
-    value: '记账',
-    url: '/pages/bill/index'
-  },
+
   // {
   //   image: 'https://oss.2hider.com/wang-help/lottery.png',
   //   value: '彩票开奖查询',
@@ -47,10 +43,15 @@ export const lifeList = [
     value: '缩写查询',
     url: '/pages/abbr/index'
   },
+  // {
+  //   image: 'https://oss.2hider.com/relationship.png',
+  //   value: '亲戚计算器',
+  //   url: '/pages/relationship/index'
+  // },
   {
-    image: 'https://oss.2hider.com/relationship.png',
-    value: '亲戚计算器',
-    url: '/pages/relationship/index'
+    image: 'https://oss.2hider.com/wang-help/photo.png',
+    value: '记账',
+    url: '/pages/bill/index'
   },
 
 ]
