@@ -22,17 +22,18 @@
       // 文字居中
       text-align: center;
       //  高度 30
-      height: 60px;
-      line-height: 60px;
+      height: 70px;
+      line-height: 70px;
       // 字体大小
-      font-size: 28px;
+      font-size: 32px;
       // 字体颜色
       color: #333;
       .van-field{
         padding: 0;
         // 高度
-        height: 60px;
+        height: 70px;
         .van-field__control{
+          font-size: 32px;
           text-align: center;
         }
       }
@@ -40,6 +41,9 @@
 
     .info {
       background-color: #fff;
+      .van-button--small{
+        height: 70px;
+      }
     }
 
 

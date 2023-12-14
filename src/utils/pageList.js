@@ -49,7 +49,7 @@ export const lifeList = [
   //   url: '/pages/relationship/index'
   // },
   {
-    image: 'https://oss.2hider.com/wang-help/photo.png',
+    image: 'https://oss.2hider.com/wang-help/bill.png',
     value: '记账',
     url: '/pages/bill/index'
   },

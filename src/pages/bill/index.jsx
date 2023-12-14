@@ -39,6 +39,9 @@ function Bill() {
   const Toast_ = Toast.createOnlyToast()
 
 
+
+
+
   useEffect(() => {
     // openid 是否存在
     if (Taro.getStorageSync('openid')) {
@@ -126,9 +129,15 @@ function Bill() {
           <Col span='16' className='light'>
             <Button onClick={() => {
               // setCustomerShow(true)
+              // 跳转到客户列表页面，选择客户，返回客户名称
               Taro.navigateTo({
                 url: '/pages/bill/customer/index',
-
+                success: function (res) {
+                  // 接收子页面传递的数据
+                  res.eventChannel.on('acceptDataFromChild', function (data) {
+                    setCustomer(data.name)
+                  })
+                }
               })
             }}
             >{customer}</Button>
@@ -217,7 +226,7 @@ function Bill() {
           })}
 
         <View className='btn-group'>
-          <Button type='primary' size='small' icon='add-o' onClick={
+          <Button type='primary' icon='add-o' onClick={
             () => {
               setGoodsList(prevGoodsList => {
                 const updatedGoodsList = [...prevGoodsList];
@@ -232,8 +241,8 @@ function Bill() {
             }
           }
           >添加</Button>
-          <Button type='primary' size='small'>商品库</Button>
-          <Button type='warning' icon='delete-o' size='small' onClick={
+          <Button type='primary' >商品库</Button>
+          <Button type='warning' icon='delete-o' onClick={
             () => {
               setClearShow(true)
             }
@@ -246,7 +255,7 @@ function Bill() {
           }</Text>
         </View>
 
-        <Button type='primary' size='small' square block onClick={()=>{
+        <Button type='primary'  square block onClick={()=>{
           // 如果商品名称为空，不传递数据
           let goodsFilter = goodsList.filter(item => item.name !== '');
           // console.log(goodsFilter.length)
@@ -266,9 +275,6 @@ function Bill() {
                     , 0)
                 });
             }
-
-
-
         })}}
         >确定</Button>
 

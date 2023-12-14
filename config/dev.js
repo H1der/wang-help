@@ -4,6 +4,10 @@ export default {
     quiet: false,
     stats: true
   },
-  mini: {},
+  mini: {
+    miniCssExtractPluginOption: {
+      ignoreOrder: true
+    }
+  },
   h5: {}
 }

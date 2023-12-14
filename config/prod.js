@@ -1,6 +1,9 @@
-
 export default {
-  mini: {},
+  mini: {
+    miniCssExtractPluginOption: {
+      ignoreOrder: true
+    }
+  },
   h5: {
     /**
      * WebpackChain 插件配置

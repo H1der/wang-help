@@ -1,5 +1,5 @@
 const HOST_URI = 'https://wang-help.2hider.com/'
-// const HOST_URI = 'http://192.168.31.7:8091/'
+// const HOST_URI = 'http://localhost:8091/'
 
 const EXPRESS = 'express/search'
 const GARBAGE = 'garbage/search'
@@ -15,7 +15,8 @@ const ABBR = 'abbr/search'
 const WEATHEROPENID = 'wechat/getOpenid'
 const USERREGISTER = 'wechat/register'
 const CustomerCREATE = 'customer/create'
-const CustomerLIST = 'customer/list'
+const CUSTOMERLIST = 'customer/list'
+const CUSTOMER = 'customer'
 
 export function getExpress() {
   return HOST_URI + EXPRESS
@@ -72,5 +73,9 @@ export function CustomerCreate() {
 }
 
 export function CustomerList() {
-  return HOST_URI + CustomerLIST
+  return HOST_URI + CUSTOMERLIST
+}
+
+export function Customer() {
+  return HOST_URI + CUSTOMER
 }

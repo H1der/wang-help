@@ -3,5 +3,13 @@
   .van-field__control--textarea {
     height:  var(--field-text-area-min-height, 548rpx);
   }
+  .van-divider {
+    margin: 0;
+  }
+  .van-cell{
+    .van-button{
+      margin-left: 20px;
+    }
+  }
 }
 
