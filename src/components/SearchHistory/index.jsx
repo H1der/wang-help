@@ -31,7 +31,7 @@ function SearchHistory(props) {
           history.length > 0 ? history.map((item, index) => {
             return (
 
-              <Tag className='history-tag' round color='#E9E9E9' textColor='#999999' key={index} onClick={() => {
+              <Tag className='history-tag' size='large' round color='#E9E9E9' textColor='#999999' key={index} onClick={() => {
                 getSearchKeyword(item)
               }}
               >{item}</Tag>

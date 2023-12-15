@@ -103,8 +103,8 @@ function Bill() {
           <Col span='8' className='dark'>
             <Button>交易日期</Button>
           </Col>
-          <Col span='8' className='light'>
-            <Button onClick={() => {
+          <Col span='8' className='dark'>
+            <Button className='text-blue' onClick={() => {
               setDateShow(true)
             }}
             >{formatDate(date)}</Button>
@@ -127,7 +127,7 @@ function Bill() {
             <Button>交易客户</Button>
           </Col>
           <Col span='16' className='light'>
-            <Button onClick={() => {
+            <Button className='text-blue' onClick={() => {
               // setCustomerShow(true)
               // 跳转到客户列表页面，选择客户，返回客户名称
               Taro.navigateTo({

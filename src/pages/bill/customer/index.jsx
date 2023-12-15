@@ -118,7 +118,14 @@ function Index() {
       <Divider />
       {customerList.map((item, index) => (
         <CellGroup key={index}>
-          <Cell title={item.name}   value={
+          <Cell title={<Button block size='small'  onClick={
+            () => {
+              goBack(item)
+            }
+          }
+          >
+            {item.name}
+          </Button>}   value={
             <>
               <Button type='primary' size='small' onClick={() => {
                 setName(item.name)
@@ -134,9 +141,8 @@ function Index() {
               >删除</Button>
             </>
           }
-            onClick={() => {goBack(item)
-                }}
           />
+
         </CellGroup>
       ))}
       <Dialog
