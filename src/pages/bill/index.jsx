@@ -4,11 +4,13 @@ import Taro from "@tarojs/taro";
 import {Button, Col, DatetimePicker, Dialog, Divider, Field, Popup, Row, Toast} from "@antmjs/vantui";
 import './index.scss'
 import {myRequest} from "../../utils/request";
-import {getWeatherOpenid, UserRegister} from "../../utils/api";
+import {BillsCreate, getWeatherOpenid, UserRegister} from "../../utils/api";
 
 function Bill() {
   const [dateShow, setDateShow] = React.useState(false) // 日期选择框是否展示
   const [date, setDate] = React.useState(Date.now()) // 日期
+  const [openid,] = React.useState(Taro.getStorageSync('openid'))
+
 
   const onInput = React.useCallback(
     function (event) {
@@ -24,6 +26,7 @@ function Bill() {
       : ''
   }, [])
   const [customer, setCustomer] = React.useState('请选择客户') // 日期
+  const [customerId, setCustomerId] = React.useState(0) // 日期
   const [customerShow, setCustomerShow] = React.useState(false) // 日期选择框是否展示
   const [clearShow, setClearShow] = React.useState(false)
   // 定义一个对象数组，用于存储商品信息
@@ -39,9 +42,6 @@ function Bill() {
   const Toast_ = Toast.createOnlyToast()
 
 
-
-
-
   useEffect(() => {
     // openid 是否存在
     if (Taro.getStorageSync('openid')) {
@@ -55,7 +55,7 @@ function Bill() {
           //发起网络请求
           myRequest(getWeatherOpenid(), {
             code: res.code
-          },'POST').then(openid => {
+          }, 'POST').then(openid => {
             // 获取用户信息
             Taro.getUserInfo({
               success: function (info) {
@@ -64,7 +64,7 @@ function Bill() {
                 myRequest(UserRegister(), {
                   openid: openid,
                   ...info.userInfo
-                },'POST').then(registerRes => {
+                }, 'POST').then(registerRes => {
                   // console.log(registerRes)
                   if (registerRes.code === 200) {
                     // 把 openid 存储到本地
@@ -90,11 +90,56 @@ function Bill() {
       updatedGoodsList[index][property] = value;
       // 如果修改的是数量或者单价，需要更新总价
       if (property === 'num' || property === 'price') {
-        updatedGoodsList[index].total = Math.round(updatedGoodsList[index].num * updatedGoodsList[index].price)
+        updatedGoodsList[index].total = updatedGoodsList[index].num * updatedGoodsList[index].price
       }
       return updatedGoodsList;
     });
   };
+
+  const submit = () => {
+    // 如果商品名称为空，不传递数据
+    let goodsFilter = goodsList.filter(item => item.name !== '');
+    // console.log(goodsFilter.length)
+    if (goodsFilter.length === 0) {
+      return Toast_.show('商品表格空白！');
+    }
+
+    myRequest(BillsCreate(), {
+      openid,
+      customerName: customer,
+      customerId,
+      billDetail: goodsList,
+      date: formatDate(date),
+      total: goodsList.reduce((total, item) => {
+          return Math.round(total + item.total)
+        }
+        , 0)
+    }, 'POST').then(r => {
+      console.log(r)
+        if (r.code === 200) {
+          Taro.navigateTo({
+            url: '/pages/bill/edit/index',
+            success: function (res) {
+              // 通过eventChannel向被打开页面传送数据
+              res.eventChannel.emit('acceptDataFromOpenerPage',
+                {
+                  data: goodsList,
+                  date: formatDate(date),
+                  total: goodsList.reduce((total, item) => {
+                      return Math.round(total + item.total)
+                    }
+                    , 0)
+                });
+            }
+          })
+        } else {
+          Toast_.show(r.msg);
+        }
+      }
+    )
+
+
+  }
 
   return (
     <View className='container'>
@@ -136,6 +181,7 @@ function Bill() {
                   // 接收子页面传递的数据
                   res.eventChannel.on('acceptDataFromChild', function (data) {
                     setCustomer(data.name)
+                    setCustomerId(data.id)
                   })
                 }
               })
@@ -176,7 +222,7 @@ function Bill() {
               <Col span='4' className='info'>
                 <Field
                   value={item.num}
-                  type='number'
+                  type='digit'
                   onFocus={(e) => {
                     if (e.detail == 0) {
                       handleItemChange(index, 'num', '')
@@ -192,7 +238,7 @@ function Bill() {
               <Col span='4' className='info'>
                 <Field
                   value={item.price}
-                  type='number'
+                  type='digit'
                   onFocus={(e) => {
                     if (e.detail == 0) handleItemChange(index, 'price', '');
                   }}
@@ -241,7 +287,7 @@ function Bill() {
             }
           }
           >添加</Button>
-          <Button type='primary' >商品库</Button>
+          <Button type='primary'>商品库</Button>
           <Button type='warning' icon='delete-o' onClick={
             () => {
               setClearShow(true)
@@ -250,33 +296,12 @@ function Bill() {
           >清空</Button>
           <Text className='total-text'>￥{
             goodsList.reduce((total, item) => {
-              return total + item.total
+              return Math.round(total + item.total)
             }, 0)
           }</Text>
         </View>
 
-        <Button type='primary'  square block onClick={()=>{
-          // 如果商品名称为空，不传递数据
-          let goodsFilter = goodsList.filter(item => item.name !== '');
-          // console.log(goodsFilter.length)
-          if (goodsFilter.length === 0) {
-             return  Toast_.show('商品表格空白！');
-          }
-          Taro.navigateTo({
-          url: '/pages/bill/edit/index',
-          success: function (res) {
-              // 通过eventChannel向被打开页面传送数据
-              res.eventChannel.emit('acceptDataFromOpenerPage',
-                { data: goodsList,
-                  date: formatDate(date),
-                  total: goodsList.reduce((total, item) => {
-                      return total + item.total
-                    }
-                    , 0)
-                });
-            }
-        })}}
-        >确定</Button>
+        <Button type='primary' square block onClick={() => submit()}>确定</Button>
 
 
       </View>
