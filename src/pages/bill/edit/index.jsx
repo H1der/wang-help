@@ -12,7 +12,8 @@ function Index() {
 
     // 监听从父页面传递的数据
     eventChannel.on('acceptDataFromOpenerPage', function (data) {
-      setValue(`${data.date}\n--------------\n${data.data.map(item => `${item.name}：${item.num} x ${item.price} = ${item.total}`).join('\n')}\n--------------\n总计：${data.total}`)
+
+      setValue(`${data.date}\n--------------\n${data.data.map(item => `${item.name}：${item.num} x ${item.price} = ${item.total}`).join('\n')}\n--------------\n总计：${Math.round(data.total)}`)
       // 在这里处理接收到的数组数据
     });
 
@@ -35,6 +36,8 @@ function Index() {
         border
         value={value}
         onChange={(e) => setValue(e.detail)}
+        maxlength='-1'
+        autosize
       />
       <Button type='primary' block style={{marginTop: '20px'}} onClick={() =>
         copyBtnClick()

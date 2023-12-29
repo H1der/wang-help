@@ -18,6 +18,12 @@ const CustomerCREATE = 'customer/create'
 const CUSTOMERLIST = 'customer/list'
 const CUSTOMER = 'customer'
 const BILLSCREATE = 'bills/create'
+const BILLSEDIT = 'bills/edit'
+const BILLSMONTHLIST = 'bills/monthList'
+const BILLSDATELIST = 'bills/dateList'
+const BillsBillsList = 'bills/billsList'
+const Bills = 'bills'
+
 
 export function getExpress() {
   return HOST_URI + EXPRESS
@@ -83,4 +89,19 @@ export function Customer() {
 
 export function BillsCreate() {
   return HOST_URI + BILLSCREATE
+}
+export function BillsMonthList() {
+  return HOST_URI + BILLSMONTHLIST
+}
+export function BillsDateList() {
+  return HOST_URI + BILLSDATELIST
+}
+export function getBillsBillsList() {
+  return HOST_URI + BillsBillsList
+}
+export function getBills() {
+  return HOST_URI + Bills
+}
+export function BillsEdit() {
+  return HOST_URI + BILLSEDIT
 }

@@ -1,0 +1,16 @@
+.container {
+  padding: 0 20px;
+  .van-field__control--textarea {
+    height:  var(--field-text-area-min-height, 548rpx);
+  }
+  .van-collapse-item__content_wrapper{
+    padding: 0;
+  }
+  .van-table .van-table_table .van-table_body > .van-table_row{
+    min-height: 70px;
+    .van-table_col{
+      min-height: 0;
+    }
+  }
+}
+

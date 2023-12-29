@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react'
 import {Text, View} from "@tarojs/components";
-import Taro from "@tarojs/taro";
+import Taro, {useLoad} from "@tarojs/taro";
 import {Button, Col, DatetimePicker, Dialog, Divider, Field, Popup, Row, Toast} from "@antmjs/vantui";
 import './index.scss'
 import {myRequest} from "../../utils/request";
-import {BillsCreate, getWeatherOpenid, UserRegister} from "../../utils/api";
+import {BillsCreate, BillsEdit, getWeatherOpenid, UserRegister} from "../../utils/api";
 
 function Bill() {
   const [dateShow, setDateShow] = React.useState(false) // 日期选择框是否展示
@@ -29,6 +29,8 @@ function Bill() {
   const [customerId, setCustomerId] = React.useState(0) // 日期
   const [customerShow, setCustomerShow] = React.useState(false) // 日期选择框是否展示
   const [clearShow, setClearShow] = React.useState(false)
+  const [total, setTotal] = React.useState(0) // 总价
+  const [action, setAction] = React.useState('add') // 操作类型
   // 定义一个对象数组，用于存储商品信息
   const [goodsList, setGoodsList] = React.useState([
     {
@@ -38,6 +40,13 @@ function Bill() {
       total: 0,
     },
   ])
+
+  useEffect(() => {
+    let number = goodsList.reduce((subTotal, item) => {
+      return subTotal + item.total
+    }, 0);
+    setTotal(Math.round(number))
+  },[goodsList])
 
   const Toast_ = Toast.createOnlyToast()
 
@@ -83,6 +92,26 @@ function Bill() {
     })
   }, [])
 
+  useLoad(() => {
+  // 页面加载时执行
+      const eventChannel = Taro.getCurrentInstance().page.getOpenerEventChannel();
+
+      // 监听从父页面传递的数据
+      eventChannel.on('acceptDataFromOpenerPage', function (data) {
+        setGoodsList(data.data)
+        setDate(data.date)
+        setCustomer(data.customerName)
+        setAction('edit')
+        // 在这里处理接收到的数组数据
+      });
+
+      return () => {
+        // 页面卸载时执行，可以在这里取消事件监听等清理工作
+      };
+    }, {deps: []
+
+  })
+
   // 更新商品item的值
   const handleItemChange = (index, property, value) => {
     setGoodsList(prevGoodsList => {
@@ -104,16 +133,13 @@ function Bill() {
       return Toast_.show('商品表格空白！');
     }
 
-    myRequest(BillsCreate(), {
+    myRequest(action==='add'?BillsCreate():BillsEdit(), {
       openid,
       customerName: customer,
       customerId,
       billDetail: goodsList,
       date: formatDate(date),
-      total: goodsList.reduce((total, item) => {
-          return Math.round(total + item.total)
-        }
-        , 0)
+      total: total
     }, 'POST').then(r => {
       console.log(r)
         if (r.code === 200) {
@@ -125,10 +151,7 @@ function Bill() {
                 {
                   data: goodsList,
                   date: formatDate(date),
-                  total: goodsList.reduce((total, item) => {
-                      return Math.round(total + item.total)
-                    }
-                    , 0)
+                  total: total
                 });
             }
           })
@@ -288,17 +311,21 @@ function Bill() {
           }
           >添加</Button>
           <Button type='primary'>商品库</Button>
-          <Button type='warning' icon='delete-o' onClick={
+          {/*<Button type='warning' icon='delete-o' onClick={*/}
+          {/*  () => {*/}
+          {/*    setClearShow(true)*/}
+          {/*  }*/}
+          {/*}*/}
+          {/*>清空</Button>*/}
+          <Button type='info' onClick={
             () => {
-              setClearShow(true)
+              Taro.navigateTo({
+                url: '/pages/bill/ledger/index'
+              })
             }
           }
-          >清空</Button>
-          <Text className='total-text'>￥{
-            goodsList.reduce((total, item) => {
-              return Math.round(total + item.total)
-            }, 0)
-          }</Text>
+          >账本</Button>
+          <Text className='total-text'>￥{total}</Text>
         </View>
 
         <Button type='primary' square block onClick={() => submit()}>确定</Button>

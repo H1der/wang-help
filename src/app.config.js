@@ -9,6 +9,7 @@ let pages = [
   'pages/bill/index', // 记账
   'pages/bill/edit/index', // 记账
   'pages/bill/customer/index', // 记账-客户
+  'pages/bill/ledger/index', // 记账-账本
   'pages/about/index', // 关于
   // 'pages/chat/index', // AI助手
   // 'pages/lottery/index', // 彩票
