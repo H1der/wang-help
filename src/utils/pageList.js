@@ -5,7 +5,7 @@ export const commonList = [
     url: '/pages/oil/index',
   }, {
     image: 'https://oss.2hider.com/wang-help/lpl2022.png',
-    value: '2023 LPL赛程',
+    value: 'LPL赛程',
     url: '/pages/lpl/index'
   },
   {
@@ -43,11 +43,11 @@ export const lifeList = [
     value: '缩写查询',
     url: '/pages/abbr/index'
   },
-  // {
-  //   image: 'https://oss.2hider.com/relationship.png',
-  //   value: '亲戚计算器',
-  //   url: '/pages/relationship/index'
-  // },
+  {
+    image: 'https://oss.2hider.com/relationship.png',
+    value: '亲戚计算器',
+    url: '/pages/relationship/index'
+  },
   {
     image: 'https://oss.2hider.com/wang-help/bill.png',
     value: '记账',

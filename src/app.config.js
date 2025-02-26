@@ -2,7 +2,7 @@ let pages = [
   'pages/index/index',
   'pages/abbr/index',// 缩写查询
   'pages/garbage/index', // 垃圾分类
-  // 'pages/relationship/index', // 亲戚计算器
+  'pages/relationship/index', // 亲戚计算器
   'pages/oil/index', // 油价查询
   'pages/lpl/index', // lpl赛程
   'pages/photo/index', // 证件照换底色

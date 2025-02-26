@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {ScrollView, View} from "@tarojs/components";
 import Taro from "@tarojs/taro";
-import {Tab, Tabs, Toast} from "@antmjs/vantui";
+import {Tab, Tabs} from "@antmjs/vantui";
 import './index.scss'
 import Match from "../../components/Match";
 import {myRequest} from "../../utils/request";
