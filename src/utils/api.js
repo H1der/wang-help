@@ -1,5 +1,5 @@
-// const HOST_URI = 'https://wang-help.2hider.com/'
-const HOST_URI = 'http://localhost:9743/'
+const HOST_URI = 'https://wang-help.2hider.com/'
+// const HOST_URI = 'http://localhost:9743/'
 // const HOST_URI = 'http://localhost:8091/'
 
 const EXPRESS = 'express/search'

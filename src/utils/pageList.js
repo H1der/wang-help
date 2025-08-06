@@ -44,15 +44,16 @@ export const lifeList = [
     url: '/pages/abbr/index'
   },
   {
-    image: 'https://oss.2hider.com/relationship.png',
-    value: '亲戚计算器',
-    url: '/pages/relationship/index'
-  },
-  {
     image: 'https://oss.2hider.com/wang-help/bill.png',
     value: '记账',
     url: '/pages/bill/index'
   },
+  {
+    image: 'https://oss.2hider.com/relationship.png',
+    value: '亲戚计算器',
+    url: '/pages/relationship/index'
+  },
+
 
 ]
 export const aboutList = [

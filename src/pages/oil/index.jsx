@@ -1,7 +1,7 @@
 import Taro from "@tarojs/taro";
 import {useEffect, useLayoutEffect, useState} from "react";
 import {Picker, Text, View} from "@tarojs/components";
-import {Button, Cell, Col, Icon, NoticeBar, Row} from "@antmjs/vantui";
+import {Button, Icon, NoticeBar} from "@antmjs/vantui";
 import './index.scss'
 import {province} from "../../utils/province";
 import {myRequest} from "../../utils/request";
@@ -71,29 +71,79 @@ function Oil() {
 
   return (
     <View className='container'>
-      <View className='province'>
-        <Row gutter='10'>
-          <Col span='8'>&nbsp;</Col>
-          <Col span='8'> <Text className=' select-province'>选择省份：</Text></Col>
-          <Col span='8'> <Picker mode='selector' range={province} onChange={onChange}>
-            <Button plain type='primary' className=' select-btn' size='small'>{provinceName}
+      <View className='header'>
+        <Text className='title'>油价信息查询</Text>
+        <Text className='subtitle'>实时更新各地油价</Text>
+      </View>
+
+      <View className='province-selector'>
+        <View className='selector-label'>
+          <Icon name='location-o' className='icon' />
+          <Text>选择省份</Text>
+        </View>
+        <View className='selector-content'>
+          <Picker mode='selector' range={province} onChange={onChange}>
+            <Button plain type='primary' className='select-btn' size='small'>
+              {provinceName}
               <Icon className='select-btn-icon' name='arrow-down' />
             </Button>
           </Picker>
-          </Col>
-        </Row>
+        </View>
       </View>
+
       {Object.keys(oilData).length === 0 ? '' : (
-        <View className='info'>
-          {changNotice !== '' ? <NoticeBar leftIcon='volume-o' text={changNotice} wrapable scrollable={false} /> : ''}
+        <>
+          <View className='oil-info'>
+            {changNotice !== '' ?
+              <View className='notice'>
+                <NoticeBar leftIcon='volume-o' text={changNotice} wrapable scrollable={false} />
+              </View> : ''}
 
-          <Cell size='large' title='92# 汽油：' value={oilData.oil92} />
-          <Cell size='large' title='95# 汽油：' value={oilData.oil95} />
-          <Cell size='large' title='98# 汽油：' value={oilData.oil98} />
-          <Cell size='large' title=' 0# 柴油：' value={oilData.oil0} />
-          <Cell size='large' title='更新时间：' value={oilData.updatetime} />
-        </View>)}
+            <View className='oil-item'>
+              <View className='oil-type'>
+                <Icon name='fire-o' className='icon' />
+                <Text>92# 汽油</Text>
+              </View>
+              <Text className='oil-price'>{oilData.oil92}</Text>
+            </View>
 
+            <View className='oil-item'>
+              <View className='oil-type'>
+                <Icon name='fire-o' className='icon' />
+                <Text>95# 汽油</Text>
+              </View>
+              <Text className='oil-price'>{oilData.oil95}</Text>
+            </View>
+
+            <View className='oil-item'>
+              <View className='oil-type'>
+                <Icon name='fire-o' className='icon' />
+                <Text>98# 汽油</Text>
+              </View>
+              <Text className='oil-price'>{oilData.oil98}</Text>
+            </View>
+
+            <View className='oil-item'>
+              <View className='oil-type'>
+                <Icon name='fire-o' className='icon' />
+                <Text>0# 柴油</Text>
+              </View>
+              <Text className='oil-price diesel'>{oilData.oil0}</Text>
+            </View>
+          </View>
+
+          <View className='update-time-container'>
+            <View className='update-time-content'>
+              <Icon name='clock-o' className='update-icon' />
+              <Text className='update-text'>更新时间：{oilData.updatetime}</Text>
+            </View>
+          </View>
+        </>
+      )}
+
+      <View className='footer'>
+        <Text>数据来源：官方发布</Text>
+      </View>
     </View>
   );
 }
