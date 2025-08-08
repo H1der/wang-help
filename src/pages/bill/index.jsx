@@ -11,6 +11,15 @@ function Bill() {
   const [date, setDate] = React.useState(Date.now()) // 日期
   const [openid,] = React.useState(Taro.getStorageSync('openid'))
 
+// 浮点数乘法精度处理函数
+  const floatMultiply = (a, b) => {
+    const aStr = a.toString();
+    const bStr = b.toString();
+    const aDecimal = aStr.includes('.') ? aStr.split('.')[1].length : 0;
+    const bDecimal = bStr.includes('.') ? bStr.split('.')[1].length : 0;
+    const decimal = aDecimal + bDecimal;
+    return (Number(aStr.replace('.', '')) * Number(bStr.replace('.', ''))) / Math.pow(10, decimal);
+  };
 
   const onInput = React.useCallback(
     function (event) {
@@ -45,7 +54,7 @@ function Bill() {
     let number = goodsList.reduce((subTotal, item) => {
       return subTotal + item.total
     }, 0);
-    setTotal(Math.round(number))
+    setTotal(parseFloat(number.toFixed(2)))
   },[goodsList])
 
   const Toast_ = Toast.createOnlyToast()
@@ -119,7 +128,7 @@ function Bill() {
       updatedGoodsList[index][property] = value;
       // 如果修改的是数量或者单价，需要更新总价
       if (property === 'num' || property === 'price') {
-        updatedGoodsList[index].total = updatedGoodsList[index].num * updatedGoodsList[index].price
+        updatedGoodsList[index].total = floatMultiply(updatedGoodsList[index].num, updatedGoodsList[index].price);
       }
       return updatedGoodsList;
     });
