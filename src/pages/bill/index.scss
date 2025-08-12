@@ -68,3 +68,51 @@
   }
 }
 
+// 近期商品弹窗样式
+.popup-content {
+  padding: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
+  
+  .popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    
+    .popup-title {
+      font-size: 36px;
+      font-weight: bold;
+    }
+  }
+  
+  .popup-body {
+    .product-item {
+      padding: 20px 0;
+      border-bottom: 1px solid #eee;
+      
+      .product-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex: 1;
+        
+        .product-name {
+          font-size: 32px;
+        }
+        
+        .product-price {
+          font-size: 32px;
+          color: #ff6600;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  
+  .popup-footer {
+    margin-top: 20px;
+    padding: 20px 0;
+  }
+}
+

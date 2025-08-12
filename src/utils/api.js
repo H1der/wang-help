@@ -24,6 +24,7 @@ const BILLSMONTHLIST = 'bills/monthList'
 const BILLSDATELIST = 'bills/dateList'
 const BillsBillsList = 'bills/billsList'
 const Bills = 'bills'
+const BillsPopularProducts  =  'bills/popularProducts'
 
 
 export function getExpress() {
@@ -105,4 +106,7 @@ export function getBills() {
 }
 export function BillsEdit() {
   return HOST_URI + BILLSEDIT
+}
+export function getBillsPopularProducts() {
+  return HOST_URI + BillsPopularProducts
 }

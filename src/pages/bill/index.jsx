@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react'
 import {Text, View} from "@tarojs/components";
 import Taro, {useLoad} from "@tarojs/taro";
-import {Button, Col, DatetimePicker, Dialog, Divider, Field, Popup, Row, Toast} from "@antmjs/vantui";
+import {Button, Checkbox, Col, DatetimePicker, Dialog, Divider, Field, Popup, Row, Toast} from "@antmjs/vantui";
 import './index.scss'
 import {myRequest} from "../../utils/request";
-import {BillsCreate, BillsEdit, getWeatherOpenid, UserRegister} from "../../utils/api";
+import {BillsCreate, BillsEdit, getBillsPopularProducts, getWeatherOpenid, UserRegister} from "../../utils/api";
 
 function Bill() {
   const [dateShow, setDateShow] = React.useState(false) // 日期选择框是否展示
@@ -37,6 +37,9 @@ function Bill() {
   const [customer, setCustomer] = React.useState('请选择客户') // 日期
   const [customerId, setCustomerId] = React.useState(0) // 日期
   const [customerShow, setCustomerShow] = React.useState(false) // 日期选择框是否展示
+  const [popularProducts, setPopularProducts] = React.useState([]) // 近期商品数据
+  const [popularProductsShow, setPopularProductsShow] = React.useState(false) // 近期商品弹窗展示
+  const [selectedProducts, setSelectedProducts] = React.useState({}) // 选中的商品
   const [clearShow, setClearShow] = React.useState(false)
   const [total, setTotal] = React.useState(0) // 总价
   const [action, setAction] = React.useState('add') // 操作类型
@@ -214,6 +217,15 @@ function Bill() {
                   res.eventChannel.on('acceptDataFromChild', function (data) {
                     setCustomer(data.name)
                     setCustomerId(data.id)
+                    // 获取近期商品数据
+                    myRequest(getBillsPopularProducts(), {
+                      customerId: data.id
+                    }, 'GET').then(r => {
+                      if (r.code === 200) {
+                        setPopularProducts(r.data)
+                        setPopularProductsShow(true)
+                      }
+                    })
                   })
                 }
               })
@@ -385,6 +397,84 @@ function Bill() {
         }}
       >
       </Dialog>
+
+      {/* 近期商品弹窗 */}
+      <Popup
+        show={popularProductsShow}
+        position='bottom'
+        onClose={() => setPopularProductsShow(false)}
+        round
+      >
+        <View className='popup-content'>
+          <View className='popup-header'>
+            <Text className='popup-title'>近期商品</Text>
+          </View>
+          <View className='popup-body'>
+            {popularProducts.map((product, index) => (
+              <View className='product-item' key={index}>
+                <Checkbox
+                  value={selectedProducts[index] || false}
+                  onChange={(e) => {
+                    setSelectedProducts(prev => ({
+                      ...prev,
+                      [index]: e.detail,
+                    }));
+                  }}
+                >
+                  <View className='product-info'>
+                    <Text className='product-name'>{product.name}</Text>
+                    <Text className='product-price'>¥{product.price}</Text>
+                  </View>
+                </Checkbox>
+              </View>
+            ))}
+          </View>
+          <View className='popup-footer'>
+            <Button
+              type='primary'
+              block
+              onClick={() => {
+                // 将选中的商品添加到商品列表
+                const selectedItems = popularProducts.filter((_, index) => selectedProducts[index]);
+                if (selectedItems.length > 0) {
+                  setGoodsList(prevGoodsList => {
+                    const updatedGoodsList = [...prevGoodsList];
+                    // 移除最后一项如果是空的
+                    const lastItem = updatedGoodsList[updatedGoodsList.length - 1];
+                    if (lastItem.name === '' && lastItem.num === 0 && lastItem.price === 0) {
+                      updatedGoodsList.pop();
+                    }
+
+                    // 添加选中的商品
+                    selectedItems.forEach(item => {
+                      updatedGoodsList.push({
+                        name: item.name,
+                        num: 0,
+                        price: item.price,
+                        total: 0
+                      });
+                    });
+
+                    // 添加一个新的空行
+                    updatedGoodsList.push({
+                      name: '',
+                      num: 0,
+                      price: 0,
+                      total: 0,
+                    });
+
+                    return updatedGoodsList;
+                  });
+                }
+                setPopularProductsShow(false);
+                setSelectedProducts({});
+              }}
+            >
+              确定
+            </Button>
+          </View>
+        </View>
+      </Popup>
 
       <Toast_ />
     </View>
