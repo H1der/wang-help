@@ -52,9 +52,11 @@
 		"@tarojs/shared": "4.1.5",
 		"@tarojs/taro": "4.1.5",
 		"classnames": "^2.3.2",
+		"echarts": "^6.0.0",
 		"react": "^18.0.0",
 		"react-dom": "^18.0.0",
-		"relationship.js": "^1.2.4"
+		"relationship.js": "^1.2.4",
+		"taro-react-echarts": "^1.2.2"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.8.0",

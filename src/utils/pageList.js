@@ -44,6 +44,11 @@ export const lifeList = [
     url: '/pages/abbr/index'
   },
   {
+    image: 'https://oss.2hider.com/wang-help/bloodGlucose.png',
+    value: '血糖记录',
+    url: '/pages/bloodGlucose/index'
+  },
+  {
     image: 'https://oss.2hider.com/wang-help/bill.png',
     value: '记账',
     url: '/pages/bill/index'
@@ -53,9 +58,8 @@ export const lifeList = [
     value: '亲戚计算器',
     url: '/pages/relationship/index'
   },
-
-
 ]
+
 export const aboutList = [
   {
     image: 'https://oss.2hider.com/wang-help/about.png',
@@ -63,6 +67,5 @@ export const aboutList = [
     url: '/pages/about/index'
   },
 ]
-
 
 // export default {commonList,lifeList,aboutList}

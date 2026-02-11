@@ -1,5 +1,5 @@
-const HOST_URI = 'https://wang-help.2hider.com/'
-// const HOST_URI = 'http://localhost:9743/'
+// const HOST_URI = 'https://wang-help.2hider.com/'
+const HOST_URI = 'http://localhost:9743/'
 // const HOST_URI = 'http://localhost:8091/'
 
 const EXPRESS = 'express/search'
@@ -25,6 +25,8 @@ const BILLSDATELIST = 'bills/dateList'
 const BillsBillsList = 'bills/billsList'
 const Bills = 'bills'
 const BillsPopularProducts  =  'bills/popularProducts'
+const BLOODGLUCOSELIST = 'bloodGlucose/list'
+const BLOODGLUCOSE = 'bloodGlucose'
 
 
 export function getExpress() {
@@ -109,4 +111,12 @@ export function BillsEdit() {
 }
 export function getBillsPopularProducts() {
   return HOST_URI + BillsPopularProducts
+}
+
+export function getBloodGlucoseListApi() {
+  return HOST_URI + BLOODGLUCOSELIST
+}
+
+export function getBloodGlucoseApi() {
+  return HOST_URI + BLOODGLUCOSE
 }

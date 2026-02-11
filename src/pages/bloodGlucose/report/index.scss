@@ -1,0 +1,113 @@
+.blood-glucose-report-page {
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #eef4ff 0%, #f8fbff 44%, #f4f7fb 100%);
+}
+
+.report-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 600;
+  color: #1f2f4d;
+}
+
+.range {
+  font-size: 24px;
+  color: #5d6b84;
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.date-tag {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #d9deea;
+  border-radius: 10px;
+  background: #fff;
+  color: #273142;
+  font-size: 26px;
+  box-sizing: border-box;
+}
+
+.dash {
+  margin: 0 10px;
+  color: #6f7785;
+}
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.toolbar-btn {
+  flex: 1;
+}
+
+.toolbar-btn--query {
+  background: #2f80ed !important;
+  border-color: #2f80ed !important;
+  color: #fff !important;
+}
+
+.toolbar-btn--reset {
+  background: #fff !important;
+  border-color: #d9deea !important;
+  color: #576074 !important;
+}
+
+.tip-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #3f4f6f;
+  font-size: 24px;
+  box-shadow: 0 6px 20px rgba(20, 45, 95, 0.08);
+  margin-bottom: 14px;
+}
+
+.chart-card {
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 12px;
+  box-shadow: 0 10px 24px rgba(25, 54, 110, 0.1);
+}
+
+.blood-glucose-chart {
+  width: 100%;
+}
+
+.empty-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #7b879d;
+  font-size: 26px;
+  box-shadow: 0 8px 20px rgba(26, 43, 79, 0.08);
+}
+
+.actions {
+  display: flex;
+  margin-top: 16px;
+}
+
+.action-btn {
+  flex: 1;
+}
