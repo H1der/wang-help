@@ -59,9 +59,6 @@ importers:
       classnames:
         specifier: ^2.3.2
         version: 2.5.1
-      echarts:
-        specifier: ^6.0.0
-        version: 6.0.0
       react:
         specifier: ^18.0.0
         version: 18.2.0
@@ -71,9 +68,6 @@ importers:
       relationship.js:
         specifier: ^1.2.4
         version: 1.2.4
-      taro-react-echarts:
-        specifier: ^1.2.2
-        version: 1.2.2(eb7209407c8ccc9eedfa60a1ae4b217c)
     devDependencies:
       '@babel/core':
         specifier: ^7.8.0
@@ -3283,9 +3277,6 @@ packages:
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  echarts@6.0.0:
-    resolution: {integrity: sha512-Tte/grDQRiETQP4xz3iZWSvoHrkCQtwqd6hs+mifXcjrCuo2iKWbajFObuLJVBlDIJlOzgQPd1hsaKt/3+OMkQ==}
-
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
@@ -6382,14 +6373,6 @@ packages:
     resolution: {integrity: sha512-rzS0heiNf8Xn7/mpdSVVSMAWAoy9bfb1WOTYC78Z0UQKeKa/CWS8FOq0lKGNa8DWKAn9gxjCvMLYc5PGXYlK2A==}
     engines: {node: '>= 0.8.0'}
 
-  taro-react-echarts@1.2.2:
-    resolution: {integrity: sha512-NHzngwaA8/EPHirJPiUU2xxs1YggEVD8JYD6lauZjGLI0bd7OiaIDb35VPuYADwZSmkQg5zYj7DEBcbNRMFmUg==}
-    peerDependencies:
-      '@tarojs/components': '>=3'
-      '@tarojs/taro': '>=3'
-      react: '>=16.9'
-      react-dom: '>=16.9'
-
   terser-webpack-plugin@5.3.10:
     resolution: {integrity: sha512-BKFPWlPDndPs+NGGCr1U59t0XScL5317Y0UReNrHaw9/FwhPENlq6bfgs+4yPfyP51vqC1bQ4rp1EfXW5ZSH9w==}
     engines: {node: '>= 10.13.0'}
@@ -6512,9 +6495,6 @@ packages:
 
   tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
-
-  tslib@2.3.0:
-    resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
 
   tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
@@ -6951,9 +6931,6 @@ packages:
 
   yup@1.3.2:
     resolution: {integrity: sha512-6KCM971iQtJ+/KUaHdrhVr2LDkfhBtFPRnsG1P8F4q3uUVQ2RfEM9xekpha9aA4GXWJevjM10eDcPQ1FfWlmaQ==}
-
-  zrender@6.0.0:
-    resolution: {integrity: sha512-41dFXEEXuJpNecuUQq6JlbybmnHaqqpGlbH1yxnA5V9MMP4SbohSVZsJIwz+zdjQXSSlR1Vc34EgH1zxyTDvhg==}
 
 snapshots:
 
@@ -10579,11 +10556,6 @@ snapshots:
   duplexer3@0.1.5: {}
 
   eastasianwidth@0.2.0: {}
-
-  echarts@6.0.0:
-    dependencies:
-      tslib: 2.3.0
-      zrender: 6.0.0
 
   ee-first@1.1.1: {}
 
@@ -14257,13 +14229,6 @@ snapshots:
       to-buffer: 1.1.1
       xtend: 4.0.2
 
-  taro-react-echarts@1.2.2(eb7209407c8ccc9eedfa60a1ae4b217c):
-    dependencies:
-      '@tarojs/components': 4.1.5(@tarojs/helper@4.1.5(@swc/helpers@0.5.3))(@types/react@18.2.44)(html-webpack-plugin@5.6.3(webpack@5.94.0(@swc/core@1.3.96(@swc/helpers@0.5.3))))(postcss@8.4.49)(rollup@3.29.5)(webpack-chain@6.5.1)(webpack-dev-server@4.15.2(webpack@5.94.0(@swc/core@1.3.96(@swc/helpers@0.5.3))))(webpack@5.94.0(@swc/core@1.3.96(@swc/helpers@0.5.3)))
-      '@tarojs/taro': 4.1.5(@tarojs/components@4.1.5(@tarojs/helper@4.1.5(@swc/helpers@0.5.3))(@types/react@18.2.44)(html-webpack-plugin@5.6.3(webpack@5.94.0(@swc/core@1.3.96(@swc/helpers@0.5.3))))(postcss@8.4.49)(rollup@3.29.5)(webpack-chain@6.5.1)(webpack-dev-server@4.15.2(webpack@5.94.0(@swc/core@1.3.96(@swc/helpers@0.5.3))))(webpack@5.94.0(@swc/core@1.3.96(@swc/helpers@0.5.3))))(@tarojs/helper@4.1.5(@swc/helpers@0.5.3))(@tarojs/shared@4.1.5)(@types/react@18.2.44)(html-webpack-plugin@5.6.3(webpack@5.94.0(@swc/core@1.3.96(@swc/helpers@0.5.3))))(postcss@8.4.49)(rollup@3.29.5)(webpack-chain@6.5.1)(webpack-dev-server@4.15.2(webpack@5.94.0(@swc/core@1.3.96(@swc/helpers@0.5.3))))(webpack@5.94.0(@swc/core@1.3.96(@swc/helpers@0.5.3)))
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-
   terser-webpack-plugin@5.3.10(@swc/core@1.3.96(@swc/helpers@0.5.3))(esbuild@0.21.5)(webpack@5.94.0(@swc/core@1.3.96(@swc/helpers@0.5.3))):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
@@ -14380,8 +14345,6 @@ snapshots:
       strip-bom: 3.0.0
 
   tslib@1.14.1: {}
-
-  tslib@2.3.0: {}
 
   tslib@2.6.2: {}
 
@@ -14869,7 +14832,3 @@ snapshots:
       tiny-case: 1.0.3
       toposort: 2.0.2
       type-fest: 2.19.0
-
-  zrender@6.0.0:
-    dependencies:
-      tslib: 2.3.0

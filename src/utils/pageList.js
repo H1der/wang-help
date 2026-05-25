@@ -44,20 +44,21 @@ export const lifeList = [
     url: '/pages/abbr/index'
   },
   {
-    image: 'https://oss.2hider.com/wang-help/bloodGlucose.png',
-    value: '血糖记录',
-    url: '/pages/bloodGlucose/index'
+    image: 'https://oss.2hider.com/wang-help/inventory.png',
+    value: '我的存量',
+    url: '/pages/inventory/index'
   },
+  // {
+  //   image: 'https://oss.2hider.com/wang-help/bloodGlucose.png',
+  //   value: '血糖记录',
+  //   url: '/pages/bloodGlucose/index'
+  // },
   {
     image: 'https://oss.2hider.com/wang-help/bill.png',
     value: '记账',
     url: '/pages/bill/index'
   },
-  {
-    image: 'records-o',
-    value: '我的存量',
-    url: '/pages/inventory/index'
-  },
+
   {
     image: 'https://oss.2hider.com/relationship.png',
     value: '亲戚计算器',

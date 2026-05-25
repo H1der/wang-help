@@ -11,8 +11,8 @@ let pages = [
   'pages/bill/customer/index', // 记账-客户
   'pages/inventory/index', // 我的存量
   'pages/inventory/detail/index', // 我的存量-物品详情
-  'pages/bloodGlucose/index', // blood glucose
-  'pages/bloodGlucose/report/index', // blood glucose report
+  // 'pages/bloodGlucose/index', // blood glucose
+  // 'pages/bloodGlucose/report/index', // blood glucose report
   'pages/bill/ledger/index', // 记账-账本
   'pages/about/index', // 关于
   // 'pages/chat/index', // AI助手
