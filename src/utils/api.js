@@ -27,6 +27,12 @@ const Bills = 'bills'
 const BillsPopularProducts  =  'bills/popularProducts'
 const BLOODGLUCOSELIST = 'bloodGlucose/list'
 const BLOODGLUCOSE = 'bloodGlucose'
+const INVENTORY = 'inventory'
+const INVENTORYOVERVIEW = 'inventory/overview'
+const INVENTORYCATEGORIES = 'inventory/categories'
+const INVENTORYSUBCATEGORIES = 'inventory/subCategories'
+const INVENTORYGROUPS = 'inventory/groups'
+const INVENTORYITEMS = 'inventory/items'
 
 
 export function getExpress() {
@@ -119,4 +125,28 @@ export function getBloodGlucoseListApi() {
 
 export function getBloodGlucoseApi() {
   return HOST_URI + BLOODGLUCOSE
+}
+
+export function getInventoryApi() {
+  return HOST_URI + INVENTORY
+}
+
+export function getInventoryOverviewApi() {
+  return HOST_URI + INVENTORYOVERVIEW
+}
+
+export function getInventoryCategoriesApi() {
+  return HOST_URI + INVENTORYCATEGORIES
+}
+
+export function getInventorySubCategoriesApi() {
+  return HOST_URI + INVENTORYSUBCATEGORIES
+}
+
+export function getInventoryGroupsApi() {
+  return HOST_URI + INVENTORYGROUPS
+}
+
+export function getInventoryItemsApi() {
+  return HOST_URI + INVENTORYITEMS
 }

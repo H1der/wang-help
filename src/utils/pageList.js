@@ -54,6 +54,11 @@ export const lifeList = [
     url: '/pages/bill/index'
   },
   {
+    image: 'records-o',
+    value: '我的存量',
+    url: '/pages/inventory/index'
+  },
+  {
     image: 'https://oss.2hider.com/relationship.png',
     value: '亲戚计算器',
     url: '/pages/relationship/index'
