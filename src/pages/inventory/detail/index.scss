@@ -1,0 +1,129 @@
+.inventory-detail-page {
+  min-height: 100vh;
+  padding: 24px;
+  box-sizing: border-box;
+  background: #f5f7fb;
+}
+
+.summary-card {
+  padding: 26px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(31, 41, 55, 0.1);
+}
+
+.summary-card--low {
+  border: 2px solid #ef4444;
+}
+
+.summary-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-name {
+  color: #111827;
+  font-size: 40px;
+  font-weight: 800;
+}
+
+.low-text {
+  color: #ef4444;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.quantity-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.quantity {
+  color: #111827;
+  font-size: 72px;
+  font-weight: 800;
+}
+
+.unit {
+  color: #6b7280;
+  font-size: 28px;
+}
+
+.meta-line,
+.remark {
+  margin-top: 12px;
+  color: #6b7280;
+  font-size: 26px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.actions .van-button {
+  flex: 1;
+}
+
+.record-title {
+  margin: 20px 0 12px;
+  color: #111827;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.record-card {
+  padding: 18px;
+  margin-bottom: 14px;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.record-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.record-type {
+  color: #16a34a;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.record-type--out {
+  color: #ef4444;
+}
+
+.record-time {
+  color: #9ca3af;
+  font-size: 22px;
+}
+
+.record-quantity {
+  margin-top: 10px;
+  color: #374151;
+  font-size: 28px;
+}
+
+.record-change {
+  font-weight: 700;
+}
+
+.record-remark {
+  margin-top: 8px;
+  color: #6b7280;
+  font-size: 24px;
+}
+
+.empty,
+.footer {
+  padding: 28px 0;
+  color: #8a94a6;
+  text-align: center;
+  font-size: 26px;
+}
