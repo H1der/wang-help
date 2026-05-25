@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Picker, Text, View } from '@tarojs/components'
-import Taro, { useLoad } from '@tarojs/taro'
+import Taro, { useDidShow } from '@tarojs/taro'
 import { Button, Dialog, Field, Popup, Search, Switch, Toast } from '@antmjs/vantui'
 import { myRequest } from '../../utils/request'
 import {
@@ -63,7 +63,7 @@ function InventoryPage() {
 
   const ToastView = Toast.createOnlyToast()
 
-  useLoad(async () => {
+  useDidShow(async () => {
     if (!openid) {
       Taro.showToast({ title: '请先登录后再使用', icon: 'none' })
       return
