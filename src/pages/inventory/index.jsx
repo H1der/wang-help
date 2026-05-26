@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Picker, Text, View } from '@tarojs/components'
 import Taro, { useDidShow } from '@tarojs/taro'
-import { Button, Dialog, Field, Popup, Search, Switch, Toast } from '@antmjs/vantui'
+import { Button, Dialog, Field, Icon, Popup, Search, Switch, Toast } from '@antmjs/vantui'
 import { myRequest } from '../../utils/request'
 import {
   getInventoryCategoriesApi,
@@ -10,17 +10,21 @@ import {
   getInventoryOverviewApi,
   getInventorySubCategoriesApi,
 } from '../../utils/api'
+import {
+  buildCategoryForm,
+  buildCategoryPayload,
+  buildInventoryOpenidUrl,
+  buildSubCategoryForm,
+  buildSubCategoryPayload,
+  getCategoryActionItems,
+  getCategoryDialogTitle,
+  getSubCategoryActionItems,
+  getSubCategoryDialogTitle,
+  translateInventoryError,
+} from './categoryActions'
 import './index.scss'
 
 const cardColors = ['#73b600', '#269987', '#2f73b7', '#8e24aa', '#55a64a', '#1f33d6']
-
-function emptyCategoryForm() {
-  return { name: '' }
-}
-
-function emptySubCategoryForm(categoryId = 0) {
-  return { categoryId, name: '' }
-}
 
 function emptyItemForm(categoryId = 0, subCategoryId = 0) {
   return {
@@ -33,6 +37,23 @@ function emptyItemForm(categoryId = 0, subCategoryId = 0) {
     lowStockThreshold: '',
     remark: '',
   }
+}
+
+function emptyDeleteTarget() {
+  return { visible: false, type: '', id: 0, name: '' }
+}
+
+function IconAction({ action, onClick }) {
+  return (
+    <View
+      className={`icon-action icon-action--${action.tone}`}
+      hoverClass='icon-action--hover'
+      aria-label={action.label}
+      onClick={onClick}
+    >
+      <Icon name={action.icon} size='34' />
+    </View>
+  )
 }
 
 function asNumber(value) {
@@ -53,13 +74,14 @@ function InventoryPage() {
   const [loading, setLoading] = useState(false)
 
   const [categoryDialogVisible, setCategoryDialogVisible] = useState(false)
-  const [categoryForm, setCategoryForm] = useState(emptyCategoryForm())
+  const [categoryForm, setCategoryForm] = useState(buildCategoryForm())
   const [subCategoryDialogVisible, setSubCategoryDialogVisible] = useState(false)
-  const [subCategoryForm, setSubCategoryForm] = useState(emptySubCategoryForm())
+  const [subCategoryForm, setSubCategoryForm] = useState(buildSubCategoryForm())
   const [itemDialogVisible, setItemDialogVisible] = useState(false)
   const [itemForm, setItemForm] = useState(emptyItemForm())
   const [groupDialogVisible, setGroupDialogVisible] = useState(false)
   const [newGroupName, setNewGroupName] = useState('')
+  const [deleteTarget, setDeleteTarget] = useState(emptyDeleteTarget())
 
   const ToastView = Toast.createOnlyToast()
 
@@ -105,7 +127,12 @@ function InventoryPage() {
   }
 
   function openCreateCategory() {
-    setCategoryForm(emptyCategoryForm())
+    setCategoryForm(buildCategoryForm())
+    setCategoryDialogVisible(true)
+  }
+
+  function openEditCategory(category) {
+    setCategoryForm(buildCategoryForm(category))
     setCategoryDialogVisible(true)
   }
 
@@ -115,9 +142,11 @@ function InventoryPage() {
       Taro.showToast({ title: '请输入大分类名称', icon: 'none' })
       return false
     }
-    const res = await myRequest(getInventoryCategoriesApi(), { openid, name }, 'POST')
+    const url = categoryForm.id ? `${getInventoryCategoriesApi()}/${categoryForm.id}` : getInventoryCategoriesApi()
+    const method = categoryForm.id ? 'PUT' : 'POST'
+    const res = await myRequest(url, buildCategoryPayload(openid, categoryForm), method)
     if (res.code !== 200) {
-      Taro.showToast({ title: res.msg || '保存失败', icon: 'none' })
+      Taro.showToast({ title: translateInventoryError(res.msg || '保存失败'), icon: 'none' })
       return false
     }
     setCategoryDialogVisible(false)
@@ -126,7 +155,12 @@ function InventoryPage() {
   }
 
   function openCreateSubCategory(categoryId) {
-    setSubCategoryForm(emptySubCategoryForm(categoryId))
+    setSubCategoryForm(buildSubCategoryForm(categoryId))
+    setSubCategoryDialogVisible(true)
+  }
+
+  function openEditSubCategory(categoryId, subCategory) {
+    setSubCategoryForm(buildSubCategoryForm(categoryId, subCategory))
     setSubCategoryDialogVisible(true)
   }
 
@@ -136,13 +170,11 @@ function InventoryPage() {
       Taro.showToast({ title: '请输入小分类名称', icon: 'none' })
       return false
     }
-    const res = await myRequest(getInventorySubCategoriesApi(), {
-      openid,
-      categoryId: subCategoryForm.categoryId,
-      name,
-    }, 'POST')
+    const url = subCategoryForm.id ? `${getInventorySubCategoriesApi()}/${subCategoryForm.id}` : getInventorySubCategoriesApi()
+    const method = subCategoryForm.id ? 'PUT' : 'POST'
+    const res = await myRequest(url, buildSubCategoryPayload(openid, subCategoryForm), method)
     if (res.code !== 200) {
-      Taro.showToast({ title: res.msg || '保存失败', icon: 'none' })
+      Taro.showToast({ title: translateInventoryError(res.msg || '保存失败'), icon: 'none' })
       return false
     }
     setSubCategoryDialogVisible(false)
@@ -150,21 +182,50 @@ function InventoryPage() {
     return true
   }
 
-  function firstSubCategoryId(category) {
-    if (!category.subCategories || category.subCategories.length === 0) {
-      return 0
-    }
-    return category.subCategories[0].id
+  function openDeleteCategory(category) {
+    setDeleteTarget({ visible: true, type: 'category', id: category.id, name: category.name })
   }
 
-  function openCreateItem(category) {
-    const subCategoryId = firstSubCategoryId(category)
-    if (!subCategoryId) {
-      Taro.showToast({ title: '请先创建小分类', icon: 'none' })
-      openCreateSubCategory(category.id)
-      return
+  function openDeleteSubCategory(subCategory) {
+    setDeleteTarget({ visible: true, type: 'subCategory', id: subCategory.id, name: subCategory.name })
+  }
+
+  function handleCategoryAction(actionKey, category) {
+    const handlers = {
+      edit: () => openEditCategory(category),
+      delete: () => openDeleteCategory(category),
+      subCategory: () => openCreateSubCategory(category.id),
     }
-    setItemForm(emptyItemForm(category.id, subCategoryId))
+    handlers[actionKey]?.()
+  }
+
+  function handleSubCategoryAction(actionKey, categoryId, subCategory) {
+    const handlers = {
+      edit: () => openEditSubCategory(categoryId, subCategory),
+      delete: () => openDeleteSubCategory(subCategory),
+      item: () => openCreateItem(categoryId, subCategory.id),
+    }
+    handlers[actionKey]?.()
+  }
+
+  async function confirmDeleteTarget() {
+    if (!deleteTarget.id) {
+      return false
+    }
+    const baseApi = deleteTarget.type === 'category' ? getInventoryCategoriesApi() : getInventorySubCategoriesApi()
+    const res = await myRequest(buildInventoryOpenidUrl(`${baseApi}/${deleteTarget.id}`, openid), {}, 'DELETE')
+    if (res.code !== 200) {
+      Taro.showToast({ title: translateInventoryError(res.msg || '删除失败'), icon: 'none' })
+      return false
+    }
+    Taro.showToast({ title: '删除成功', icon: 'success' })
+    setDeleteTarget(emptyDeleteTarget())
+    await fetchOverview()
+    return true
+  }
+
+  function openCreateItem(categoryId, subCategoryId) {
+    setItemForm(emptyItemForm(categoryId, subCategoryId))
     setItemDialogVisible(true)
   }
 
@@ -254,6 +315,8 @@ function InventoryPage() {
   const itemGroupOptions = [{ id: 0, name: '不分组' }, ...groups]
   const selectedItemGroupIndex = Math.max(itemGroupOptions.findIndex((item) => item.id === itemForm.groupId), 0)
   const selectedItemGroupName = itemGroupOptions[selectedItemGroupIndex]?.name || '不分组'
+  const categoryActionItems = getCategoryActionItems()
+  const subCategoryActionItems = getSubCategoryActionItems()
 
   const hasData = overview.length > 0
 
@@ -293,15 +356,31 @@ function InventoryPage() {
               <Text className='category-meta'>{category.itemCount}类物品 共计{category.totalQuantity}</Text>
             </View>
             <View className='category-actions'>
-              <Button size='small' onClick={() => openCreateSubCategory(category.id)}>小分类</Button>
-              <Button size='small' type='primary' onClick={() => openCreateItem(category)}>物品</Button>
+              {categoryActionItems.map((action) => (
+                <IconAction
+                  action={action}
+                  key={action.key}
+                  onClick={() => handleCategoryAction(action.key, category)}
+                />
+              ))}
             </View>
           </View>
           {(category.subCategories || []).map((subCategory) => (
             <View className='sub-section' key={subCategory.id}>
               <View className='sub-head'>
-                <Text className='sub-name'>{subCategory.name}</Text>
-                <Text className='sub-meta'>{subCategory.itemCount}种 共{subCategory.totalQuantity}</Text>
+                <View className='sub-info'>
+                  <Text className='sub-name'>{subCategory.name}</Text>
+                  <Text className='sub-meta'>{subCategory.itemCount}种 共{subCategory.totalQuantity}</Text>
+                </View>
+                <View className='sub-actions'>
+                  {subCategoryActionItems.map((action) => (
+                    <IconAction
+                      action={action}
+                      key={action.key}
+                      onClick={() => handleSubCategoryAction(action.key, category.id, subCategory)}
+                    />
+                  ))}
+                </View>
               </View>
               <View className='item-grid'>
                 {(subCategory.items || []).map((item, index) => (
@@ -328,18 +407,18 @@ function InventoryPage() {
 
       <Dialog
         id='inventory-category-dialog'
-        title='新增大分类'
+        title={getCategoryDialogTitle(categoryForm)}
         show={categoryDialogVisible}
         showCancelButton
         onClose={() => setCategoryDialogVisible(false)}
         onConfirm={saveCategory}
       >
-        <Field value={categoryForm.name} placeholder='例如：纸尿裤' onChange={(event) => setCategoryForm({ name: event.detail })} />
+        <Field value={categoryForm.name} placeholder='例如：纸尿裤' onChange={(event) => setCategoryForm((prev) => ({ ...prev, name: event.detail }))} />
       </Dialog>
 
       <Dialog
         id='inventory-sub-category-dialog'
-        title='新增小分类'
+        title={getSubCategoryDialogTitle(subCategoryForm)}
         show={subCategoryDialogVisible}
         showCancelButton
         onClose={() => setSubCategoryDialogVisible(false)}
@@ -402,6 +481,16 @@ function InventoryPage() {
       >
         <Field value={newGroupName} placeholder='例如：卧室' onChange={(event) => setNewGroupName(event.detail)} />
       </Dialog>
+
+      <Dialog
+        id='inventory-delete-category-dialog'
+        title='确认删除'
+        message={`确定删除${deleteTarget.type === 'category' ? '大分类' : '小分类'}「${deleteTarget.name}」吗？`}
+        show={deleteTarget.visible}
+        showCancelButton
+        onClose={() => setDeleteTarget(emptyDeleteTarget())}
+        onConfirm={confirmDeleteTarget}
+      />
 
       <Popup show={false} />
       <ToastView />
